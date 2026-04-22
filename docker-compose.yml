@@ -1,0 +1,35 @@
+
+services:
+  # Database MariaDB
+  db:
+    image: mariadb:10.11
+    container_name: bookverse-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: bookverse_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  # Backend Spring Boot
+  backend:
+    build:
+      context: ./BookVerse-Backend
+      dockerfile: Dockerfile
+    container_name: bookverse-backend
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://db:3306/bookverse_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MariaDBDialect
+
+volumes:
+  mariadb_data:
