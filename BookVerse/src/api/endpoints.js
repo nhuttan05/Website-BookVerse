@@ -59,15 +59,22 @@ export const ENDPOINTS = {
   // --- User ---
   USER: {
     PROFILE:  '/user/profile',
-    WISHLIST: '/user/wishlist',
     UPDATE:   '/user/profile',
     STATS:    '/user/stats',
+  },
+
+  // --- Wishlist ---
+  WISHLIST: {
+    BASE:     '/wishlist',
+    TOGGLE:   (bookId) => `/wishlist/${bookId}`,
+    CHECK:    (bookId) => `/wishlist/check/${bookId}`,
   },
 
   // --- Admin ---
   ADMIN: {
     OVERVIEW:    '/admin/overview',
     BOOKS:       '/admin/books',
+    CATEGORIES:  '/admin/categories',
     ORDERS:      '/admin/orders',
     USERS:       '/admin/users',
     ANALYTICS:   '/admin/analytics',
@@ -79,9 +86,14 @@ export const ENDPOINTS = {
     CREATE:  (bookId) => `/books/${bookId}/reviews`,
   },
 
-  // --- Recommendations (AI) ---
+  // --- Recommendations & AI ---
   RECOMMENDATIONS: {
     SIMILAR: (slug) => `/recommendations/similar/${slug}`,
     PERSONALIZED: '/recommendations/personalized',
+  },
+  
+  // --- AI Assistant ---
+  AI: {
+    CHAT: '/ai/chat',
   },
 };

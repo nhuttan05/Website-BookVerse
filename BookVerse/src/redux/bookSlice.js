@@ -100,6 +100,17 @@ export const getPersonalizedRecommendations = createAsyncThunk(
   }
 );
 
+export const getCategories = createAsyncThunk(
+  'books/getCategories',
+  async (_, { rejectWithValue }) => {
+    try {
+      return await bookService.fetchCategories();
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || 'Lỗi tải danh mục');
+    }
+  }
+);
+
 // =====================================================
 //  INITIAL STATE
 // =====================================================
@@ -107,6 +118,7 @@ const initialState = {
   bestsellers:   [],
   featured:      [],
   newArrivals:   [],
+  categories:    [],
   selectedBook:  null,
   searchResults: null,
   similarBooks:  [],
@@ -116,6 +128,7 @@ const initialState = {
     bestsellers:   false,
     featured:      false,
     newArrivals:   false,
+    categories:    false,
     selectedBook:  false,
     search:        false,
     similarBooks:  false,
@@ -125,6 +138,7 @@ const initialState = {
     bestsellers:   null,
     featured:      null,
     newArrivals:   null,
+    categories:    null,
     selectedBook:  null,
     search:        null,
     similarBooks:  null,
@@ -151,6 +165,21 @@ const bookSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // --- getCategories ---
+    builder
+      .addCase(getCategories.pending, (state) => {
+        state.loading.categories = true;
+        state.error.categories = null;
+      })
+      .addCase(getCategories.fulfilled, (state, action) => {
+        state.loading.categories = false;
+        state.categories = action.payload;
+      })
+      .addCase(getCategories.rejected, (state, action) => {
+        state.loading.categories = false;
+        state.error.categories = action.payload;
+      });
+
     // --- getBestsellers ---
     builder
       .addCase(getBestsellers.pending, (state) => {
@@ -281,6 +310,7 @@ export const { clearSelectedBook, clearSearchResults } = bookSlice.actions;
 export const selectBestsellers       = (state) => state.books.bestsellers;
 export const selectFeaturedBooks     = (state) => state.books.featured;
 export const selectNewArrivals       = (state) => state.books.newArrivals;
+export const selectCategories        = (state) => state.books.categories;
 export const selectSelectedBook      = (state) => state.books.selectedBook;
 export const selectSearchResults     = (state) => state.books.searchResults;
 export const selectSimilarBooks      = (state) => state.books.similarBooks;

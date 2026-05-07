@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quên mật khẩu - BookVerse</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#777587",
+                        "surface": "#fbf9f5",
+                        "on-surface": "#1b1c1a",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#4f46e5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#454386",
+                        "tertiary": "#7e3000",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#a44100",
+                        "surface-bright": "#fbf9f5",
+                        "surface-variant": "#e4e2de",
+                        "primary": "#3525cd",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "surface-tint": "#4d44e3",
+                        "on-tertiary-container": "#ffd2be",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "on-secondary-fixed-variant": "#413f82",
+                        "inverse-on-surface": "#f2f0ed",
+                        "on-error": "#ffffff",
+                        "secondary": "#58579b",
+                        "on-tertiary-fixed": "#351000",
+                        "on-background": "#1b1c1a",
+                        "surface-container-high": "#eae8e4",
+                        "inverse-primary": "#c3c0ff",
+                        "background": "#fbf9f5",
+                        "outline-variant": "#c7c4d8",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "primary-fixed": "#e2dfff",
+                        "on-primary-container": "#dad7ff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "inverse-surface": "#30312e",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#efeeea",
+                        "secondary-fixed": "#e2dfff",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-container-highest": "#e4e2de",
+                        "on-secondary-fixed": "#140f54",
+                        "secondary-container": "#b6b4ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f5f3ef",
+                        "surface-dim": "#dbdad6",
+                        "on-surface-variant": "#464555"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .noise-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3Base-filter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/feTurbulence%3E%3C/base-filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#fbf9f5] dark:bg-[#1a1b26]">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-semibold tracking-tighter text-[#3525cd] dark:text-[#4f46e5]">BookVerse</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+<a class="text-[#464555] dark:text-[#94a3b8] hover:opacity-80 transition-opacity" href="#">Khám phá</a>
+<a class="text-[#464555] dark:text-[#94a3b8] hover:opacity-80 transition-opacity" href="#">Thư viện</a>
+<a class="text-[#464555] dark:text-[#94a3b8] hover:opacity-80 transition-opacity" href="#">Tác giả</a>
+</nav>
+<button class="material-symbols-outlined text-[#464555] dark:text-[#94a3b8] hover:opacity-80 transition-opacity">help</button>
+</div>
+</div>
+<div class="bg-[#efeeea] dark:bg-[#242637] h-[1px] w-full"></div>
+</header>
+<main class="flex-grow flex items-center justify-center pt-24 pb-12 px-6 relative overflow-hidden">
+<div class="absolute inset-0 z-0 bg-gradient-to-br from-primary via-surface-container-low to-surface opacity-10"></div>
+<div class="absolute inset-0 z-0 noise-overlay"></div>
+<div class="relative z-10 w-full max-w-[460px]">
+<div class="bg-surface-container-lowest rounded-xl p-8 md:p-12 shadow-[0px_32px_64px_rgba(53,37,205,0.04)] ring-1 ring-outline-variant/10">
+<div class="mb-8 text-center">
+<div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">lock_reset</span>
+</div>
+<h1 class="text-2xl font-semibold text-on-surface tracking-tight mb-3">Quên mật khẩu?</h1>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                        Nhập email của bạn để nhận hướng dẫn khôi phục mật khẩu.
+                    </p>
+</div>
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="block text-xs font-semibold uppercase tracking-wider text-outline" for="email">Email khôi phục</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-xl">mail</span>
+<input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-high border-none rounded-lg focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all text-on-surface placeholder:text-outline/50" id="email" name="email" placeholder="example@email.com" type="email"/>
+</div>
+</div>
+<button class="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-lg font-bold text-sm uppercase tracking-widest hover:opacity-90 active:scale-[0.98] transition-all shadow-lg shadow-primary/20" type="submit">
+                        Gửi yêu cầu
+                    </button>
+</form>
+<div class="mt-8 pt-8 border-t border-outline-variant/20 text-center">
+<a class="inline-flex items-center gap-2 text-primary text-sm font-semibold hover:underline decoration-2 underline-offset-4" href="#">
+<span class="material-symbols-outlined text-base">arrow_back</span>
+                        Quay lại trang đăng nhập
+                    </a>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low/50 backdrop-blur-xl rounded-xl p-4 flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-xs font-medium text-on-surface-variant">Bảo mật đa lớp</span>
+</div>
+<div class="bg-surface-container-low/50 backdrop-blur-xl rounded-xl p-4 flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">speed</span>
+<span class="text-xs font-medium text-on-surface-variant">Xử lý tức thì</span>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-[#fbf9f5] dark:bg-[#1a1b26] border-t border-[#efeeea] dark:border-[#242637]">
+<div class="flex flex-col md:flex-row justify-between items-center px-6 py-8 max-w-7xl mx-auto w-full">
+<div class="mb-4 md:mb-0">
+<span class="text-lg font-bold text-[#3525cd]">BookVerse</span>
+<p class="text-sm font-inter text-[#464555] dark:text-[#94a3b8] mt-1">© 2024 BookVerse Digital Archive. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-sm font-inter text-[#464555] dark:text-[#94a3b8] hover:text-[#3525cd] dark:hover:text-[#4f46e5] transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm font-inter text-[#464555] dark:text-[#94a3b8] hover:text-[#3525cd] dark:hover:text-[#4f46e5] transition-colors" href="#">Terms of Service</a>
+<a class="text-sm font-inter text-[#464555] dark:text-[#94a3b8] hover:text-[#3525cd] dark:hover:text-[#4f46e5] transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

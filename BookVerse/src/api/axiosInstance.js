@@ -6,7 +6,7 @@
 import axios from 'axios';
 
 // Base URL của Spring Boot Backend
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
 
 // Tạo một Axios instance riêng biệt — KHÔNG dùng axios mặc định
 // Lý do: Cô lập cấu hình, tránh ảnh hưởng các request bên ngoài hệ thống
@@ -17,6 +17,9 @@ const axiosInstance = axios.create({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   },
+  paramsSerializer: {
+    indexes: null, // Tránh thêm [] vào cuối tên tham số mảng
+  },
 });
 
 // =====================================================
@@ -24,12 +27,14 @@ const axiosInstance = axios.create({
 // =====================================================
 axiosInstance.interceptors.request.use(
   (config) => {
-    // Lấy token từ localStorage (hoặc cookie trong môi trường production)
+    // Lấy token từ localStorage
     const token = localStorage.getItem('bookverse_access_token');
-
+    
     if (token) {
-      // Gắn token theo chuẩn Bearer — Spring Boot Security sẽ đọc header này
+      // Đảm bảo headers tồn tại
+      config.headers = config.headers || {};
       config.headers['Authorization'] = `Bearer ${token}`;
+      console.log('[BookVerse API] Token attached to request');
     }
 
     return config;

@@ -5,7 +5,7 @@
 //            Bestsellers carousel, Editorial Blog.
 // =====================================================
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import BookCard from '@/components/BookCard';
@@ -18,13 +18,16 @@ import {
   selectNewArrivals,
   selectFeaturedBooks,
   selectPersonalized,
-  selectBooksLoading
+  selectBooksLoading,
+  getCategories,
+  selectCategories
 } from '@/redux/bookSlice';
 
 // ============================================================
 //  HERO SECTION — Với hiệu ứng Asymmetric Book Grid
 // ============================================================
 const HeroSection = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative min-h-[800px] flex items-center overflow-hidden">
       {/* Background with noise and gradient */}
@@ -41,10 +44,10 @@ const HeroSection = () => {
             BookVerse giúp bạn tìm, lưu và sở hữu những cuốn sách giá trị chỉ trong vài giây với sự trợ giúp của tuyển tập chuyên gia.
           </p>
           <div className="flex flex-wrap gap-4">
-            <button className="px-8 py-4 bg-primary text-white rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 hover:scale-105 transition-transform active:scale-95">
+            <button onClick={() => navigate('/browse')} className="px-8 py-4 bg-primary text-on-primary rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 hover:scale-105 transition-transform active:scale-95">
               Bắt đầu khám phá
             </button>
-            <button className="px-8 py-4 bg-white/50 backdrop-blur-md border border-outline-variant/30 text-on-surface rounded-2xl font-bold text-lg hover:bg-white/80 transition-all active:scale-95">
+            <button onClick={() => navigate('/browse?sortBy=rating&direction=desc')} className="px-8 py-4 bg-white/50 backdrop-blur-md border border-outline-variant/30 text-on-surface rounded-2xl font-bold text-lg hover:bg-white/80 transition-all active:scale-95">
               Xem Best-sellers
             </button>
           </div>
@@ -83,39 +86,120 @@ const HeroSection = () => {
 //  SMART SEARCH BAR — Sticky
 // ============================================================
 const SmartSearch = () => {
+  const navigate = useNavigate();
+  const displayCategories = useSelector(selectCategories);
+  const [query, setQuery] = useState('');
+  const [selectedCat, setSelectedCat] = useState(null);
+  const [selectedPrice, setSelectedPrice] = useState(null);
+
+  const priceOptions = [
+    { label: 'Tất cả giá', min: null, max: null, icon: 'payments' },
+    { label: 'Dưới 100k', min: 0, max: 100000, icon: 'money_off' },
+    { label: '100k - 500k', min: 100000, max: 500000, icon: 'account_balance_wallet' },
+    { label: '500k - 1 triệu', min: 500000, max: 1000000, icon: 'savings' },
+    { label: 'Trên 1 triệu', min: 1000000, max: null, icon: 'diamond' },
+  ];
+
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (query) params.append('q', query);
+    if (selectedCat) params.append('categories', selectedCat.slug);
+    if (selectedPrice) {
+      if (selectedPrice.min !== null) params.append('minPrice', selectedPrice.min);
+      if (selectedPrice.max !== null) params.append('maxPrice', selectedPrice.max);
+    }
+    navigate(`/browse?${params.toString()}`);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') handleSearch();
+  };
+
   return (
-    <div className="sticky top-[80px] z-40 max-w-5xl mx-auto px-6 -mt-10">
-      <div className="bg-surface-container-lowest/90 p-4 rounded-3xl shadow-2xl border border-outline-variant/10 backdrop-blur-xl">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-          <div className="md:col-span-5 flex items-center bg-surface-container-high px-5 py-3 rounded-2xl group transition-all focus-within:ring-2 focus-within:ring-primary/20">
-            <span className="material-symbols-outlined text-outline">search</span>
+    <div className="sticky top-[80px] z-40 max-w-6xl mx-auto px-6 -mt-12">
+      <div className="bg-surface-container-lowest/80 backdrop-blur-2xl p-3 rounded-[32px] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] border border-white/20">
+        <div className="flex flex-col md:flex-row items-center gap-2">
+          
+          {/* Input Tìm kiếm */}
+          <div className="flex-1 flex items-center bg-surface-container-low hover:bg-surface-container transition-colors px-6 py-4 rounded-[24px] group">
+            <span className="material-symbols-outlined text-primary font-bold">search</span>
             <input 
-              className="bg-transparent border-none focus:ring-0 w-full text-on-surface font-medium placeholder:text-outline-variant px-3 outline-none" 
-              placeholder="Tìm tên sách, tác giả hoặc ISBN..." 
+              className="bg-transparent border-none focus:ring-0 w-full text-on-surface font-bold placeholder:text-outline/50 px-4 outline-none text-sm" 
+              placeholder="Bạn muốn tìm cuốn sách nào hôm nay?" 
               type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
           </div>
-          <div className="md:col-span-2">
-            <select className="w-full bg-surface-container px-4 py-3 rounded-2xl border-none text-sm font-semibold text-on-surface-variant focus:ring-primary/20 cursor-pointer outline-none">
-              <option>Thể loại</option>
-              <option>Kinh tế</option>
-              <option>Tâm lý</option>
-              <option>Văn học</option>
-            </select>
-          </div>
-          <div className="md:col-span-2">
-            <select className="w-full bg-surface-container px-4 py-3 rounded-2xl border-none text-sm font-semibold text-on-surface-variant focus:ring-primary/20 cursor-pointer outline-none">
-              <option>Giá bán</option>
-              <option>Dưới 100k</option>
-              <option>100k - 300k</option>
-            </select>
-          </div>
-          <div className="md:col-span-3">
-            <button className="w-full bg-primary py-3 rounded-2xl text-white font-bold hover:shadow-lg hover:shadow-primary/30 transition-all flex items-center justify-center gap-2 active:scale-95">
-              <span className="material-symbols-outlined text-sm">tune</span>
-              Tìm kiếm ngay
+
+          {/* Custom Dropdown: Thể loại */}
+          <div className="relative group w-full md:w-48">
+            <button className="w-full flex items-center justify-between bg-surface-container-low hover:bg-surface-container px-6 py-4 rounded-[24px] transition-all">
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-primary text-xl">category</span>
+                <span className="text-sm font-bold text-on-surface truncate max-w-[80px]">
+                  {selectedCat ? selectedCat.name : 'Thể loại'}
+                </span>
+              </div>
+              <span className="material-symbols-outlined text-outline text-sm transition-transform group-hover:rotate-180">expand_more</span>
             </button>
+            <div className="absolute top-full left-0 mt-3 w-64 bg-surface-container-high rounded-[24px] shadow-2xl border border-outline-variant/20 py-3 z-50 opacity-0 invisible translate-y-4 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300">
+              <button 
+                onClick={() => setSelectedCat(null)}
+                className="w-full text-left px-6 py-3 text-xs font-black text-on-surface hover:bg-primary/10 hover:text-primary transition-colors"
+              >
+                Tất cả thể loại
+              </button>
+              <div className="max-h-60 overflow-y-auto custom-scrollbar">
+                {displayCategories.map(cat => (
+                  <button 
+                    key={cat.slug}
+                    onClick={() => setSelectedCat(cat)}
+                    className={`w-full text-left px-6 py-3 text-xs font-bold transition-colors flex items-center gap-3 ${selectedCat?.slug === cat.slug ? 'bg-primary/10 text-primary' : 'text-on-surface-variant hover:bg-surface-container'}`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary/40"></span>
+                    {cat.name}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
+
+          {/* Custom Dropdown: Giá bán */}
+          <div className="relative group w-full md:w-56">
+            <button className="w-full flex items-center justify-between bg-surface-container-low hover:bg-surface-container px-6 py-4 rounded-[24px] transition-all">
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-primary text-xl">payments</span>
+                <span className="text-sm font-bold text-on-surface">
+                  {selectedPrice ? selectedPrice.label : 'Giá bán'}
+                </span>
+              </div>
+              <span className="material-symbols-outlined text-outline text-sm transition-transform group-hover:rotate-180">expand_more</span>
+            </button>
+            <div className="absolute top-full right-0 mt-3 w-64 bg-surface-container-high rounded-[24px] shadow-2xl border border-outline-variant/20 py-3 z-50 opacity-0 invisible translate-y-4 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300">
+              {priceOptions.map(opt => (
+                <button 
+                  key={opt.label}
+                  onClick={() => setSelectedPrice(opt)}
+                  className={`w-full flex items-center gap-4 px-6 py-3.5 text-xs font-bold transition-all ${selectedPrice?.label === opt.label ? 'bg-primary/10 text-primary' : 'text-on-surface-variant hover:bg-surface-container'}`}
+                >
+                  <span className="material-symbols-outlined text-lg opacity-70">{opt.icon}</span>
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Nút Tìm kiếm */}
+          <button 
+            onClick={handleSearch}
+            className="w-full md:w-auto bg-primary hover:bg-primary/90 px-8 py-4 rounded-[24px] text-on-primary font-black shadow-xl shadow-primary/30 transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3 min-w-[180px]"
+          >
+            <span className="material-symbols-outlined">bolt</span>
+            Tìm kiếm ngay
+          </button>
+
         </div>
       </div>
     </div>
@@ -142,6 +226,7 @@ const HomePage = () => {
     dispatch(getNewArrivals(8));
     dispatch(getFeaturedBooks());
     dispatch(getPersonalizedRecommendations());
+    dispatch(getCategories());
   }, [dispatch]);
 
   return (
@@ -229,14 +314,14 @@ const HomePage = () => {
           ) : (
             bestsellers.map((book, idx) => (
               <div key={book.id} className="flex-none w-48 snap-start group relative">
-                {idx === 0 && <div className="absolute -top-2 -right-2 z-10 bg-error text-white text-[10px] font-black px-2 py-1 rounded-lg shadow-xl shadow-error/20 transform rotate-12">HOT</div>}
-                {idx === 1 && <div className="absolute -top-2 -right-2 z-10 bg-error text-white text-[10px] font-black px-2 py-1 rounded-lg shadow-xl shadow-error/20 transform -rotate-6">TRENDING</div>}
+                {idx === 0 && <div className="absolute -top-2 -right-2 z-10 bg-error text-on-error text-[10px] font-black px-2 py-1 rounded-lg shadow-xl shadow-error/20 transform rotate-12">HOT</div>}
+                {idx === 1 && <div className="absolute -top-2 -right-2 z-10 bg-error text-on-error text-[10px] font-black px-2 py-1 rounded-lg shadow-xl shadow-error/20 transform -rotate-6">TRENDING</div>}
                 <Link to={`/books/${book.slug}`} className="block aspect-[2/3] rounded-2xl overflow-hidden mb-4 shadow-xl group-hover:shadow-primary/20 group-hover:scale-105 transition-all">
                   <img className="w-full h-full object-cover" src={book.coverImageUrl} alt={book.title} />
                 </Link>
                 <div className="text-center">
                   <h4 className="font-bold text-on-surface truncate px-2">{book.title}</h4>
-                  <p className="text-xs text-on-surface-variant">{book.author.name}</p>
+                  <p className="text-xs text-on-surface-variant">{book.author}</p>
                 </div>
               </div>
             ))
@@ -268,7 +353,7 @@ const HomePage = () => {
                 </div>
                 <h3 className="text-2xl font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">{post.title}</h3>
                 <p className="text-on-surface-variant line-clamp-2">{post.desc}</p>
-                <button className="pt-4 flex items-center gap-2 font-bold text-on-surface group/btn">
+                <button onClick={() => navigate('/blog')} className="pt-4 flex items-center gap-2 font-bold text-on-surface group/btn">
                   Đọc thêm 
                   <span className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_right_alt</span>
                 </button>

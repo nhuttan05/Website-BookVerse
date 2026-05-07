@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#e2dfff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#1b1c1a",
+                    "on-tertiary-fixed": "#351000",
+                    "outline-variant": "#c7c4d8",
+                    "tertiary-container": "#a44100",
+                    "inverse-surface": "#30312e",
+                    "tertiary": "#7e3000",
+                    "surface-container": "#efeeea",
+                    "on-secondary-fixed": "#140f54",
+                    "inverse-on-surface": "#f2f0ed",
+                    "surface-container-low": "#f5f3ef",
+                    "background": "#fbf9f5",
+                    "on-surface": "#1b1c1a",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-primary-fixed": "#0f0069",
+                    "secondary": "#58579b",
+                    "outline": "#777587",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffdbcc",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "on-primary-container": "#dad7ff",
+                    "surface-bright": "#fbf9f5",
+                    "secondary-fixed-dim": "#c3c0ff",
+                    "on-tertiary-container": "#ffd2be",
+                    "surface": "#fbf9f5",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e4e2de",
+                    "primary-container": "#4f46e5",
+                    "on-secondary-container": "#454386",
+                    "inverse-primary": "#c3c0ff",
+                    "primary": "#3525cd",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#e2dfff",
+                    "surface-dim": "#dbdad6",
+                    "on-secondary-fixed-variant": "#413f82",
+                    "surface-tint": "#4d44e3",
+                    "on-surface-variant": "#464555",
+                    "surface-container-highest": "#e4e2de",
+                    "surface-container-high": "#eae8e4",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#b6b4ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "display": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fbf9f5]/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] font-['Inter'] tracking-tight antialiased">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-indigo-700 dark:text-indigo-300">BookVerse</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Archive</a>
+<a class="text-indigo-700 dark:text-indigo-300 border-b-2 border-indigo-600 dark:border-indigo-400 pb-1 font-semibold" href="#">Authors</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Categories</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Wishlist</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<input class="bg-surface-container-high border-none rounded-xl px-4 py-2 text-sm w-64 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Tìm kiếm tác giả..." type="text"/>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-all duration-300 rounded-full">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-all duration-300 rounded-full">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-20 px-6 max-w-screen-2xl mx-auto">
+<!-- Hero Section -->
+<section class="mb-20">
+<div class="max-w-3xl">
+<h1 class="text-5xl md:text-7xl font-bold tracking-tighter text-on-surface mb-6">Danh Mục Tác Giả.</h1>
+<p class="text-xl text-on-surface-variant leading-relaxed">Khám phá những trí tuệ vĩ đại đã định hình nên kho tàng tri thức nhân loại. Mỗi tác giả là một hành trình, mỗi trang sách là một thế giới chờ được khai mở.</p>
+</div>
+</section>
+<!-- Featured Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-24">
+<!-- Large Featured Card -->
+<div class="md:col-span-8 group relative overflow-hidden rounded-[2rem] bg-surface-container-low p-8 flex flex-col justify-end min-h-[500px]">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover grayscale opacity-30 group-hover:scale-105 transition-transform duration-700" data-alt="Moody black and white portrait of a classic writer in a dimly lit library filled with antique books and dust motes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwYgmSUfPFrto1NMGu89RETg0s63-bSz6gF-DthEPlkWQnx4cwqSI1L7D1jcM93N1fxzDagWmM0CuxCJU7vyACbl4ZoPBfJRpdPa87GbdKpZOPGK5hG_b77KjVc6pkbgQNW7Qeo83cf58w-4Rc8W9JoFzvRcT1WiBfeO0bl6YmZLqTaHap3hm8jO2nrbZcMBltGui7mBd1JyspXFaWCJeXJ6C3kdSzd543rG_Y-H6SzMh3cSxcWNtyCdjbvFiVg6Z7xb_U0UnZk5I"/>
+</div>
+<div class="relative z-10">
+<span class="inline-block px-4 py-1 rounded-full bg-primary text-on-primary text-xs font-bold tracking-widest uppercase mb-4">Tác giả tiêu biểu</span>
+<h2 class="text-4xl font-bold text-on-surface mb-4">Nam Cao</h2>
+<p class="text-lg text-on-surface-variant max-w-xl mb-6">Đại diện tiêu biểu nhất của trào lưu văn học hiện thực vị nhân sinh Việt Nam thế kỷ 20, với cái nhìn nhân đạo sâu sắc về con người.</p>
+<a class="inline-flex items-center gap-2 text-primary font-bold group/link" href="#">
+                        Xem kho lưu trữ 
+                        <span class="material-symbols-outlined group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Side Bento Column -->
+<div class="md:col-span-4 flex flex-col gap-6">
+<div class="flex-1 bg-primary-container rounded-[2rem] p-8 text-on-primary-container relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="text-2xl font-bold mb-2">Thống kê lưu trữ</h3>
+<p class="text-on-primary-container/80 text-sm mb-6">Cập nhật mới nhất từ hệ thống BookVerse.</p>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<div class="text-3xl font-black">1.2k+</div>
+<div class="text-xs uppercase tracking-wider opacity-70">Tác giả</div>
+</div>
+<div>
+<div class="text-3xl font-black">15k+</div>
+<div class="text-xs uppercase tracking-wider opacity-70">Tác phẩm</div>
+</div>
+</div>
+</div>
+<div class="absolute -right-10 -bottom-10 opacity-10">
+<span class="material-symbols-outlined !text-[12rem]">history_edu</span>
+</div>
+</div>
+<div class="flex-1 bg-surface-container-highest rounded-[2rem] p-8 flex flex-col justify-center">
+<h3 class="text-xl font-bold text-on-surface mb-2">Tìm tác giả theo bảng chữ cái</h3>
+<div class="flex flex-wrap gap-2 mt-4">
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface text-primary font-bold shadow-sm cursor-pointer hover:bg-primary hover:text-on-primary transition-colors">A</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface text-on-surface-variant font-bold shadow-sm cursor-pointer hover:bg-primary hover:text-on-primary transition-colors">B</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface text-on-surface-variant font-bold shadow-sm cursor-pointer hover:bg-primary hover:text-on-primary transition-colors">C</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface text-on-surface-variant font-bold shadow-sm cursor-pointer hover:bg-primary hover:text-on-primary transition-colors">D</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface text-on-surface-variant font-bold shadow-sm cursor-pointer hover:bg-primary hover:text-on-primary transition-colors">H</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface text-on-surface-variant font-bold shadow-sm cursor-pointer hover:bg-primary hover:text-on-primary transition-colors">L</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface text-on-surface-variant font-bold shadow-sm cursor-pointer hover:bg-primary hover:text-on-primary transition-colors">N</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface text-on-surface-variant font-bold shadow-sm cursor-pointer hover:bg-primary hover:text-on-primary transition-colors">T</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Authors Grid -->
+<section>
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-on-surface">Danh sách nghệ sĩ từ ngữ</h2>
+<p class="text-on-surface-variant">Sắp xếp theo thứ tự phổ biến trong tuần</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Lọc theo thời kỳ
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+<!-- Author Card 1 -->
+<div class="group">
+<div class="aspect-[3/4] rounded-xl overflow-hidden mb-6 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0" data-alt="Soft focused studio portrait of a woman writer with short hair, wearing a turtleneck, warm lighting and organic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9nWxPIPTdW0xgVKGl3U0CaVn12moX5sjwiB76Mjq9HPshTmD_svm-lbLKRwPDtPW_i1UlqPAa3U3Gpqe4L5dp1upGX5Mgiw5pZGTA28hTuVZhAh62w8QC1Sf7hNcDNSpMxApSrtBR3JRe4vKSL2x1vEoKwbeQBNAnZIDkYqW8HzfJ6o9oCNedl3O6_Bd6BItQJJGtvoMHXAgoHLTyxztnFuPpKfXAape0uM1T3U8RDZH2HKYttzovXI-eK61oQUKODVkXgFFKdew"/>
+</div>
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Thạch Lam</h3>
+<p class="text-sm text-on-surface-variant line-clamp-2">Cây bút tinh tế nhất của Tự Lực văn đoàn, nổi tiếng với những truyện ngắn nhẹ nhàng nhưng ám ảnh.</p>
+<div class="pt-2">
+<a class="text-xs font-bold uppercase tracking-widest text-primary hover:underline underline-offset-4" href="#">12 Tác phẩm</a>
+</div>
+</div>
+</div>
+<!-- Author Card 2 -->
+<div class="group">
+<div class="aspect-[3/4] rounded-xl overflow-hidden mb-6 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0" data-alt="A vintage profile shot of a man with spectacles writing at a desk, sunbeams coming through a window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3iMXZm2oSO57DUbZoZ9S3mqkLUnEqSN4BJ_cxLcppcxSY2V4m4rMkdiUebQXhAG53ST468WmIApsLafwFt73B66zZNwK4ohx8lFGpzIjlbkfXM8dJ48-OlfxBZMlAtdvhmL-vy_Zfc_d0oAwUKoScMRrsz1OL-AO5iyGPQUzsvOnxb2BxmojY-YlGQG88fST7vYRc2NBHchtlAZUIvG8Iaw2fPFiD4VYr24VYThPQCSqRTJ9lBO0S3VUPoNgeR05l8dJcO_FXSYs"/>
+</div>
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Xuân Diệu</h3>
+<p class="text-sm text-on-surface-variant line-clamp-2">"Ông hoàng thơ tình", người mang luồng sinh khí mới mẻ và nồng cháy vào phong trào Thơ mới.</p>
+<div class="pt-2">
+<a class="text-xs font-bold uppercase tracking-widest text-primary hover:underline underline-offset-4" href="#">45 Tác phẩm</a>
+</div>
+</div>
+</div>
+<!-- Author Card 3 -->
+<div class="group">
+<div class="aspect-[3/4] rounded-xl overflow-hidden mb-6 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0" data-alt="An elderly woman author in a comfortable knit sweater, sitting in a garden, smiling warmly, cinematic natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWsvG5IB2PSoTuIcVLSRYhBXXr2XpCGVyK0hiFLybZs3MkblUvQiKPj4BK2wbNZ0Kn_r-eYJYVn1blvLaq80TkjbAFDXJJhh8RUrMdOAjmTvj6ctoM3U16uMvAT8kC6u2p7i6Gtge5RnirhcgiF70gxDulTE8dSWWa-ymNaNLuVMTHrPGyF3G3LT9CTdEztR9FITTmpNhWo8S8g44e65Kkydma8Waq4xAxmiCe6bNYoO6QFKrOpfk3dt_yDQZDQbebROGjXwiCCHE"/>
+</div>
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Tô Hoài</h3>
+<p class="text-sm text-on-surface-variant line-clamp-2">Bậc thầy về ngôn ngữ đời thường, người đã đưa chú Dế Mèn đi khắp thế giới trong tuổi thơ của bao thế hệ.</p>
+<div class="pt-2">
+<a class="text-xs font-bold uppercase tracking-widest text-primary hover:underline underline-offset-4" href="#">88 Tác phẩm</a>
+</div>
+</div>
+</div>
+<!-- Author Card 4 -->
+<div class="group">
+<div class="aspect-[3/4] rounded-xl overflow-hidden mb-6 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0" data-alt="Abstract silhouette of a writer walking through an urban alleyway at dusk, high contrast, mysterious atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNCAOfTSV-fKuTzJPrjyze6M3iVxxeIo1LaY8a86rMW-7bto_GoRMZoJg4ZO5kCrhgIAf_uGiBvBwA0HdhlOiqgKrSlBqzsXRRp9ctSi9IFGCJsSvWXvTwSJWsH5Wxlf_o_S2xtmEXmYZOHEvy90zEgNpg6_QZ61-kB-h_qHFTincW1-VkAde8tPHgLRtrmK7q4TZjuMINswINRUAV8aqTQZKJNaKTD2wf6UGxs2aEnr6YIapmaE2-X3kkt99Nc1bo7e9R5zyIsbo"/>
+</div>
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Nguyễn Tuân</h3>
+<p class="text-sm text-on-surface-variant line-clamp-2">Người nghệ sĩ của cái đẹp cầu kỳ, tài hoa và uyên bác trong từng nét bút tùy bút.</p>
+<div class="pt-2">
+<a class="text-xs font-bold uppercase tracking-widest text-primary hover:underline underline-offset-4" href="#">24 Tác phẩm</a>
+</div>
+</div>
+</div>
+<!-- Author Card 5 -->
+<div class="group">
+<div class="aspect-[3/4] rounded-xl overflow-hidden mb-6 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0" data-alt="A shelf of classic leather bound books with gold lettering in a dimly lit study with a cozy fireplace glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDAEQcIp_kdWla4r8PuElW-FsJtHJTQHWtGjTWOvae-HgGvrJjvkuMmeUho5ljVlDGfjxrzqQAMlZMuDBxITtha3DaTDcqPhUaDZRTNQZIdxBLb7QDHoXEP-qDl3xZMBRsYmhtoCg6ixigr7kTxeAIougK8xzdK80Xb-hAxUnK_GXSQuxgl859lw98zGaJ7wtteJxGLCpXNO0oornVVCapFsvF6Qr0ukJzRotBwqwgpaaNI-23oapAc7agNJSpaEVTnBmaZLAy4I"/>
+</div>
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Huy Cận</h3>
+<p class="text-sm text-on-surface-variant line-clamp-2">Nỗi buồn vạn cổ và tầm vóc vũ trụ trong thơ ca, một hồn thơ ảo não bậc nhất thời đại.</p>
+<div class="pt-2">
+<a class="text-xs font-bold uppercase tracking-widest text-primary hover:underline underline-offset-4" href="#">32 Tác phẩm</a>
+</div>
+</div>
+</div>
+<!-- Author Card 6 -->
+<div class="group">
+<div class="aspect-[3/4] rounded-xl overflow-hidden mb-6 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0" data-alt="Top down view of a vintage typewriter on a rustic wooden table with an old cup of coffee and spectacles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPRUIeQGrVCVj7NsVyNCjwWSMCh5VKLs-Bc57y5Ss5MX9QRehA3zglQEJeOrAT-i5_ZIMB91-yc8BYF17dyUol907aUMaBy2qhiGSvbkfSrssDtnpJU2HaMabAryC0X-y1p_rmls93vOTaNbBZk2CkkgxFWj56NmLXkBe1cMz1yw4m0D3MzAKghyklMZBX128pb2c4e3EIteZdz4YLY3W4ICIaFDaky8wnBUMV9mpAvuxxXxBXlEGuoSJV_SxqvTaUuH8xDU1TsZk"/>
+</div>
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Vũ Trọng Phụng</h3>
+<p class="text-sm text-on-surface-variant line-clamp-2">"Ông vua phóng sự đất Bắc", người lột trần sự giả dối của xã hội đương thời bằng ngòi bút trào phúng sắc sảo.</p>
+<div class="pt-2">
+<a class="text-xs font-bold uppercase tracking-widest text-primary hover:underline underline-offset-4" href="#">19 Tác phẩm</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination/Load More -->
+<div class="mt-20 flex justify-center">
+<button class="group flex flex-col items-center gap-2">
+<span class="text-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant group-hover:text-primary transition-colors">Xem thêm trí tuệ</span>
+<span class="material-symbols-outlined text-primary animate-bounce">expand_more</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto border-t border-slate-100 dark:border-slate-900 bg-[#fbf9f5] dark:bg-slate-950 font-['Inter'] uppercase tracking-widest text-xs">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
+<div class="font-semibold text-slate-900 dark:text-slate-100">BookVerse</div>
+<div class="flex gap-8">
+<a class="text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Collection Policy</a>
+<a class="text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Archive Ethics</a>
+<a class="text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Terms</a>
+<a class="text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Support</a>
+</div>
+<div class="text-slate-400 dark:text-slate-600">
+                © 2024 BookVerse Digital Archive. All discoveries preserved.
+            </div>
+</div>
+</footer>
+</body></html>

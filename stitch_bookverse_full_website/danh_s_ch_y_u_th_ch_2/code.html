@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BookVerse | Danh sách mong muốn</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#e2dfff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1b1c1a",
+                        "on-tertiary-fixed": "#351000",
+                        "outline-variant": "#c7c4d8",
+                        "tertiary-container": "#a44100",
+                        "inverse-surface": "#30312e",
+                        "tertiary": "#7e3000",
+                        "surface-container": "#efeeea",
+                        "on-secondary-fixed": "#140f54",
+                        "inverse-on-surface": "#f2f0ed",
+                        "surface-container-low": "#f5f3ef",
+                        "background": "#fbf9f5",
+                        "on-surface": "#1b1c1a",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-primary-fixed": "#0f0069",
+                        "secondary": "#58579b",
+                        "outline": "#777587",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdbcc",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-primary-container": "#dad7ff",
+                        "surface-bright": "#fbf9f5",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "on-tertiary-container": "#ffd2be",
+                        "surface": "#fbf9f5",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e4e2de",
+                        "primary-container": "#4f46e5",
+                        "on-secondary-container": "#454386",
+                        "inverse-primary": "#c3c0ff",
+                        "primary": "#3525cd",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#e2dfff",
+                        "surface-dim": "#dbdad6",
+                        "on-secondary-fixed-variant": "#413f82",
+                        "surface-tint": "#4d44e3",
+                        "on-surface-variant": "#464555",
+                        "surface-container-highest": "#e4e2de",
+                        "surface-container-high": "#eae8e4",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#b6b4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "display": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #fbf9f5;
+            color: #1b1c1a;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    .book-title-container {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+        width: 100%;
+    }
+    .book-title {
+        display: inline-block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+        transition: transform 1s ease-in-out;
+    }
+    article:hover .book-title {
+        width: auto;
+        overflow: visible;
+        transform: translateX(calc(-100% + 100%)); /* This triggers a CSS trick if the container is fixed */
+        animation: scroll-text 4s linear infinite;
+    }
+    @keyframes scroll-text {
+        0% { transform: translateX(0); }
+        20% { transform: translateX(0); }
+        80% { transform: translateX(calc(-100% + 200px)); } /* 200px is approx width of card content */
+        100% { transform: translateX(0); }
+    }
+    /* Simpler approach for uniform layout */
+    .title-row {
+        height: 1.75rem;
+        overflow: hidden;
+    }
+</style></head>
+<body class="min-h-screen flex flex-col antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fbf9f5]/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] font-['Inter'] tracking-tight">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-indigo-700 dark:text-indigo-300">BookVerse</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Archive</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Authors</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Categories</a>
+<a class="text-indigo-700 dark:text-indigo-300 border-b-2 border-indigo-600 dark:border-indigo-400 pb-1 font-semibold" href="#">Wishlist</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<input class="bg-slate-100/50 dark:bg-slate-800/50 border-none rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 w-64" placeholder="Tìm kiếm tài liệu..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-slate-600 hover:bg-slate-100/50 p-2 rounded-full transition-all" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined text-slate-600 hover:bg-slate-100/50 p-2 rounded-full transition-all" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-32 pb-20 px-6 max-w-screen-2xl mx-auto w-full">
+<!-- Header Section -->
+<header class="mb-12">
+<h1 class="text-5xl font-extrabold tracking-tighter text-on-surface mb-2">Danh sách mong muốn</h1>
+<p class="text-on-surface-variant text-lg max-w-2xl">Bộ sưu tập các khám phá của bạn. Những tác phẩm trí tuệ đang chờ đợi được lưu trữ trong thư viện cá nhân của bạn.</p>
+</header>
+<!-- Bento Grid / Wishlist Items -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Book Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl p-5 group flex flex-col h-full hover:translate-y-[-4px] transition-all duration-300">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-5 bg-surface-container shadow-sm relative">
+<img alt="Book Cover" class="w-full h-full object-cover" data-alt="Modern book cover design with minimalist typography on a textured white background in a clean studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcx27T_BVhKEB3tEE6Hox_ib01HiRTgg7HUWZFrTBRK7wUxNnS6mcEWS60RqJLET__s1qVEvpGC0P7QfiSzgdftT6i6JQpZOCtIXZbS0IWd-2H1ibRMOgTI4WyBF9m3Sj4ksqGs5vtH-ywAIgkV0_s1U0qXOqGvWabnSb-pyIkKPcrgrDphjhgM6iiMfKkRj_olEMxJsepMKvpMXU5e8UImnf_kSmUZ--DGs7P26ycKOihBRYE6syEuO3NDcZAmBWq-Y29kIWXNEI"/>
+<button class="absolute top-3 right-3 bg-white/90 backdrop-blur text-error p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" title="Xóa khỏi danh sách">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+<div class="flex-grow"><div class="title-row mb-1">
+<h3 class="text-xl font-bold tracking-tight text-on-surface truncate" title="Cấu Trúc Của Tư Duy">Cấu Trúc Của Tư Duy</h3>
+</div>
+<p class="text-on-surface-variant text-sm mb-4 h-5 overflow-hidden">Dr. Alana Thorne</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-2xl font-black text-primary">245.000đ</span>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wider flex items-center gap-2 hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+        Thêm
+    </button>
+</div></div>
+</article>
+<!-- Book Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl p-5 group flex flex-col h-full hover:translate-y-[-4px] transition-all duration-300">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-5 bg-surface-container shadow-sm relative">
+<img alt="Book Cover" class="w-full h-full object-cover" data-alt="Antique leather bound book cover with intricate gold leaf details resting on a dark velvet surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmC4oy4wxWkCSWt9-QY-gkIx6ePk4ZY8-MO7oZiqQ4jf4RtGtp6lUc_kXldABcjOUajJgGLbvd9utw6UlR8e6QRYPevQVB4lZH3ZTef983npO-S8FCVe-pKOazefXCNcHuZYgyFcCivzQ0dK7qWvM7Uh15HX5yXS07rlfHnFq_LYIB2cquZ1o5PXEQl_N4N8OdqTbY3wZ-ChDQ-E1PXlfN3hfZv--JhAgexB-Yp3HzdLGlLaP0qNI0fypCn4EHxOQLUgeHlwwwlj8"/>
+<button class="absolute top-3 right-3 bg-white/90 backdrop-blur text-error p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" title="Xóa khỏi danh sách">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+<div class="flex-grow"><div class="title-row mb-1">
+<h3 class="text-xl font-bold tracking-tight text-on-surface truncate" title="Kỷ Nguyên Lưu Trữ">Kỷ Nguyên Lưu Trữ</h3>
+</div>
+<p class="text-on-surface-variant text-sm mb-4 h-5 overflow-hidden">Julian Vesper</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-2xl font-black text-primary">310.000đ</span>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wider flex items-center gap-2 hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+        Thêm
+    </button>
+</div></div>
+</article>
+<!-- Book Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl p-5 group flex flex-col h-full hover:translate-y-[-4px] transition-all duration-300">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-5 bg-surface-container shadow-sm relative">
+<img alt="Book Cover" class="w-full h-full object-cover" data-alt="Stylized book cover with abstract geometric shapes in muted earth tones and elegant serif font" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpN9VI8WXs2pmt2V1B6AjUIXu6F5JU7lYilTMSqpXWEEwK7zQwKz6NcP17ehC4UAi_3oXugZgMwRHTV9hPi-D_MGbuuZVNHSDiI0tCc8LuYPTLS0tMRQ_AxNv4ky6CfNMuPBr8B8VUURmiiLQ-mZCsR0NN--xPVtE5jYyIBQroAS4lNFIC9HKhhOdrJM3crcw3jypLgJ0urjxYO6xJ9zQGSy19ySttEplxViFChTMbq2d8hKxLTtWxDfXTwY390N9ov4Seb11PfrM"/>
+<button class="absolute top-3 right-3 bg-white/90 backdrop-blur text-error p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" title="Xóa khỏi danh sách">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+<div class="flex-grow"><div class="title-row mb-1">
+<h3 class="text-xl font-bold tracking-tight text-on-surface truncate" title="Bản Giao Hưởng Của Những Từ Ngữ">Bản Giao Hưởng Của Những Từ Ngữ</h3>
+</div>
+<p class="text-on-surface-variant text-sm mb-4 h-5 overflow-hidden">Elena Rossi</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-2xl font-black text-primary">185.000đ</span>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wider flex items-center gap-2 hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+        Thêm
+    </button>
+</div></div>
+</article>
+<!-- Book Card 4 -->
+<article class="bg-surface-container-lowest rounded-xl p-5 group flex flex-col h-full hover:translate-y-[-4px] transition-all duration-300">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-5 bg-surface-container shadow-sm relative">
+<img alt="Book Cover" class="w-full h-full object-cover" data-alt="Atmospheric book cover featuring a starry night sky over a quiet ocean with soft bioluminescent ripples" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOIi_L0kku_UuYY2r-LAGhL_i_mBJRbn08P5lRWJc21bd4jN6MVZ_kB2eECpfmGcnOGH2AJ3T-Gq_3jGgh6Fj3TNokoF5XfUcbSKs-yRZz3Rt6T0Z9gUgC1CF18Aj9ozEEgE6niBZCQjeq2aRRMq6jE5Y1d53Kizzo60Nng9hXkYCV_N2EluHIFZRVo68e9Z2DkjvL3yy8XQ2cSK404VebnryMr7xeYeepTBuW2_CmmScsrqEqEZ_DvPaJ7XqdP2ZppNobgaPik-M"/>
+<button class="absolute top-3 right-3 bg-white/90 backdrop-blur text-error p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" title="Xóa khỏi danh sách">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+<div class="flex-grow"><div class="title-row mb-1">
+<h3 class="text-xl font-bold tracking-tight text-on-surface truncate" title="Vật Lý Của Trí Tưởng Tượng">Vật Lý Của Trí Tưởng Tượng</h3>
+</div>
+<p class="text-on-surface-variant text-sm mb-4 h-5 overflow-hidden">Marcus Solis</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-2xl font-black text-primary">420.000đ</span>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wider flex items-center gap-2 hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+        Thêm
+    </button>
+</div></div>
+</article>
+</div>
+<!-- Empty State (Hidden) -->
+<div class="hidden flex-col items-center justify-center py-24 text-center">
+<span class="material-symbols-outlined text-8xl text-slate-200 mb-6" data-icon="auto_stories">auto_stories</span>
+<h2 class="text-2xl font-bold text-on-surface mb-2">Danh sách của bạn đang trống</h2>
+<p class="text-on-surface-variant mb-8">Hãy bắt đầu khám phá kho lưu trữ và tìm những tác phẩm yêu thích của bạn.</p>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-primary-container transition-colors">
+                Khám phá ngay
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto border-t border-slate-100 dark:border-slate-900 bg-[#fbf9f5] dark:bg-slate-950 font-['Inter']">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-8">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-semibold text-slate-900 dark:text-slate-100 text-lg">BookVerse</span>
+<p class="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-600">© 2024 BookVerse Digital Archive. All discoveries preserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Collection Policy</a>
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Archive Ethics</a>
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Terms</a>
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-[#fbf9f5]/95 backdrop-blur-md z-50 py-3 px-6 flex justify-around items-center shadow-[0_-8px_30px_rgb(0,0,0,0.04)]">
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="text-[10px] font-bold uppercase">Archive</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="text-[10px] font-bold uppercase">Explore</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-indigo-600">
+<span class="material-symbols-outlined" data-icon="bookmark" data-weight="fill">bookmark</span>
+<span class="text-[10px] font-bold uppercase">Wishlist</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-bold uppercase">Profile</span>
+</button>
+</nav>
+</body></html>

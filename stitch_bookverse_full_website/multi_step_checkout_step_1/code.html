@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout - BookVerse</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#dad7ff",
+                        "primary-container": "#4f46e5",
+                        "outline": "#777587",
+                        "inverse-on-surface": "#f2f0ed",
+                        "on-secondary-container": "#454386",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#e2dfff",
+                        "surface-container-high": "#eae8e4",
+                        "surface-container-highest": "#e4e2de",
+                        "surface": "#fbf9f5",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "on-tertiary-container": "#ffd2be",
+                        "surface-tint": "#4d44e3",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#efeeea",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#b6b4ff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "surface-dim": "#dbdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#3525cd",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#0f0069",
+                        "on-secondary-fixed-variant": "#413f82",
+                        "primary-fixed": "#e2dfff",
+                        "on-background": "#1b1c1a",
+                        "inverse-primary": "#c3c0ff",
+                        "on-secondary-fixed": "#140f54",
+                        "tertiary-container": "#a44100",
+                        "tertiary": "#7e3000",
+                        "surface-bright": "#fbf9f5",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c7c4d8",
+                        "on-surface": "#1b1c1a",
+                        "inverse-surface": "#30312e",
+                        "on-surface-variant": "#464555",
+                        "on-tertiary-fixed": "#351000",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "surface-variant": "#e4e2de",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "secondary": "#58579b",
+                        "background": "#fbf9f5",
+                        "surface-container-low": "#f5f3ef"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #fbf9f5; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .book-gradient { background: linear-gradient(135deg, #3525cd 0%, #4f46e5 100%); }
+        .glass-header { backdrop-filter: blur(24px); background-color: rgba(251, 249, 245, 0.7); }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-[#fbf9f5] dark:bg-[#0f172a] glass-header">
+<div class="max-w-[1440px] mx-auto px-8 h-20 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<a class="text-2xl font-bold tracking-tighter text-[#3525cd] dark:text-[#818cf8]" href="#">BookVerse</a>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#464555] dark:text-[#94a3b8] font-medium hover:text-[#3525cd] dark:hover:text-[#818cf8] transition-all duration-300" href="#">Archive</a>
+<a class="text-[#464555] dark:text-[#94a3b8] font-medium hover:text-[#3525cd] dark:hover:text-[#818cf8] transition-all duration-300" href="#">Collections</a>
+<a class="text-[#464555] dark:text-[#94a3b8] font-medium hover:text-[#3525cd] dark:hover:text-[#818cf8] transition-all duration-300" href="#">Curations</a>
+<a class="text-[#464555] dark:text-[#94a3b8] font-medium hover:text-[#3525cd] dark:hover:text-[#818cf8] transition-all duration-300" href="#">Library</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">shopping_bag</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">account_circle</button>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-8 py-12">
+<div class="flex flex-col lg:flex-row gap-16">
+<!-- Main Content Area -->
+<div class="flex-grow max-w-3xl">
+<!-- Progress Stepper -->
+<div class="mb-16">
+<div class="flex items-center justify-between relative">
+<!-- Connecting Line -->
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-surface-container-high -z-10 -translate-y-1/2"></div>
+<!-- Step 1 (Active) -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-white font-semibold">1</div>
+<span class="text-primary font-bold text-sm tracking-tight">Thông tin giao hàng</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high text-on-surface-variant font-semibold">2</div>
+<span class="text-on-surface-variant font-medium text-sm tracking-tight">Phương thức thanh toán</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high text-on-surface-variant font-semibold">3</div>
+<span class="text-on-surface-variant font-medium text-sm tracking-tight">Xác nhận đơn hàng</span>
+</div>
+</div>
+</div>
+<!-- Shipping Form Section -->
+<div class="space-y-12">
+<div class="space-y-2">
+<h1 class="text-4xl font-bold tracking-tight text-on-surface">Thông tin giao hàng</h1>
+<p class="text-on-surface-variant">Vui lòng cung cấp chi tiết địa chỉ để chúng tôi vận chuyển đơn hàng đến bạn sớm nhất.</p>
+</div>
+<form class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Full Name -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-on-surface tracking-wide">HỌ TÊN</label>
+<input class="w-full h-14 px-6 bg-surface-container-low rounded-xl border-none focus:ring-2 focus:ring-primary transition-all duration-300 placeholder:text-outline-variant" placeholder="Nhập họ và tên người nhận" type="text"/>
+</div>
+<!-- Phone -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-on-surface tracking-wide">SỐ ĐIỆN THOẠI</label>
+<input class="w-full h-14 px-6 bg-surface-container-low rounded-xl border-none focus:ring-2 focus:ring-primary transition-all duration-300 placeholder:text-outline-variant" placeholder="Ví dụ: 0912345678" type="tel"/>
+</div>
+</div>
+<!-- Full Address -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-on-surface tracking-wide">ĐỊA CHỈ CHI TIẾT</label>
+<input class="w-full h-14 px-6 bg-surface-container-low rounded-xl border-none focus:ring-2 focus:ring-primary transition-all duration-300 placeholder:text-outline-variant" placeholder="Số nhà, tên đường, phường/xã..." type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- City/Province -->
+<div class="flex flex-col gap-2 relative">
+<label class="text-sm font-semibold text-on-surface tracking-wide">TỈNH / THÀNH PHỐ</label>
+<div class="relative">
+<select class="appearance-none w-full h-14 px-6 bg-surface-container-low rounded-xl border-none focus:ring-2 focus:ring-primary transition-all duration-300 text-on-surface-variant pr-12">
+<option value="">Chọn Tỉnh/Thành phố</option>
+<option value="HN">Hà Nội</option>
+<option value="HCM">TP. Hồ Chí Minh</option>
+<option value="DN">Đà Nẵng</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- District -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-on-surface tracking-wide">QUẬN / HUYỆN</label>
+<div class="relative">
+<select class="appearance-none w-full h-14 px-6 bg-surface-container-low rounded-xl border-none focus:ring-2 focus:ring-primary transition-all duration-300 text-on-surface-variant pr-12">
+<option value="">Chọn Quận/Huyện</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Special Instructions -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-on-surface tracking-wide">GHI CHÚ GIAO HÀNG (TÙY CHỌN)</label>
+<textarea class="w-full p-6 bg-surface-container-low rounded-xl border-none focus:ring-2 focus:ring-primary transition-all duration-300 placeholder:text-outline-variant resize-none" placeholder="Ví dụ: Giao vào giờ hành chính, gọi điện trước khi tới..." rows="3"></textarea>
+</div>
+</form>
+</div>
+</div>
+<!-- Right Sidebar: Order Summary -->
+<aside class="w-full lg:w-[400px]">
+<div class="sticky top-32 bg-surface-container-lowest rounded-xl p-8 border border-surface-container shadow-sm">
+<h2 class="text-xl font-bold mb-8 tracking-tight">Tóm tắt đơn hàng</h2>
+<!-- Book Items List -->
+<div class="space-y-6 mb-8">
+<!-- Book 1 -->
+<div class="flex gap-4">
+<div class="w-16 h-24 rounded-sm overflow-hidden bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Modern book cover design with minimalist typography on a white paper background with subtle shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjBXGyFoVVB_izsD7lu8ar9B_sQsiH0bnugS8_3-7rQKcbSr-qvlM96JpAbzJZPfQCmvczsrgurzezX13iJOAVlMDDMRyRn2TmOeQrpzNYgIFu9cT69jbnMez8l0fJaD2e_ii4wzH40sa7CIi8LZOFlJBGlypR28U-B3QiCrvx7G5UuoPf01UeAqbvQbbeL8sKZzxlMV2fYpYhoAxjh-qgmVxFYzAU3WQhuzdL5kVweN0rDqarrXYk2kAF0gO8XK5yrGspLibIDZM"/>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="text-sm font-semibold text-on-surface leading-tight">The Modern Curator</h4>
+<p class="text-xs text-on-surface-variant mt-1">Số lượng: 1</p>
+<p class="text-sm font-bold text-primary mt-2">245.000₫</p>
+</div>
+</div>
+<!-- Book 2 -->
+<div class="flex gap-4">
+<div class="w-16 h-24 rounded-sm overflow-hidden bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Classic leather bound book lying on a wooden table in a dimly lit library atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMuaN7gjtWCb6Ut7aTPlTwZMr5MGxWS5wcvZ75QT3cdnAQHRaT4hkckKLbQUba3MN9uRlv7wqGovwHznVylKudmxwMGeXdi3_BNWM0VBbFd_JxdNgKipIxtcxX6GUOEl9eB28XBij5IZCmRv6XjuPyVWHlJ_bBwz1ufDdL0pWQLLuJ9nHkoW15NTM274GodFbUT0uBhSvpuVUsbqkRD_qhx6ZWncBjsOIXsP63liu7yF3MSZM5IR3eclJWRwLGumzpWxGTdjIwGSg"/>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="text-sm font-semibold text-on-surface leading-tight">Digital Archives Vol. II</h4>
+<p class="text-xs text-on-surface-variant mt-1">Số lượng: 1</p>
+<p class="text-sm font-bold text-primary mt-2">189.000₫</p>
+</div>
+</div>
+</div>
+<div class="space-y-4 border-t border-surface-container pt-8 mb-8">
+<div class="flex justify-between text-sm font-medium">
+<span class="text-on-surface-variant">Tạm tính</span>
+<span class="text-on-surface">434.000₫</span>
+</div>
+<div class="flex justify-between text-sm font-medium">
+<span class="text-on-surface-variant">Phí vận chuyển</span>
+<span class="text-on-surface">30.000₫</span>
+</div>
+<div class="flex justify-between text-xl font-bold pt-4">
+<span class="text-on-surface tracking-tight">Tổng cộng</span>
+<span class="text-primary">464.000₫</span>
+</div>
+</div>
+<button class="w-full h-14 book-gradient text-white rounded-xl font-bold text-sm tracking-widest uppercase hover:opacity-90 active:scale-95 transition-all">
+                        Tiếp tục
+                    </button>
+<div class="mt-6 flex items-center justify-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span class="text-xs font-medium">Thanh toán bảo mật chuẩn SSL</span>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full pt-16 pb-8 bg-[#efeeea] dark:bg-[#020617]">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-6">
+<h3 class="font-bold text-[#3525cd] dark:text-[#818cf8] text-xl">BookVerse</h3>
+<p class="text-[#464555] dark:text-[#94a3b8] text-sm leading-relaxed max-w-sm">
+                    Discover rare editions and modern classics in our curated digital archive. Where technology meets the weight of physical history.
+                </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70 transition-opacity">rss_feed</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70 transition-opacity">alternate_email</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-4">
+<h4 class="font-bold text-on-surface text-sm uppercase tracking-widest">Resources</h4>
+<ul class="space-y-2">
+<li><a class="text-sm text-[#464555] dark:text-[#94a3b8] hover:text-[#3525cd] transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="text-sm text-[#464555] dark:text-[#94a3b8] hover:text-[#3525cd] transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-on-surface text-sm uppercase tracking-widest">Support</h4>
+<ul class="space-y-2">
+<li><a class="text-sm text-[#464555] dark:text-[#94a3b8] hover:text-[#3525cd] transition-colors" href="#">Shipping Info</a></li>
+<li><a class="text-sm text-[#464555] dark:text-[#94a3b8] hover:text-[#3525cd] transition-colors" href="#">Support</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-surface-container-high flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm font-['Inter'] leading-relaxed text-[#464555] dark:text-[#94a3b8]">© 2024 BookVerse Digital Archive. All rights reserved.</p>
+<div class="flex gap-6">
+<img alt="Visa" class="h-6 opacity-60 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATLS2rNe2fjOZFCf1Dli6S_M-nUNceK4etQmb30Z4gW2xizP0xsFZyPm2I0gMCXQRT5_3UjNd0vdqH1-WT17CBM4bmYHu8n-f0cmi3rNLdGXgyI0xD_mfcemQATMYL1BO1QKgScg80Irqa88a6ZDkI5a1KiTrRdnfNaD4Lx42xF7nFp-8yvhQ7v5fDcM-ilglletXDY_S6FmdvTBkg6ZbclENvW2CLZ9TLtvQt8-H4pjttiZbJ4rfm_rziGMBniaoVpShgfDFJfak"/>
+<img alt="Mastercard" class="h-6 opacity-60 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFKz2gIm8TE4XpA4WFkql48yfqeB54bI3Bj02iGYWV_fjymdYndwVvLVZbWwpX4XAeVcuYwwYAS5Fb0bT__NvHQdGX_srYdcgnSQqn_p7m7LdEBy1AZ-AHViSYOUKxR50dSOFIxVhH497zOTLaqvj31Oy0oClWn5KPSfjozpXrOd0bLfDTvP0ZO7IJvYhyS8HVSyltoTdoBf-XuZeErJerQ5Hp07D_MrPpZe3ldgNPQZVLefGXobyxoe-5FQkPsINvZ8PD-DYF3R0"/>
+<img alt="Paypal" class="h-6 opacity-60 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDySh-BCUSFDZhCWRMyjkUrJHVVFROLGg2WegRv_sBqK7D8q17M31uVga83QzYpE8vAmORXISe3Qt9LCyy8JgTk7pKtzNq6vD_oeHtW77OZglEOCDOij21ojAdW45_hgclexDDuBNVy-qei_320K688PDkkrS9SkMwQUUr3Smlb-euhl7hkNfz1brWghGE_2W_-PIcwWTvR5h3_eBmGpcBr7IpAbPY6PgJfRYHZDXtCUbPWWtNjk3MunYd0Ri1JU_yqvhQaMwL-dN4"/>
+</div>
+</div>
+</footer>
+</body></html>

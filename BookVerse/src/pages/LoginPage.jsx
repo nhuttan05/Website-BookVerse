@@ -87,7 +87,7 @@ const LoginPage = () => {
           <button 
             type="submit"
             disabled={loading}
-            className="w-full py-5 bg-primary text-white rounded-3xl font-black text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95 mt-4 disabled:opacity-50 flex items-center justify-center gap-2"
+            className="w-full py-5 bg-primary text-on-primary rounded-3xl font-black text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95 mt-4 disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {loading ? (
               <>

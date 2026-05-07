@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#0f0069",
+                        "secondary-fixed": "#e2dfff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "outline": "#777587",
+                        "secondary": "#58579b",
+                        "background": "#fbf9f5",
+                        "on-surface-variant": "#464555",
+                        "on-secondary-fixed-variant": "#413f82",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#7e3000",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e4e2de",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#140f54",
+                        "on-background": "#1b1c1a",
+                        "surface-container-highest": "#e4e2de",
+                        "surface-bright": "#fbf9f5",
+                        "outline-variant": "#c7c4d8",
+                        "inverse-primary": "#c3c0ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#351000",
+                        "secondary-container": "#b6b4ff",
+                        "surface-container-high": "#eae8e4",
+                        "surface-container-low": "#f5f3ef",
+                        "inverse-surface": "#30312e",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "primary": "#3525cd",
+                        "primary-fixed": "#e2dfff",
+                        "tertiary-container": "#a44100",
+                        "primary-container": "#4f46e5",
+                        "on-secondary-container": "#454386",
+                        "on-primary-container": "#dad7ff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ffd2be",
+                        "surface": "#fbf9f5",
+                        "surface-container": "#efeeea",
+                        "on-surface": "#1b1c1a",
+                        "inverse-on-surface": "#f2f0ed",
+                        "surface-dim": "#dbdad6",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#4d44e3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.grain-overlay {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDp0h9JKnEf723d0-oW5TfEVs2D2KDAh9WyVBDVTlBIlJLkb9jWgV6qHodp_lAhBNF41eOjDFQ4so7Eh2XMMfv8Q_OILTMNvoruY-bzqXiI7H1UEQELgewxj7HFnBke4MRBIERD-UOo2C7BVLRqcD7ixwmupFp4iVKOirNqfITeXAYee77o_oRB5adg5s0R9qO5DUHoX-qdyJz7WNd3T4cMYvUIm-LmmSOgpfH0_V-9KNeEH7ECx9Txkc2I9HV_xkGoDXgnojyWe4w);
+    opacity: 0.05;
+    pointer-events: none
+    }
+::selection {
+    background-color: #4f46e5;
+    color: white
+    }</style>
+</head>
+<body class="bg-surface font-body text-on-surface-variant antialiased">
+<!-- TopAppBar -->
+<header class="bg-[#fbf9f5]/70 backdrop-blur-xl docked full-width top-0 sticky z-50">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-bold text-[#3525cd] tracking-tighter">BookVerse</div>
+<div class="hidden md:flex gap-8 items-center font-inter tracking-tight font-medium">
+<a class="text-[#464555] hover:text-[#3525cd] transition-colors" href="#">Archive</a>
+<a class="text-[#3525cd] border-b-2 border-[#3525cd] pb-1" href="#">Curations</a>
+<a class="text-[#464555] hover:text-[#3525cd] transition-colors" href="#">Library</a>
+<a class="text-[#464555] hover:text-[#3525cd] transition-colors" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-[#efeeea] rounded-lg transition-all Active: scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined text-[#3525cd]">search</span>
+</button>
+<button class="p-2 hover:bg-[#efeeea] rounded-lg transition-all Active: scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined text-[#3525cd]">account_circle</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="relative">
+<!-- Hero Section & Breadcrumbs -->
+<section class="max-w-7xl mx-auto px-6 pt-12">
+<nav class="flex items-center gap-2 text-sm font-medium mb-6 opacity-60">
+<a class="hover:text-primary transition-colors" href="#">Trang chủ</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Blog</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-on-surface">Phê bình văn học</span>
+</nav>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-3 py-1 bg-surface-container text-primary text-xs font-bold tracking-widest uppercase rounded-full">Phê bình</span>
+<span class="px-3 py-1 bg-surface-container text-primary text-xs font-bold tracking-widest uppercase rounded-full">Văn học</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-extrabold text-on-surface leading-tight tracking-tighter mb-10 max-w-4xl">
+                Sự Im Lặng Của Ngôn Từ: Hành Trình Qua Những Trang Sách Cổ
+            </h1>
+<div class="flex items-center gap-4 mb-12">
+<img alt="Author Avatar" class="w-14 h-14 rounded-full object-cover" data-alt="Close-up portrait of a thoughtful man with glasses in a library setting, soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm0avLuEJLhWMNqBblkkR3wGNvyBbynX0SGi9jCENQq2yAzgEPOef9Kq4g13rfPYq0Cc4ZN0SW4u7lkursA4ZTvb_y_p27EBPRvYxackVfxOFqBXnw6fHp1FIqRjNLCoQte8QU2XcUPza7GiqvM1cd0XdzRYOY5YwFLhCqj86w-0aKtRML1NjIZp3Naog5pksl-GBeZ4W1dGquy96D_UiaAQxW_zEbFvHFq6I71q4K1Y3hYN1NQQN3bm-bf_n5_H9KFG-IjzVlIDk"/>
+<div>
+<p class="font-bold text-on-surface text-lg">Nguyễn Minh Triết</p>
+<p class="text-sm opacity-70">24 Tháng 5, 2024 • 8 phút đọc</p>
+</div>
+</div>
+</section>
+<!-- Featured Image -->
+<section class="w-full relative h-[600px] overflow-hidden bg-surface-container mb-20">
+<div class="absolute inset-0 grain-overlay z-10"></div>
+<img alt="Featured Book" class="w-full h-full object-cover" data-alt="An open antique leather-bound book with yellowed pages on a dark rustic wooden table, atmospheric side lighting with floating dust particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzFIWxYHAUlCvEg2Xkw8eNipZQvqI7XzKlaNSR6ZYUMm8qohkAkyIMXPvcknJhrBASIdFX8YcWIEqe1aM3SYAO_H5rpD2uAHcc4NzcmsZjg9lJ32-HVLyZhoqilqzl9GOL_lvcHQda4RZlzly3Mk2MIraQYNBaP_vOE70NzCcudTdm8kdIn1hcH31_9ewKbrKN3g412aIF80nYHRa4ujzS5JgAA4BuwwGrS-80JuoE0AbcUrcgu_dEd9SCNKyNDdYKpZscIXfe_7o"/>
+</section>
+<!-- Article Content Layout -->
+<section class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-16 relative">
+<!-- Sticky Social Sidebar -->
+<aside class="hidden lg:block w-12 sticky top-32 h-fit">
+<div class="flex flex-col gap-4">
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant hover:bg-[#1877F2] hover:text-white transition-all">
+<span class="material-symbols-outlined">social_leaderboard</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant hover:bg-on-background hover:text-white transition-all">
+<span class="material-symbols-outlined">crossword</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant hover:bg-[#0A66C2] hover:text-white transition-all">
+<span class="material-symbols-outlined">link</span>
+</button>
+</div>
+</aside>
+<!-- Main Reading Column -->
+<article class="max-w-3xl mx-auto lg:mx-0 flex-1">
+<div class="prose prose-lg prose-indigo max-w-none text-on-surface-variant leading-relaxed">
+<p class="text-xl mb-8 font-medium text-on-surface italic">
+                        "Trong thế giới hiện đại đầy ắp những âm thanh hỗn tạp, việc tìm về những dòng chữ im lìm trên trang giấy không chỉ là một thói quen, mà là một cuộc hành hương về với chính mình."
+                    </p>
+<p class="mb-6">
+                        Văn học không đơn thuần là việc sắp xếp các con chữ. Đó là nghệ thuật của sự gợi mở. Khi ta mở một cuốn sách, ta không chỉ đang đọc câu chuyện của người khác, mà ta đang đối diện với những khoảng trống trong tâm hồn mình mà tác giả đã khéo léo để lại. Trong bài viết này, chúng ta sẽ cùng khám phá cách mà những tác phẩm kinh điển vẫn tiếp tục "nói" với chúng ta qua hàng thế kỷ của sự im lặng.
+                    </p>
+<h2 class="text-3xl font-bold text-on-surface mt-12 mb-6 tracking-tight">Cấu Trúc Của Sự Hoài Niệm</h2>
+<p class="mb-6">
+                        Hãy nhìn vào cách mà Marcel Proust xây dựng thế giới của mình. Từng chi tiết nhỏ nhặt nhất, từ mùi hương của chiếc bánh madeleine đến màu sắc của ánh hoàng hôn, đều được tẩm ướp trong một thứ dung dịch của thời gian. Đọc Proust không phải là để biết chuyện gì xảy ra tiếp theo, mà là để cảm nhận dòng chảy chậm rãi của sự tồn tại.
+                    </p>
+<blockquote class="my-12 py-4 pl-8 border-l-4 border-primary bg-surface-container-low rounded-r-xl">
+<p class="text-2xl font-semibold text-primary italic mb-2 tracking-tight">
+                            "Mỗi độc giả, khi đọc, thực chất là đang đọc chính mình. Tác phẩm của nhà văn chỉ là một loại dụng cụ quang học mà ông ta cung cấp cho độc giả để cho phép họ nhận ra những gì mà, nếu không có cuốn sách, họ có lẽ đã không bao giờ thấy được ở chính mình."
+                        </p>
+<cite class="text-sm font-bold text-on-surface-variant not-italic uppercase tracking-widest">— Marcel Proust</cite>
+</blockquote>
+<h3 class="text-2xl font-bold text-on-surface mt-10 mb-4 tracking-tight">Ngôn Ngữ Và Những Giới Hạn</h3>
+<p class="mb-6">
+                        Có những điều mà ngôn từ không thể chạm tới. Đó là lý do tại sao các nhà văn vĩ đại thường sử dụng những khoảng trắng. Khoảng trắng giữa các chương, khoảng lặng giữa các câu thoại. Chính tại đó, trí tưởng tượng của người đọc bắt đầu nảy mầm. Một cuốn sách hay không phải là cuốn sách nói hết mọi điều, mà là cuốn sách biết dừng lại đúng lúc để người đọc tự mình đi tiếp.
+                    </p>
+<div class="my-12 bg-surface-container-low p-8 rounded-2xl flex flex-col md:flex-row gap-8 items-center">
+<div class="w-full md:w-1/3">
+<img alt="Quote Illustration" class="rounded-xl shadow-sm" data-alt="Close up of a fountain pen nib resting on a handwritten manuscript page with elegant cursive writing and soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA92DmhiYBtkjUmXJRIniZqH37xOJSp0fbBu2kjfgC1PAEbAO22TJfFKJPX7nn4UkhPkVDOA7L_Taqi8Ba9exppTPNUfuiZI0y6JIBK3KQNz5lZR8Wb7G9tYe2l2O2vqunF6n-z9uVk3fQF2zI7UxITkaZR9Bta7wakA_0_4sxyL-j5DOybAnvumJb_O4A-4TnIEFjpSgqcWDifkImgfAH3G3cYYGUOe0qMwvxSHotQvunaWgbUULrUS_WQxeL-6t7P1AowXacJumY"/>
+</div>
+<div class="w-full md:w-2/3">
+<h4 class="text-lg font-bold text-on-surface mb-2">Ghi chú từ biên tập</h4>
+<p class="text-sm italic">
+                                "Việc biên tập một văn bản triết học đòi hỏi sự kiên nhẫn hơn là kỹ năng. Người ta phải nghe được nhịp thở đằng sau mỗi dấu phẩy, thấy được nỗi đau đằng sau mỗi dấu chấm."
+                            </p>
+</div>
+</div>
+<p class="mb-6">
+                        Kết thúc một cuốn sách cũng giống như tạm biệt một người bạn thân thiết. Ta mang theo một phần linh hồn của cuốn sách đó vào đời thực, và đôi khi, ta thấy mình nhìn thế giới qua đôi mắt của một nhân vật hư cấu nào đó. Đó chính là phép màu của văn học — nó xóa nhòa ranh giới giữa thực và ảo, giữa quá khứ và hiện tại.
+                    </p>
+</div>
+<!-- Books Mentioned Section -->
+<section class="mt-20 pt-12 border-t border-surface-variant">
+<h2 class="text-2xl font-bold text-on-surface mb-8 tracking-tight">Sách được nhắc đến trong bài</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Book Card 1 -->
+<div class="flex gap-4 p-4 bg-surface-container-lowest rounded-xl hover:bg-surface-container-high transition-all cursor-pointer group">
+<div class="w-24 h-36 flex-shrink-0 overflow-hidden rounded shadow-sm border border-outline-variant/10">
+<img alt="Book Cover 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Classic book cover design for 'In Search of Lost Time' with elegant serif typography and minimalist art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNkM4pbWNIhdyp76OZUSKp9pP3UmNXMAhlZB63LZJLxuOhfWQSa0OsE99kfGO680IjK9U6H2nLVH8Ll9L0gLpdarIEFt3Qo4UZq5vNw7lGniyGbCFN9JBR8-b1cnNiMigUdAuhR5GpDKPphNuR1rHFSOlWzhy5ZjLN53vku-B6izCLYxzl2__brMIeVmAH1550TuCpc-sYSl4rhQz_5GDBAFdHrNCyS8HGmRXatbQKTmx12iH035bCLRXXyAsUrYHf7iFXBcMEOK0"/>
+</div>
+<div class="flex flex-col justify-center">
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Đi Tìm Thời Gian Đã Mất</h3>
+<p class="text-sm text-on-surface-variant">Marcel Proust</p>
+<button class="mt-3 text-xs font-bold text-primary uppercase tracking-widest flex items-center gap-1">
+                                    Tìm hiểu thêm <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Book Card 2 -->
+<div class="flex gap-4 p-4 bg-surface-container-lowest rounded-xl hover:bg-surface-container-high transition-all cursor-pointer group">
+<div class="w-24 h-36 flex-shrink-0 overflow-hidden rounded shadow-sm border border-outline-variant/10">
+<img alt="Book Cover 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Vintage book cover with aesthetic gold foil details and deep navy blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO8FlCotCQI6wlOBRQFku7xzCgBwSMppvKOvqX6pk0LGNrU94yPvg3UfnNwfoLL88dIpYhjblPK_vz9FLsyUPeQkEGobSAW0DxNLvsK1HTteOBIJ_o6MkqVcvEEzonWO64lIJFZ0E6KmMSxysCXdJ6UwFt2Cbm2aHo_x69HIa0xMKh-v7WQOpsOgzT7Suge5nOK9Nquw-FcpAknjAKXo_br9RmYk4ylA5FoJv5gQodSd-9UwFn_0HqOKU7mHOjdVT6vWhLDgpXsrY"/>
+</div>
+<div class="flex flex-col justify-center">
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Lâu Đài</h3>
+<p class="text-sm text-on-surface-variant">Franz Kafka</p>
+<button class="mt-3 text-xs font-bold text-primary uppercase tracking-widest flex items-center gap-1">
+                                    Tìm hiểu thêm <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Discussion Section -->
+<section class="mt-20">
+<h2 class="text-2xl font-bold text-on-surface mb-8 tracking-tight">Thảo luận (24)</h2>
+<div class="mb-10">
+<textarea class="w-full bg-surface-container-high border-none rounded-xl p-6 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all min-h-[120px] placeholder:text-outline" placeholder="Chia sẻ suy nghĩ của bạn về bài viết này..."></textarea>
+<div class="mt-4 flex justify-end">
+<button class="px-8 py-3 bg-gradient-to-br from-primary to-primary-container text-white text-xs font-bold uppercase tracking-widest rounded-xl hover:opacity-90 transition-all Active:scale-95">
+                                Gửi bình luận
+                            </button>
+</div>
+</div>
+<div class="space-y-8">
+<div class="flex gap-4">
+<img alt="User" class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a young man smiling, professional headshot style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5D4TZ8YFKWb7gtHKB4oUr8CyzBzECdVvk6yui9D3GqB4ZJcDeLMVmxcqZrRkCk1pB_CjiRvKMrCh3SyNg_p9XrDcgkTcLn1r04U_WcjeMtUY0eKYdn5hSaUa7p81Fce67BMqECfkt4ZGQ5QWaRGHHJK1ROceaLER_vE9C1oL24ydDtHSpyohubHJ6N8xD6mkFJbkdgC1609BX6xBRLcIeviWhzAFxTu9F1frMU-PBzCGIk-8iMZgc1I6ihKv2zuSmUOqO7Xi49Ic"/>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<span class="font-bold text-on-surface">Lê Hoàng</span>
+<span class="text-xs opacity-50">2 giờ trước</span>
+</div>
+<p class="text-on-surface-variant">Một bài phân tích rất sâu sắc. Tôi đặc biệt thích phần nói về khoảng trắng trong văn học. Đôi khi những gì không được viết ra mới là quan trọng nhất.</p>
+<button class="mt-2 text-xs font-bold text-primary flex items-center gap-1">Trả lời</button>
+</div>
+</div>
+</div>
+</section>
+</article>
+<!-- Related Posts Sidebar (Web only / Bottom on Mobile) -->
+<aside class="w-full lg:w-80 space-y-12">
+<div class="bg-surface-container p-8 rounded-2xl">
+<h3 class="text-lg font-bold text-on-surface mb-6">Bài viết liên quan</h3>
+<div class="space-y-8">
+<a class="block group" href="#">
+<div class="aspect-video rounded-lg overflow-hidden mb-3">
+<img alt="Related 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Blurred library shelves background with a focused spotlight on a single antique book" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQbvalTmbzcyWGC2Ah5Z-imF-aHXpX61cF5jA_A_to9u4jKm5_VAwQpR1vxl4VDu-sQSdDrV7o2mXPn3b8f-A1U2kuQdlyiXb-CtTNuUHzeaM_wB_BWFvlTo_P-6tet1Sn_t3WRRqte8ddaupG9wg-FyF7d1-opRAjV95i_Hu8oHpppVQYbM2V8WUmUjAC5cHE_oW7JS2iLF7nMfzbdc7ol-BGX75BCrJgeHHI5LihZQL8Q5O9aZeONlmwCR9bUXK4qYe1gbvG294"/>
+</div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors leading-snug">Tại sao chúng ta vẫn đọc Haruki Murakami?</h4>
+<p class="text-xs mt-1 opacity-60">15 Tháng 5, 2024</p>
+</a>
+<a class="block group" href="#">
+<div class="aspect-video rounded-lg overflow-hidden mb-3">
+<img alt="Related 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Overhead view of a writer's desk with a typewriter, papers, and coffee cup, warm afternoon sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-DnDViO3ozXyccYeGFg86kBArvblCol25iZrX2feC1kI-UjmXASYzTEWHitWwpf8nYhqljtYsKcarcseT6W5cFrvEcFht46cStclC4SU6NYARIktVbYxCbnQD7ivYf8J87Ubssdm9u7eL5OuE3Y-STImYuIJ0jVyXlL-SkR-69DhyGSYMjDV8IczVip4rRCPbx1zcECzhLWN6PuxPrUqPDISK5zibfsCJMUMKwAvGhDk6YTsZNHkQI22pnMeAs2hDkChhd9Tar0Q"/>
+</div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors leading-snug">Nghệ thuật viết lách trong kỷ nguyên số</h4>
+<p class="text-xs mt-1 opacity-60">10 Tháng 5, 2024</p>
+</a>
+<a class="block group" href="#">
+<div class="aspect-video rounded-lg overflow-hidden mb-3">
+<img alt="Related 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist study room with a large window looking out at a forest, soft morning fog" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVFmaCA1Dn5hZp2-u7sPen0O-wdcb0FGy8O7CF_UjBisHpA0BgRgLsW47DYtqMhaMR-L3WZmDozs0d4xWwXEBjuPxSd6DPsYdy8BSn6dZHxDNV_9cJ4yTj1S6rqtYKWZy9Yp8tXphEwqxKDkSf6CJ6T4NP80KwT_J8e_HRVtVZn8NC3q-fhH3rwSzUkt-7e_gNs1zeM1cKtDWSgMI8dXtqyZ7pyZ-zmt8-7JhgEzqPi63jzXZiWAM7l0oiYmwFd7gRsRNPSK8CLE0"/>
+</div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors leading-snug">Thư viện và những giá trị không bao giờ cũ</h4>
+<p class="text-xs mt-1 opacity-60">05 Tháng 5, 2024</p>
+</a>
+</div>
+</div>
+<div class="bg-primary-container text-on-primary-container p-8 rounded-2xl">
+<span class="material-symbols-outlined text-4xl mb-4">auto_stories</span>
+<h3 class="text-xl font-bold mb-4">Tham gia cộng đồng BookVerse</h3>
+<p class="text-sm opacity-80 mb-6">Nhận thông báo về những bài phê bình và tuyển tập sách mới nhất hàng tuần.</p>
+<input class="w-full bg-white/10 border-white/20 rounded-lg p-3 text-sm placeholder:text-white/40 mb-3 focus:ring-1 focus:ring-white" placeholder="Email của bạn" type="email"/>
+<button class="w-full py-3 bg-white text-primary text-xs font-bold uppercase tracking-widest rounded-lg hover:bg-surface transition-all">Đăng ký ngay</button>
+</div>
+</aside>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#efeeea] dark:bg-[#121221] full-width mt-20">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-8 py-12 max-w-7xl mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="text-xl font-bold text-[#3525cd] dark:text-[#4f46e5] mb-4">BookVerse</div>
+<p class="font-inter text-sm leading-relaxed text-[#464555] dark:text-[#a0a0b0]">© 2024 BookVerse Digital Archive. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 font-inter text-sm leading-relaxed">
+<a class="text-[#464555] dark:text-[#a0a0b0] hover:underline decoration-2 underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="#">Privacy Policy</a>
+<a class="text-[#464555] dark:text-[#a0a0b0] hover:underline decoration-2 underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="#">Terms of Service</a>
+<a class="text-[#464555] dark:text-[#a0a0b0] hover:underline decoration-2 underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="#">Editorial Guidelines</a>
+<a class="text-[#464555] dark:text-[#a0a0b0] hover:underline decoration-2 underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

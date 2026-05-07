@@ -44,6 +44,9 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+                System.out.println("[BookVerse Auth] Token validated for user: " + username);
+            } else if (jwt != null) {
+                System.out.println("[BookVerse Auth] Token validation failed for: " + jwt.substring(0, 10) + "...");
             }
         } catch (Exception e) {
             logger.error("Cannot set user authentication: {}", e);
@@ -54,6 +57,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     private String parseJwt(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");
+        System.out.println("[BookVerse Auth] Authorization Header: " + headerAuth);
 
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
             return headerAuth.substring(7);

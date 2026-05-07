@@ -3,6 +3,7 @@ package com.bookverse.service;
 import com.bookverse.dto.BookDTO;
 import com.bookverse.entity.Book;
 import com.bookverse.repository.BookRepository;
+import com.bookverse.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class BookService {
 
     private final BookRepository bookRepository;
+    private final CategoryRepository categoryRepository;
 
     public List<BookDTO> getBestsellers() {
         return bookRepository.findByIsBestsellerTrue().stream()
@@ -41,8 +43,15 @@ public class BookService {
                 .orElseThrow(() -> new RuntimeException("Book not found"));
     }
 
-    public Page<BookDTO> searchBooks(String query, Pageable pageable) {
-        return bookRepository.searchBooks(query, pageable)
+    public Page<BookDTO> searchBooks(String q, List<String> categories, Double minPrice, Double maxPrice, Double minRating, Pageable pageable) {
+        // Log để debug trên server
+        System.out.println("Search API called with - q: [" + q + "], categories: " + categories + 
+                           ", minPrice: " + minPrice + ", maxPrice: " + maxPrice + ", minRating: " + minRating);
+
+        String queryParam = (q == null || q.trim().isEmpty()) ? null : q;
+        List<String> categoriesParam = (categories == null || categories.isEmpty()) ? null : categories;
+        
+        return bookRepository.searchBooksAdvanced(queryParam, categoriesParam, minPrice, maxPrice, minRating, pageable)
                 .map(this::convertToDTO);
     }
 
@@ -54,6 +63,88 @@ public class BookService {
     public Page<BookDTO> getAllBooks(Pageable pageable) {
         return bookRepository.findAll(pageable)
                 .map(this::convertToDTO);
+    }
+
+    public BookDTO createBook(BookDTO bookDTO) {
+        Book book = convertToEntity(bookDTO);
+        // Tự động tạo slug nếu chưa có
+        if (book.getSlug() == null || book.getSlug().isEmpty()) {
+            book.setSlug(generateSlug(book.getTitle()));
+        }
+        Book savedBook = bookRepository.save(book);
+        return convertToDTO(savedBook);
+    }
+
+    public BookDTO updateBook(Long id, BookDTO bookDTO) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Book not found"));
+        
+        updateBookFromDTO(book, bookDTO);
+        Book updatedBook = bookRepository.save(book);
+        return convertToDTO(updatedBook);
+    }
+
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
+    }
+
+    private void updateBookFromDTO(Book book, BookDTO dto) {
+        book.setTitle(dto.getTitle());
+        book.setDescription(dto.getDescription());
+        book.setPrice(dto.getPrice());
+        book.setOriginalPrice(dto.getOriginalPrice());
+        book.setDiscountPercent(dto.getDiscountPercent());
+        book.setCoverImageUrl(dto.getCoverImageUrl());
+        book.setAuthor(dto.getAuthor());
+        book.setIsFeatured(dto.getIsFeatured());
+        book.setIsBestseller(dto.getIsBestseller());
+        book.setIsNewArrival(dto.getIsNewArrival());
+        book.setIsbn(dto.getIsbn());
+        book.setPublisher(dto.getPublisher());
+        book.setPageCount(dto.getPageCount());
+        book.setPublishedDate(dto.getPublishedDate());
+        book.setLanguage(dto.getLanguage());
+
+        if (dto.getCategorySlug() != null) {
+            categoryRepository.findBySlug(dto.getCategorySlug())
+                    .ifPresent(book::setCategory);
+        }
+    }
+
+    private Book convertToEntity(BookDTO dto) {
+        Book book = Book.builder()
+                .title(dto.getTitle())
+                .slug(dto.getSlug())
+                .description(dto.getDescription())
+                .price(dto.getPrice())
+                .originalPrice(dto.getOriginalPrice())
+                .discountPercent(dto.getDiscountPercent())
+                .coverImageUrl(dto.getCoverImageUrl())
+                .author(dto.getAuthor())
+                .isFeatured(dto.getIsFeatured() != null ? dto.getIsFeatured() : false)
+                .isBestseller(dto.getIsBestseller() != null ? dto.getIsBestseller() : false)
+                .isNewArrival(dto.getIsNewArrival() != null ? dto.getIsNewArrival() : false)
+                .isbn(dto.getIsbn())
+                .publisher(dto.getPublisher())
+                .pageCount(dto.getPageCount())
+                .publishedDate(dto.getPublishedDate())
+                .language(dto.getLanguage())
+                .rating(0.0)
+                .reviewCount(0)
+                .build();
+
+        if (dto.getCategorySlug() != null) {
+            categoryRepository.findBySlug(dto.getCategorySlug())
+                    .ifPresent(book::setCategory);
+        }
+        
+        return book;
+    }
+
+    private String generateSlug(String title) {
+        return title.toLowerCase()
+                .replaceAll("[^a-z0-9\\s]", "")
+                .replaceAll("\\s+", "-");
     }
 
     private BookDTO convertToDTO(Book book) {
@@ -80,6 +171,9 @@ public class BookService {
                 .pageCount(book.getPageCount())
                 .publishedDate(book.getPublishedDate())
                 .language(book.getLanguage())
+                .images(book.getImages() != null ? 
+                        book.getImages().stream().map(com.bookverse.entity.BookImage::getImageUrl).collect(Collectors.toList()) : 
+                        null)
                 .build();
     }
 }

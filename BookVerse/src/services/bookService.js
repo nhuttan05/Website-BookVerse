@@ -66,11 +66,15 @@ export const fetchPersonalizedRecommendations = async () => {
  * @returns {Promise<import('@/types/book').PaginatedResponse>}
  */
 export const searchBooks = async (params = {}) => {
+  const { page, size, sortBy, direction, ...rest } = params;
+
   const response = await axiosInstance.get(ENDPOINTS.BOOKS.SEARCH, {
     params: {
-      page: 0,
-      size: 12,
-      ...params,
+      page: page || 0,
+      size: size || 20,
+      sortBy: sortBy || 'id',
+      direction: direction || 'desc',
+      ...rest,
     },
   });
   return response.data;
@@ -108,5 +112,63 @@ export const fetchNewArrivals = async (limit = 6) => {
   const response = await axiosInstance.get(ENDPOINTS.BOOKS.NEW_ARRIVALS, {
     params: { limit },
   });
+  return response.data;
+};
+
+/**
+ * Lấy danh sách danh mục kèm số lượng sách
+ * @returns {Promise<import('@/types/book').Category[]>}
+ */
+export const fetchCategories = async () => {
+  const response = await axiosInstance.get(ENDPOINTS.CATEGORIES.BASE);
+  return response.data;
+};
+
+// =====================================================
+//  ADMIN API CALLS
+// =====================================================
+
+export const adminFetchBooks = async (params = {}) => {
+  const response = await axiosInstance.get(ENDPOINTS.ADMIN.BOOKS, { params });
+  return response.data;
+};
+
+export const adminCreateBook = async (bookData) => {
+  const response = await axiosInstance.post(ENDPOINTS.ADMIN.BOOKS, bookData);
+  return response.data;
+};
+
+export const adminUpdateBook = async (id, bookData) => {
+  const response = await axiosInstance.put(`${ENDPOINTS.ADMIN.BOOKS}/${id}`, bookData);
+  return response.data;
+};
+
+export const adminDeleteBook = async (id) => {
+  const response = await axiosInstance.delete(`${ENDPOINTS.ADMIN.BOOKS}/${id}`);
+  return response.data;
+};
+
+export const adminFetchCategories = async () => {
+  const response = await axiosInstance.get(ENDPOINTS.ADMIN.CATEGORIES);
+  return response.data;
+};
+
+export const adminCreateCategory = async (categoryData) => {
+  const response = await axiosInstance.post(ENDPOINTS.ADMIN.CATEGORIES, categoryData);
+  return response.data;
+};
+
+export const adminUpdateCategory = async (id, categoryData) => {
+  const response = await axiosInstance.put(`${ENDPOINTS.ADMIN.CATEGORIES}/${id}`, categoryData);
+  return response.data;
+};
+
+export const adminDeleteCategory = async (id) => {
+  const response = await axiosInstance.delete(`${ENDPOINTS.ADMIN.CATEGORIES}/${id}`);
+  return response.data;
+};
+
+export const adminFetchStats = async () => {
+  const response = await axiosInstance.get(ENDPOINTS.ADMIN.STATS || '/admin/stats');
   return response.data;
 };

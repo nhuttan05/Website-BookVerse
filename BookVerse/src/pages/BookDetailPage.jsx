@@ -18,7 +18,6 @@ import {
 import { addItem } from '@/redux/cartSlice';
 import { formatPrice } from '@/utils/formatters';
 import BookCard from '@/components/BookCard';
-import { MOCK_BOOKS } from '../data/mockBooks'; // UPDATE: Force Vite refresh
 import LazyImage from '@/components/ui/LazyImage';
 
 const BookDetailPage = () => {
@@ -34,6 +33,7 @@ const BookDetailPage = () => {
   const [activeTab, setActiveTab] = useState('desc');
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
+  const [mainImage, setMainImage] = useState('');
 
   useEffect(() => {
     if (slug) {
@@ -42,6 +42,13 @@ const BookDetailPage = () => {
     }
     return () => dispatch(clearSelectedBook());
   }, [dispatch, slug]);
+
+  // Cập nhật ảnh chính khi book data thay đổi
+  useEffect(() => {
+    if (book?.coverImageUrl) {
+      setMainImage(book.coverImageUrl);
+    }
+  }, [book]);
 
   const handleAddToCart = () => {
     if (!book) return;
@@ -77,6 +84,11 @@ const BookDetailPage = () => {
     );
   }
 
+  // Chuẩn bị danh sách ảnh gallery (cover + 4 ảnh góc độ)
+  const galleryImages = book.images && book.images.length > 0 
+    ? [book.coverImageUrl, ...book.images.slice(0, 3)] 
+    : [book.coverImageUrl, book.coverImageUrl, book.coverImageUrl, book.coverImageUrl];
+
   return (
     <div className="bg-surface min-h-screen pb-20">
       
@@ -96,13 +108,19 @@ const BookDetailPage = () => {
         
         {/* Left Col: Cover and Gallery */}
         <div className="lg:col-span-5 space-y-8">
-          <div className="aspect-[2/3] bg-surface-container-low rounded-[2rem] overflow-hidden shadow-float">
-            <LazyImage className="w-full h-full object-cover" src={book.coverImageUrl} alt={book.title} />
+          <div className="aspect-[2/3] bg-surface-container-low rounded-[2rem] overflow-hidden shadow-float group">
+            <LazyImage className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={mainImage} alt={book.title} />
           </div>
           <div className="grid grid-cols-4 gap-4">
-            {[1,2,3,4].map(i => (
-              <div key={i} className="aspect-square bg-surface-container-low rounded-2xl overflow-hidden cursor-pointer hover:ring-2 hover:ring-primary/20 transition-all">
-                <LazyImage className="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" src={book.coverImageUrl} alt="Gallery" />
+            {galleryImages.map((img, i) => (
+              <div 
+                key={i} 
+                onClick={() => setMainImage(img)}
+                className={`aspect-square bg-surface-container-low rounded-2xl overflow-hidden cursor-pointer transition-all border-2 ${
+                  mainImage === img ? 'border-primary ring-4 ring-primary/10' : 'border-transparent hover:border-primary/20'
+                }`}
+              >
+                <LazyImage className={`w-full h-full object-cover transition-opacity ${mainImage === img ? 'opacity-100' : 'opacity-60 hover:opacity-100'}`} src={img} alt={`Angle ${i+1}`} />
               </div>
             ))}
           </div>
@@ -154,7 +172,7 @@ const BookDetailPage = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="flex-1 px-8 py-5 bg-primary text-white rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95 flex items-center justify-center gap-3">
+            <button className="flex-1 px-8 py-5 bg-primary text-on-primary rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95 flex items-center justify-center gap-3">
               <span className="material-symbols-outlined">bolt</span> MUA NGAY
             </button>
             <button 
@@ -333,14 +351,14 @@ const BookDetailPage = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-          {MOCK_BOOKS.slice(0, 5).map(b => (
+          {similarBooks && similarBooks.slice(0, 5).map(b => (
             <div key={b.id} className="space-y-4 group cursor-pointer" onClick={() => navigate(`/books/${b.slug}`)}>
               <div className="aspect-[2/3] rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-all">
                 <LazyImage className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src={b.coverImageUrl} alt={b.title} />
               </div>
               <div>
                 <h4 className="font-bold text-on-surface line-clamp-1">{b.title}</h4>
-                <p className="text-xs text-on-surface-variant mb-2">{b.author.name}</p>
+                <p className="text-xs text-on-surface-variant mb-2">{b.author?.name || b.author}</p>
                 <p className="font-black text-primary">{formatPrice(b.price)}</p>
               </div>
             </div>

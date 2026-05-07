@@ -13,8 +13,10 @@ import LazyImage from '@/components/ui/LazyImage';
 import { formatPrice, cn } from '@/utils/formatters';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { addItem } from '@/redux/cartSlice';
-import { toggleWishlist, selectIsInWishlist } from '@/redux/wishlistSlice';
+import { toggleWishlistItem, selectIsInWishlist } from '@/redux/wishlistSlice';
+import { selectIsAuthenticated } from '@/redux/authSlice';
 
 /**
  * BookCard — Trình bày mỗi cuốn sách như một tác phẩm nghệ thuật
@@ -24,11 +26,17 @@ const BookCard = ({
   variant = 'grid',
 }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isWishlisted = useSelector(selectIsInWishlist(book.id));
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   const handleWishlist = (e) => {
     e.preventDefault();
-    dispatch(toggleWishlist(book));
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    dispatch(toggleWishlistItem({ book, isInWishlist: isWishlisted }));
   };
 
   const handleAddToCart = (e) => {
@@ -60,9 +68,9 @@ const BookCard = ({
           </div>
           <div className="flex flex-col justify-between py-1">
             <div>
-              <p className="text-xs font-bold text-primary tracking-widest uppercase mb-1">{book.category.name}</p>
+              <p className="text-xs font-bold text-primary tracking-widest uppercase mb-1">{book.categoryName}</p>
               <h4 className="font-bold text-lg text-on-surface leading-tight line-clamp-2">{book.title}</h4>
-              <p className="text-sm text-on-surface-variant mt-1">{book.author.name}</p>
+              <p className="text-sm text-on-surface-variant mt-1">{book.author}</p>
             </div>
             <div className="flex items-center gap-2 mt-4">
               <span className="text-lg font-extrabold text-primary grow">{formatPrice(book.price)}</span>
@@ -125,12 +133,12 @@ const BookCard = ({
           <h3 className="text-lg font-bold text-on-surface truncate" title={book.title}>
             {book.title}
           </h3>
-          <p className="text-sm text-on-surface-variant">{book.author.name}</p>
+          <p className="text-sm text-on-surface-variant">{book.author}</p>
           
           <div className="flex items-center gap-1 py-2">
             <Star size={14} className="text-tertiary" fill="currentColor" />
-            <span className="text-sm font-bold text-on-surface">{book.rating.toFixed(1)}</span>
-            <span className="text-xs text-outline-variant">({book.reviewCount >= 1000 ? `${(book.reviewCount/1000).toFixed(1)}k` : book.reviewCount} nhận xét)</span>
+            <span className="text-sm font-bold text-on-surface">{book.rating?.toFixed(1) || '0.0'}</span>
+            <span className="text-xs text-outline-variant">({book.reviewCount >= 1000 ? `${(book.reviewCount/1000).toFixed(1)}k` : book.reviewCount || 0} nhận xét)</span>
           </div>
 
           <div className="flex items-center justify-between pt-2">

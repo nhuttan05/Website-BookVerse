@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BookVerse - Khám phá tri thức</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "tertiary": "#7e3000",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#140f54",
+                        "error-container": "#ffdad6",
+                        "surface": "#fbf9f5",
+                        "surface-tint": "#4d44e3",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#dbdad6",
+                        "primary": "#3525cd",
+                        "tertiary-container": "#a44100",
+                        "inverse-primary": "#c3c0ff",
+                        "on-secondary-fixed-variant": "#413f82",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "secondary-fixed": "#e2dfff",
+                        "on-background": "#1b1c1a",
+                        "on-surface-variant": "#464555",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e4e2de",
+                        "inverse-on-surface": "#f2f0ed",
+                        "surface-variant": "#e4e2de",
+                        "on-tertiary-container": "#ffd2be",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-secondary-container": "#454386",
+                        "secondary": "#58579b",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "surface-container-low": "#f5f3ef",
+                        "surface-container": "#efeeea",
+                        "on-surface": "#1b1c1a",
+                        "outline": "#777587",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "primary-fixed": "#e2dfff",
+                        "secondary-container": "#b6b4ff",
+                        "outline-variant": "#c7c4d8",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#eae8e4",
+                        "on-tertiary-fixed": "#351000",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "on-primary-container": "#dad7ff",
+                        "primary-container": "#4f46e5",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-primary-fixed": "#0f0069",
+                        "background": "#fbf9f5",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fbf9f5",
+                        "inverse-surface": "#30312e",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .noise-texture {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fbf9f5]/80 dark:bg-[#121212]/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+<!-- Brand Logo -->
+<div class="flex items-center gap-2">
+<span class="text-2xl font-bold tracking-tighter text-[#3525cd] dark:text-[#4f46e5]">BookVerse</span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-[#3525cd] dark:text-[#4f46e5] font-bold border-b-2 border-[#3525cd] dark:border-[#4f46e5] pb-1 font-['Inter'] tracking-tight font-medium" href="#">Trang chủ</a>
+<a class="text-[#464555] dark:text-slate-400 hover:text-[#3525cd] dark:hover:text-[#4f46e5] transition-all duration-200 rounded-lg font-['Inter'] tracking-tight font-medium" href="#">Danh mục</a>
+<a class="text-[#464555] dark:text-slate-400 hover:text-[#3525cd] dark:hover:text-[#4f46e5] transition-all duration-200 rounded-lg font-['Inter'] tracking-tight font-medium" href="#">Blog</a>
+</nav>
+<!-- Actions Cluster -->
+<div class="flex items-center space-x-4">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-lg active:scale-95 transition-transform text-[#464555] dark:text-slate-400">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-lg active:scale-95 transition-transform text-[#464555] dark:text-slate-400">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-lg active:scale-95 transition-transform text-[#464555] dark:text-slate-400">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+<button class="px-5 py-2 bg-primary text-on-primary rounded-xl font-medium active:scale-95 transition-transform">Đăng nhập</button>
+</div>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[870px] flex items-center overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container to-surface z-0"></div>
+<div class="absolute inset-0 noise-texture z-0"></div>
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+<div class="space-y-8">
+<h1 class="text-6xl md:text-7xl font-extrabold tracking-tighter text-on-primary leading-[1.1]">
+                        Khám phá tri thức. <br/>
+<span class="text-on-primary-container">Mua sách thông minh hơn.</span>
+</h1>
+<p class="text-xl text-on-primary/80 max-w-lg leading-relaxed font-light">
+                        BookVerse giúp bạn tìm, lưu và sở hữu những cuốn sách giá trị chỉ trong vài giây với sự trợ giúp của AI và cộng đồng yêu sách.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="px-8 py-4 bg-primary-fixed-dim text-on-primary-fixed-variant rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 hover:scale-105 transition-transform">Bắt đầu khám phá</button>
+<button class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl font-bold text-lg hover:bg-white/20 transition-all">Xem Best-sellers</button>
+</div>
+</div>
+<!-- Asymmetric Book Grid Decor -->
+<div class="hidden lg:grid grid-cols-3 gap-6 transform rotate-6 translate-x-12">
+<div class="space-y-6 -translate-y-12">
+<div class="aspect-[2/3] bg-surface-container-lowest rounded-xl shadow-2xl p-2 transform hover:-rotate-3 transition-transform">
+<img class="w-full h-full object-cover rounded-lg" data-alt="minimalist white book cover with elegant serif typography featuring a philosophical theme against a neutral studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrK4m9MfFUp2zZ0fX7VYRwrX4KclpND0BLI4_E-EmXdA0R8-ZIvhIyuUsqV_edye0eUvaLwA3ybNZMiYXDWh2ZuTaW4wTplIAedemmIa-rTuOfpjDE5FWg7GUk3Nd5OHr2YUYN_MIm_nwVN0Kl4Augi92_MRO78_R9Np_rl5FtbM_tkxOp1Lj6bA3RDtJqCqLe9tNvUOtFqU0SpioSFn_zsxr4B3KdH2nWci9kANMOEnjWl4AX78_BE75GtVJgo0o_2s5ZingQvsI"/>
+</div>
+<div class="aspect-[2/3] bg-surface-container-lowest rounded-xl shadow-2xl p-2 transform hover:rotate-2 transition-transform">
+<img class="w-full h-full object-cover rounded-lg" data-alt="vibrant abstract book cover design with bold primary colors and geometric shapes suggesting a modern science fiction novel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtnaSEejy6m3iKFI5gQ9QNwDyYvojWwUzhCp24Rd958M-q5xATFyDFOEJ0gB50jYmQR9IAFeBxmAumvc2r-HOMQYLgnaPXHhGodv_pgDgJz8_IOI7EhBjbYhhN1bnoXvBLkSbfxHBCJmVGLFqQvlqDcKIy3lvH1X0q7bsOxR7_8VPzadpkv-GtsxGGBvO30i1yL6XQGTi67toRw_sHnNA5iCQy6P8WA1y8gdZHs_t6n8DT7sPot2_1kxqvGWaXZGZqwWIBWrh9ztQ"/>
+</div>
+</div>
+<div class="space-y-6">
+<div class="aspect-[2/3] bg-surface-container-lowest rounded-xl shadow-2xl p-2 transform hover:rotate-6 transition-transform">
+<img class="w-full h-full object-cover rounded-lg" data-alt="classic leather bound book cover with gold foil stamping depicting an old world map on a dark textured background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMcNQUyRGNJizaDCUqn0L-MZxo7BooYMNFtpKZO7WKlxi3Rmx4Ic2GJ5yvQwxVf-XHahxU5ZeV3qdjss4UQpjyCdpw1wYRvy89k8o7BREhhHydt5Y6eDTrwgiJgI4HEgDwBz9iBkWyYuVpQY6X2N-buA7e5hODfbMi-wXuJ1-4zvBdn_OhFyFllka_qLe6HVNRRsh_W3F-m2XW-hvKdKEOe8nbccfIaTK6XmotGVae9HSFEPnbHmdD4-Ne1pCOxsmo3TbB6ZVaNVs"/>
+</div>
+<div class="aspect-[2/3] bg-surface-container-lowest rounded-xl shadow-2xl p-2 transform hover:-rotate-1 transition-transform">
+<img class="w-full h-full object-cover rounded-lg" data-alt="modern tech book cover with sleek dark aesthetic and neon blue accents showing circuit patterns and futuristic typography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWPNFNLQN5CjVqDdwrGre5sDoYB33IF1-D4Fkm6LhqdVfGW2JFLNOjDYTBzXgQRAQt8zvYzxC_j_Uqy1OhTifA8D8eyMEtJIKvjW6C-of88scWrdAZhPpOV4L_vmveIeFgJfND7niuZQh3bK7AK1-HCdr_mXiYGum5cvqsM2_MxS85dzU7aRBlPPnBlUyEVxwDU_wS7vzbRt-qkoGFl1oG4GxJYVXj3ZL6vQdPqoS53T7x46pAfrFusqRhAiGw4FNf4YyufmB4OPs"/>
+</div>
+</div>
+<div class="space-y-6 translate-y-12">
+<div class="aspect-[2/3] bg-surface-container-lowest rounded-xl shadow-2xl p-2 transform hover:-rotate-6 transition-transform">
+<img class="w-full h-full object-cover rounded-lg" data-alt="soft pastel book cover with delicate floral illustrations and handwritten script title ideal for a contemporary romance novel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKiJYQ-ynGz1OCvD0gBlBWlPGUf1fU4PLshTstxEss72wkrAkS1Xy1tMAeBYCo10RhhmsmiQar465_FLRY3nxIulvSax4X9P1VjKRXKTCrtAeSjI-JD8bHVwYbtjy9Fu_ZR7tZ-niG2mRHok9Uop_iq06By_2aNTCnDgcXkKLDffQ8SdXW9O8NWHB_1ridiDdJxlRCZmuuGS3Vu-7RcS0EwqHBVZAdqLUtcyTrMs9Km77IRYk_WLZ_fXAh4RPzW1IHOyWIQhrxFdc"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Smart Search Bar -->
+<div class="sticky top-[72px] z-40 max-w-5xl mx-auto px-6 -mt-10">
+<div class="bg-surface-container-lowest p-4 rounded-3xl shadow-2xl border border-outline-variant/10 backdrop-blur-xl bg-opacity-90">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+<div class="md:col-span-5 flex items-center bg-surface-container-high px-5 py-3 rounded-2xl group transition-all focus-within:ring-2 focus-within:ring-primary/20">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-medium placeholder:text-outline-variant" placeholder="Tìm tên sách, tác giả hoặc ISBN..." type="text"/>
+</div>
+<div class="md:col-span-2">
+<select class="w-full bg-surface-container px-4 py-3 rounded-2xl border-none text-sm font-semibold text-on-surface-variant focus:ring-primary/20">
+<option>Thể loại</option>
+<option>Kinh tế</option>
+<option>Tâm lý</option>
+<option>Văn học</option>
+</select>
+</div>
+<div class="md:col-span-2">
+<select class="w-full bg-surface-container px-4 py-3 rounded-2xl border-none text-sm font-semibold text-on-surface-variant focus:ring-primary/20">
+<option>Giá bán</option>
+<option>Dưới 100k</option>
+<option>100k - 300k</option>
+</select>
+</div>
+<div class="md:col-span-3">
+<button class="w-full bg-primary py-3 rounded-2xl text-on-primary font-bold hover:shadow-lg hover:shadow-primary/30 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">tune</span>
+                            Tìm kiếm ngay
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 1: Book Grid -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+<div class="flex items-end justify-between mb-12">
+<div>
+<h2 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Sách Mới Cập Nhật</h2>
+<p class="text-on-surface-variant">Những đầu sách vừa cập bến kho của BookVerse hôm nay.</p>
+</div>
+<button class="group flex items-center gap-2 text-primary font-bold">
+                    Xem tất cả <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Book Card 1 -->
+<div class="group bg-surface-container-low rounded-3xl p-4 transition-all hover:bg-surface-container-lowest hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:-translate-y-2">
+<div class="aspect-[2/3] overflow-hidden rounded-2xl mb-4 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="aesthetic white book cover with minimalist layout and clean serif font titled 'The Art of Silence' on a light background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAydpritFqBisS1QSDOA5OFhN7aqKHhSmzHrX6Sjll5a8FS0n6cI9vEgV0eXkNTUYbAV4e6ExwIxt12oklxNLtxuAsbgcgJ0hJEiwspsnciN90MvtTOSetDaLro64xj7YWvFw19A06ZjP3sXmxgGvdb0O_TUuGhMnKsVs0Ws-2tJ87ZJqDomQXIve7M8iyuFiFrabz9LAn-D9QKvBhnl9uauqPMAGWq6VLZQsh4YnjgCoVTEzs-gVuyxSK0vZh7Asa702dPhJ-XtQs"/>
+</div>
+<div class="space-y-1">
+<h3 class="text-lg font-bold text-on-surface truncate">Nghệ Thuật Của Sự Im Lặng</h3>
+<p class="text-sm text-on-surface-variant">Erick Peterson</p>
+<div class="flex items-center gap-1 py-2">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold text-on-surface">4.8</span>
+<span class="text-xs text-outline-variant">(1.2k nhận xét)</span>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-xl font-extrabold text-primary">185.000đ</span>
+<div class="flex gap-2">
+<button class="p-2 rounded-xl border border-outline-variant text-outline hover:bg-primary-container hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Book Card 2 -->
+<div class="group bg-surface-container-low rounded-3xl p-4 transition-all hover:bg-surface-container-lowest hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:-translate-y-2">
+<div class="aspect-[2/3] overflow-hidden rounded-2xl mb-4 bg-surface-container relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="book with orange and blue abstract shapes titled 'Future Cities' in a modern layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZAiZzNHMG671SERk5pgqY-gGZAnyO3boVRCxTkA1Pzjz2vP41SCVLJhMkRJ7k3S3uK0GrslFXZGDTUM90v6IQAkjCBizSbhsIcUQqYRIIG1wMJPtD6-SzxUQkvgcW9ty7MmtPAf7fhmJrFgS_vUpDkBQ5xAc3N-5LuPsLa04M_2AODdklR5R2JlvU-h_EvHWppOtkjGe0EWxhxF9xXoxMkpbhz0SFb21SBNA1Sh-SWH5H2WiYKm0j85CzVFRFJJ8p0aO2yIEoP4s"/>
+<div class="absolute top-3 left-3 px-3 py-1 bg-tertiary text-white text-[10px] font-bold rounded-full uppercase tracking-widest">-20%</div>
+</div>
+<div class="space-y-1">
+<h3 class="text-lg font-bold text-on-surface truncate">Thành Phố Tương Lai</h3>
+<p class="text-sm text-on-surface-variant">Julian Barnes</p>
+<div class="flex items-center gap-1 py-2">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold text-on-surface">4.5</span>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-xl font-extrabold text-primary">220.000đ</span>
+<div class="flex gap-2">
+<button class="p-2 rounded-xl border border-outline-variant text-outline hover:bg-primary-container hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Book Card 3 -->
+<div class="group bg-surface-container-low rounded-3xl p-4 transition-all hover:bg-surface-container-lowest hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:-translate-y-2">
+<div class="aspect-[2/3] overflow-hidden rounded-2xl mb-4 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="deep blue and black book cover with digital grid patterns and white sans-serif text 'Cyber Psychology'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz0u1TUNkjNiXHmseCNKKEees7xJCERd7H_yRprXvJSwPo0MnD5FLeGqc0-W9UYbIOGj1ZdHwFpuFLW1kD2HtyRdCHZvc7PBDWAAeBHCuULP7AGrYru2MiKENbVpbI_lwBhUwCFESUvmiAQK4ekLfZY8XeMZBBWymVovE23rFN5d_gV_UbRo6tmSy8TRIQyYt_iOzZDyqfRXyRuHJjdvPASyvOLQFaB9DgCmwpVqOdO5x8mCXUJ7iJqYJ0S3GgO_AYgi3BvhLSghc"/>
+</div>
+<div class="space-y-1">
+<h3 class="text-lg font-bold text-on-surface truncate">Tâm Lý Học Số</h3>
+<p class="text-sm text-on-surface-variant">Dr. Sarah Jenkins</p>
+<div class="flex items-center gap-1 py-2">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold text-on-surface">4.9</span>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-xl font-extrabold text-primary">155.000đ</span>
+<div class="flex gap-2">
+<button class="p-2 rounded-xl border border-outline-variant text-outline hover:bg-primary-container hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Book Card 4 -->
+<div class="group bg-surface-container-low rounded-3xl p-4 transition-all hover:bg-surface-container-lowest hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:-translate-y-2">
+<div class="aspect-[2/3] overflow-hidden rounded-2xl mb-4 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="classic historical fiction book cover featuring an old architectural drawing of a manor with elegant gold lettering" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuEhg5LKiJ1KZipSJ2PUPXz5Fjy20TaggvDVTMYUTEhCpA5KKUU1Q5YC0v8Ejwkwvev3JfCI8HzOLQjShrN2O70SVVRvUojN31PR6IdxTPrY0VoFHRk_QxBBR5TflXCGL6QpMNZmLyUZaTbvIHOjbKa_cEhVzTd4h4GXV7cojsHJNNL7VAb-rX89FQSt_SAPjyaKqM7V581p-WikJeEA5Z_CaYWwBxKFD8vKNxKs_xNs5I0ATUOT0juJry0rc9NUjJOcYYfrMohsA"/>
+</div>
+<div class="space-y-1">
+<h3 class="text-lg font-bold text-on-surface truncate">Gia tộc bí ẩn</h3>
+<p class="text-sm text-on-surface-variant">Robert Galbraith</p>
+<div class="flex items-center gap-1 py-2">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold text-on-surface">4.7</span>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-xl font-extrabold text-primary">310.000đ</span>
+<div class="flex gap-2">
+<button class="p-2 rounded-xl border border-outline-variant text-outline hover:bg-primary-container hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Recommendations: Horizontal Carousel -->
+<section class="bg-surface-container-low py-24">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex items-center gap-3 mb-10">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<h2 class="text-3xl font-extrabold tracking-tight">Gợi ý dành riêng cho bạn</h2>
+</div>
+<div class="flex gap-8 overflow-x-auto hide-scrollbar pb-8 snap-x">
+<!-- Carousel Item 1 -->
+<div class="flex-none w-[350px] snap-start bg-surface-container-lowest p-6 rounded-3xl flex gap-6 shadow-sm">
+<div class="w-24 aspect-[2/3] shrink-0 rounded-lg overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover" data-alt="minimalist book cover with bold black typography on cream paper focusing on philosophy and self-improvement" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2JwkjNOuFPbXUgPZeKPN7ShOvuQODmB6oZGKwyv3o4pvY6SgD8Bj9pvHLutu57jr_iPkHE2vqod_VOVVNft65yq8QQb-S25RtFhG72blPuo7Ta9lqjiu7XJ4mO_EPOq4PovA2zxctoNfS0McUXEGKexx1vuneS7SWWYcAEcgdpaYbxAyNGnlEWaRPznpj_bqoki08jwumwqKWebgG7c8da55RGfc0DORHPPTm9bZXzfopx0r5pOqXu9PHSDrkmVjC8eRCLBCm0M0"/>
+</div>
+<div class="flex flex-col justify-between py-1">
+<div>
+<h4 class="font-bold text-lg leading-tight line-clamp-2">Sức Mạnh Của Thói Quen</h4>
+<p class="text-sm text-on-surface-variant mt-1">Charles Duhigg</p>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-lg font-bold text-primary">165k</span>
+<button class="text-xs font-bold text-primary-container hover:underline text-left">Tại sao bạn thích sách này?</button>
+</div>
+</div>
+</div>
+<!-- Carousel Item 2 -->
+<div class="flex-none w-[350px] snap-start bg-surface-container-lowest p-6 rounded-3xl flex gap-6 shadow-sm">
+<div class="w-24 aspect-[2/3] shrink-0 rounded-lg overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover" data-alt="artistic book cover with soft focus photography of a forest and clean modern font for title about mindfulness" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXT-2slMJVRMjNhQ8fjiAbBPKOTJcJjFUaxYXi9sUXDkzXQPY1fh2LcxTNkWCKS4yaRsmKpY9LT1lRTSzOSdU1djbEEub47iHH28AOTuScbOydEvQZ-bj2QiHc-9HgrCjxYur-N6mykgzDDS_uhCZeYkGrurZtTrAwvMabbIu5t1bpS_5nksTO86uxzB2EQ1zWYEZvl3TP6AKjGmsIZ28cVMWVDSMti22cTWUvRMkYVbKHB7UhbKIk9VGEAaBll_TGbCHYam81zYA"/>
+</div>
+<div class="flex flex-col justify-between py-1">
+<div>
+<h4 class="font-bold text-lg leading-tight line-clamp-2">Lối Sống Tối Giản</h4>
+<p class="text-sm text-on-surface-variant mt-1">Fumio Sasaki</p>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-lg font-bold text-primary">120k</span>
+<button class="text-xs font-bold text-primary-container hover:underline text-left">Dựa trên sách bạn đã đọc</button>
+</div>
+</div>
+</div>
+<!-- Carousel Item 3 -->
+<div class="flex-none w-[350px] snap-start bg-surface-container-lowest p-6 rounded-3xl flex gap-6 shadow-sm">
+<div class="w-24 aspect-[2/3] shrink-0 rounded-lg overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover" data-alt="book cover with cosmic or space themes featuring nebula patterns and white celestial diagrams" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcCv4FYNpShrFXZVk-QoK5T2MxLdlHajhM8dXPaq903bpwfOe-jerDdf2j6De6lkkkFz1u1xTOBaInrIecVn06WrCt_HmK2TA6aAQYtbSQTDSQLcULHLJIR06hzzhN7uIxg3bRHPb39HxF5Gmjr4AglsYnsdsEZz_iYpQK0Dr0aBYHoCpilIMbM77X6KqJA5YUM6zq1A36jqgkIM7oN6C8B9gQ4CWyK7YBzf6AxkIFaLbNuqsmeh4Q2UowQ-ZCqlmTU5jMVmRlr48"/>
+</div>
+<div class="flex flex-col justify-between py-1">
+<div>
+<h4 class="font-bold text-lg leading-tight line-clamp-2">Vũ Trụ Trong Vỏ Hạt Dẻ</h4>
+<p class="text-sm text-on-surface-variant mt-1">Stephen Hawking</p>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-lg font-bold text-primary">245k</span>
+<button class="text-xs font-bold text-primary-container hover:underline text-left">Bán chạy nhất tuần này</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bestseller Section: Horizontal Scroll with Hot Tags -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+<div class="mb-12">
+<h2 class="text-4xl font-extrabold tracking-tight">Best-sellers Tuần Qua</h2>
+<p class="text-on-surface-variant">Top 10 cuốn sách được đặt mua nhiều nhất hệ thống.</p>
+</div>
+<div class="flex gap-8 overflow-x-auto hide-scrollbar snap-x py-4">
+<!-- Bestseller Item -->
+<div class="flex-none w-48 snap-start group relative">
+<div class="absolute -top-2 -right-2 z-10 bg-error text-white text-[10px] font-black px-2 py-1 rounded-lg shadow-xl shadow-error/20 transform rotate-12">HOT</div>
+<div class="aspect-[2/3] rounded-2xl overflow-hidden mb-4 shadow-xl group-hover:shadow-primary/20 group-hover:scale-105 transition-all">
+<img class="w-full h-full object-cover" data-alt="old fashioned book cover with intricate patterns and aged paper texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLI98Y8PkiwOC-vMScNsHQkpPBQXvOu80PId3sRbGWKvOv5FNIDIYuPgFnSy4rgNWERa-rX8Zy0Oq212f3GbXz2QXnVtuSM1C5fF9OGwkHTMJ-Voy1mTolfevey6GdkhECVGoJOwtZwt0vV_Uv_zm0UZG2PPJeTFm94RG_3eNEhvFu5Lek5-fjUloF7cu7SN6PDqS9m6zw9TdmBeRkXGptDNlTpItvAp-FAsI-AoWZDyf9T1HZlz3J4iroI61eFREJ7dy9aqcm1AY"/>
+</div>
+<div class="text-center">
+<h4 class="font-bold text-on-surface truncate">Thiên Thần &amp; Ác Quỷ</h4>
+<p class="text-xs text-on-surface-variant">Dan Brown</p>
+</div>
+</div>
+<!-- Bestseller Item Repeat -->
+<div class="flex-none w-48 snap-start group relative">
+<div class="absolute -top-2 -right-2 z-10 bg-error text-white text-[10px] font-black px-2 py-1 rounded-lg shadow-xl shadow-error/20 transform -rotate-6">TRENDING</div>
+<div class="aspect-[2/3] rounded-2xl overflow-hidden mb-4 shadow-xl group-hover:shadow-primary/20 group-hover:scale-105 transition-all">
+<img class="w-full h-full object-cover" data-alt="conceptual book cover design with architectural blue lines on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAendm6WWVIy4d4m7daDuEncDhEkk1csotouVNIgQ7_6EE0ke3QTXX8AWw8WwXdikOFQHEa50XqUkW1gE-dPsZOwRaiYo1VMx1wSeGFpcn2-64D6Qm9t_fN_7Llz5TgFgeF2LWjtgYwpBtu32v-1AFgrDO8gDZZWUH06unh5SF1ErhY89Jr9BvLZ5Xv81DHU5MZmJS7jFa23H1WiBrE7KHLBiRYxINnAU54793GeO6rlV01PCVktv3GMNflr1qViABvOcvJ4EBS7g"/>
+</div>
+<div class="text-center">
+<h4 class="font-bold text-on-surface truncate">Kiến Trúc Hạnh Phúc</h4>
+<p class="text-xs text-on-surface-variant">Alain de Botton</p>
+</div>
+</div>
+<div class="flex-none w-48 snap-start group relative">
+<div class="aspect-[2/3] rounded-2xl overflow-hidden mb-4 shadow-xl group-hover:shadow-primary/20 group-hover:scale-105 transition-all">
+<img class="w-full h-full object-cover" data-alt="book cover with colorful pop art style and bold dynamic graphics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBEYZCA-TqgCCp3nz-5vqEFXkl07Zj-_UsoqDSXTUCVzFtn2QJ2wMjLS4Vuf_W59tepQVKHP9Ek2qK6VKxmGN4NnCebedM3i-gUtxV26Lu_Cmy7Cp32Hw4cA6djUc-Xi9g6qf5voRC47yuSYATUva26VasBecRAltkD6Lolkwx7n-fPAjcna_RPonr7lnDq36_riKCa10e0Pa_wcO7LeTbi1B0Y26ODxdA3OoNKqVBu1sCJpqO_bGaf4qhkaZgFFdswMd6qjOy8pI"/>
+</div>
+<div class="text-center">
+<h4 class="font-bold text-on-surface truncate">Nghệ Thuật Tư Duy</h4>
+<p class="text-xs text-on-surface-variant">Rolf Dobelli</p>
+</div>
+</div>
+<div class="flex-none w-48 snap-start group relative">
+<div class="aspect-[2/3] rounded-2xl overflow-hidden mb-4 shadow-xl group-hover:shadow-primary/20 group-hover:scale-105 transition-all">
+<img class="w-full h-full object-cover" data-alt="classic blue hardbound book with gold decorative emblem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLqoqSLfgW6ecX3ZCD0lr8ax1GsGb9VcQAjoX5GA0z66bZ4Its8dqQxe8RJeEn_MVPZMrSz33-oXQntPXkoYnz9fiNeZ6D4ieOsBFK4BIHabnbF1tG_joZefMMIeStQOln4YTVHRN-MhSFNiPCOSYaW8jGCmBtKzTHgosKLUTkDjDZes7ow-ZsHbhwAjOQu43YkLCYODBndDduMcTP-6nzZ8Ms5FaWRG1EVr9ZIVk6JZBeXpKgL4FHu4DC0yRof1YGna7KNstJfHA"/>
+</div>
+<div class="text-center">
+<h4 class="font-bold text-on-surface truncate">Hoàng Tử Bé</h4>
+<p class="text-xs text-on-surface-variant">Saint-Exupéry</p>
+</div>
+</div>
+<div class="flex-none w-48 snap-start group relative">
+<div class="aspect-[2/3] rounded-2xl overflow-hidden mb-4 shadow-xl group-hover:shadow-primary/20 group-hover:scale-105 transition-all">
+<img class="w-full h-full object-cover" data-alt="minimalist white book cover with a simple black square in the center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL2bUJFmOmaQB4sduiooPQYoBidQsdL7MtsGGS2VVG8DcaFhk9_ATrG4OXyMXYjTDvJU3BgnS5rhdWuKnqbDQE8DrVBLW2QtJaowtILeHp98Ly2zIZXX0HW2QEoUHR19o3_ZoGvXF9hq9fkvO2J6HcMykffzRQE0pcEjZTfBz5ZTFA416ya1wpFfNChEW_Owf6XDxbFte6iVVlAlIkC6rohwNz5m8aIvfXhtEm3Xm166dEoNIS-_90uU_uNlmxhyzJ6laxKq3Xgp0"/>
+</div>
+<div class="text-center">
+<h4 class="font-bold text-on-surface truncate">Vũ Trụ Tuyệt Diệu</h4>
+<p class="text-xs text-on-surface-variant">Brian Greene</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Blog Section -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-extrabold tracking-tight mb-4">Nhật Ký BookVerse</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Chia sẻ kiến thức, review sách và những câu chuyện truyền cảm hứng từ các mọt sách chính hiệu.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Blog Card 1 -->
+<article class="group">
+<div class="aspect-video rounded-3xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="wide shot of a bright modern cozy bookstore interior with tall bookshelves and wooden ladders" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi3rCNQJwC1DXEhdvY_nmPOMRP8KsnEkditI8tS6G8Mcn_BOURfStW1UAISLfy77lsnPVSelaBkIZ2HaoVWvcSEk4fM9ddC61t36VoBiuKeSSfiJrtGit2q-6HC_7U-98JXLOYjdkmiRJve7lfJvqiv37YoKc2RHaeYpTzS20NWMLdft0fvHZocJfVpPNnZ2AFrEluRlnW7UnAZ-ZFduVdubOvnoOWBO5iIGApxFk-R33H9XDAlNVg1CrZrpxxx2hcYgTqQJDjZj8"/>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-xs font-bold text-primary tracking-widest uppercase">
+<span>Sự kiện</span>
+<span>•</span>
+<span>5 phút đọc</span>
+</div>
+<h3 class="text-2xl font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">Tại sao việc đọc sách giấy vẫn chưa bao giờ lỗi thời?</h3>
+<p class="text-on-surface-variant line-clamp-2">Khám phá lý do tại sao trong thời đại số, những trang sách thơm mùi giấy vẫn có sức hút mãnh liệt...</p>
+<button class="pt-4 flex items-center gap-2 font-bold text-on-surface group/btn">
+                            Đọc thêm 
+                            <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_right_alt</span>
+</button>
+</div>
+</article>
+<!-- Blog Card 2 -->
+<article class="group">
+<div class="aspect-video rounded-3xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="top-down view of a stack of colorful books on a rustic wooden table with a cup of coffee next to it" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi2NZeq-URqpaBpvgtOKjGlverybHz2LblG6AuRdkjbUiqKQ22YE-oY8KIHPgGPIRr9oPO-kcr4O_OPfsdqZZkT_3kdJIbE4l3uE73cZI71ck-9IIgXPyUpSUdRqQCIp8ZlXjLUvHF7DwAnJDcfAlVO9hG1ma1J83YZR-VtEIDyiquA41ExNf-PlUYhEMTmf0fU--sbJmCexbRcUO9VjEW2Kk94ssX_tSHZnPaa-vnIg3ZHUNphxZ6jToGiEcOdUpgUztjdfe3hGc"/>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-xs font-bold text-primary tracking-widest uppercase">
+<span>Top Books</span>
+<span>•</span>
+<span>8 phút đọc</span>
+</div>
+<h3 class="text-2xl font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">Top 10 cuốn sách thay đổi tư duy tài chính của bạn</h3>
+<p class="text-on-surface-variant line-clamp-2">Những kiến thức cơ bản đến nâng cao về quản lý tài chính cá nhân mà bạn không nên bỏ lỡ...</p>
+<button class="pt-4 flex items-center gap-2 font-bold text-on-surface group/btn">
+                            Đọc thêm 
+                            <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_right_alt</span>
+</button>
+</div>
+</article>
+<!-- Blog Card 3 -->
+<article class="group">
+<div class="aspect-video rounded-3xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="close up of an open book with beautiful typography in golden evening sunlight streaming through a window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC6DvtXfQk1WdbNyGspt9TYYzsQYZVTRhMIKlsQjhUimuLZRmvGMk4bzhch2ZWP6r-A6Nd6DvJpjygL1yXW7R-BFPZfwdW8Azwcok7GW4OWs2rjMfyhVMS1uIOVi5a_cj49ZVgZ9Oxt8bKwAraGOWSkGPyFaOYV2aF5bFcOl4Yhw_uMh3lXiExItkXr87KbGPTrI6F5iVbW8krFL0sIKehjnDxAyPKMJbFWn6ZMZf8mRciC3OgCZ__2KDfoNk2fUBfySmpcUY5RLc"/>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-xs font-bold text-primary tracking-widest uppercase">
+<span>Review</span>
+<span>•</span>
+<span>4 phút đọc</span>
+</div>
+<h3 class="text-2xl font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">Review: Khi Hơi Thở Hóa Thinh Không</h3>
+<p class="text-on-surface-variant line-clamp-2">Một cuốn hồi ký đầy xúc động về cuộc đời, cái chết và ý nghĩa của việc được sống thực thụ...</p>
+<button class="pt-4 flex items-center gap-2 font-bold text-on-surface group/btn">
+                            Đọc thêm 
+                            <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_right_alt</span>
+</button>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#efeeea] dark:bg-[#1a1a1a] w-full py-12 px-6 mt-20">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<!-- Brand Section -->
+<div class="space-y-6">
+<span class="text-xl font-bold tracking-tighter text-[#3525cd] dark:text-[#4f46e5]">BookVerse</span>
+<p class="font-['Inter'] text-sm text-[#464555] dark:text-slate-400 leading-relaxed">
+                    Hệ sinh thái tri thức hiện đại, nơi mỗi cuốn sách là một hành trình khám phá mới. Chúng tôi kết nối bạn với những giá trị bền vững.
+                </p>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded-full bg-surface flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-lg">public</span></a>
+<a class="w-8 h-8 rounded-full bg-surface flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-lg">mail</span></a>
+</div>
+</div>
+<!-- Links Column 1 -->
+<div>
+<h4 class="font-bold text-on-surface mb-6">Về chúng tôi</h4>
+<ul class="space-y-4 font-['Inter'] text-sm text-[#464555] dark:text-slate-400">
+<li><a class="hover:underline hover:text-[#3525cd] transition-colors" href="#">About us</a></li>
+<li><a class="hover:underline hover:text-[#3525cd] transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:underline hover:text-[#3525cd] transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<!-- Links Column 2 -->
+<div>
+<h4 class="font-bold text-on-surface mb-6">Hỗ trợ khách hàng</h4>
+<ul class="space-y-4 font-['Inter'] text-sm text-[#464555] dark:text-slate-400">
+<li><a class="hover:underline hover:text-[#3525cd] transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="hover:underline hover:text-[#3525cd] transition-colors" href="#">Contact</a></li>
+<li><a class="hover:underline hover:text-[#3525cd] transition-colors" href="#">FAQs</a></li>
+</ul>
+</div>
+<!-- Newsletter -->
+<div>
+<h4 class="font-bold text-on-surface mb-6">Đăng ký bản tin</h4>
+<p class="text-sm text-on-surface-variant mb-4">Nhận thông báo về sách mới và ưu đãi độc quyền hàng tuần.</p>
+<div class="flex gap-2">
+<input class="bg-surface px-4 py-2 rounded-xl border-none text-sm w-full focus:ring-1 focus:ring-primary" placeholder="Email của bạn" type="email"/>
+<button class="bg-primary text-white px-4 py-2 rounded-xl active:scale-95 transition-transform">Gửi</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-outline-variant/10 text-center">
+<p class="font-['Inter'] text-sm text-[#464555] dark:text-slate-400">© 2024 BookVerse Archive. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

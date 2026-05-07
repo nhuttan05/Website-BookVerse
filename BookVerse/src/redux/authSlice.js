@@ -1,9 +1,3 @@
-// =====================================================
-//  REDUX — authSlice.js
-//  Quản lý trạng thái đăng nhập và thông tin người dùng
-//  Pattern: JWT Authentication
-// =====================================================
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '@/api/axiosInstance';
 import { ENDPOINTS } from '@/api/endpoints';
@@ -16,13 +10,15 @@ export const login = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post(ENDPOINTS.AUTH.LOGIN, credentials);
-      const { accessToken, refreshToken, user } = response.data;
+      const { token, id, email, fullName, roles } = response.data;
       
-      // Lưu token vào localStorage theo chuẩn axiosInstance.js
-      localStorage.setItem('bookverse_access_token', accessToken);
-      localStorage.setItem('bookverse_refresh_token', refreshToken);
+      // Lưu token vào localStorage
+      localStorage.setItem('bookverse_access_token', token);
       
-      return { token: accessToken, user };
+      return { 
+        token, 
+        user: { id, email, fullName, roles } 
+      };
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Đăng nhập thất bại');
     }
@@ -50,7 +46,7 @@ export const getCurrentUser = createAsyncThunk(
       const response = await axiosInstance.get(ENDPOINTS.USER.PROFILE);
       return response.data;
     } catch (error) {
-      // Nếu token hết hạn hoặc lỗi, xóa token
+      // Nếu lỗi, xóa token để logout
       localStorage.removeItem('bookverse_access_token');
       localStorage.removeItem('bookverse_refresh_token');
       return rejectWithValue(error.response?.data?.message || 'Phiên làm việc hết hạn');

@@ -32,4 +32,5 @@ public class BookDTO {
     private Integer pageCount;
     private LocalDate publishedDate;
     private String language;
+    private java.util.List<String> images;
 }

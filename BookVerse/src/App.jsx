@@ -1,8 +1,10 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from '@/redux/store';
 import MainLayout from '@/layout/MainLayout';
+import ScrollToTop from '@/components/ScrollToTop';
+
+import { Navigate } from 'react-router-dom';
+import AdminLayout from '@/layout/AdminLayout';
 
 // =====================================================
 //  LAZY LOADING PAGES
@@ -19,6 +21,38 @@ const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const ContactPage = lazy(() => import('@/pages/ContactPage'));
 const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
 const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
+const BlogPage = lazy(() => import('@/pages/BlogPage'));
+const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
+const StaticPage = lazy(() => import('@/pages/StaticPage'));
+const AdminDashboardPage = lazy(() => import('@/pages/AdminDashboardPage'));
+const AdminBooksPage = lazy(() => import('@/pages/AdminBooksPage'));
+const AdminCategoriesPage = lazy(() => import('@/pages/AdminCategoriesPage'));
+const AdminUsersPage = lazy(() => import('@/pages/AdminUsersPage'));
+const AuthorsPage = lazy(() => import('@/pages/AuthorsPage'));
+const OrderSuccessPage = lazy(() => import('@/pages/OrderSuccessPage'));
+
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAuth, getCurrentUser } from '@/redux/authSlice';
+
+import toast from 'react-hot-toast';
+
+// Protected Route Component
+const ProtectedRoute = ({ children, role }) => {
+  const { isAuthenticated, user, loading, token } = useSelector(selectAuth);
+  
+  // Nếu đang load hoặc có token nhưng chưa có user (đang fetch)
+  if (loading || (token && !user)) return <PageLoader />;
+  
+  if (!isAuthenticated) return <Navigate to="/login" replace />;
+  
+  if (role && !user?.roles?.includes(role)) {
+    toast.error('Bạn không có quyền truy cập vào khu vực này!');
+    return <Navigate to="/" replace />;
+  }
+  
+  return children;
+};
 
 // Placeholder pages (tạm thời cho các trang chưa build)
 const PlaceholderPage = ({ title }) => (
@@ -36,13 +70,28 @@ const PageLoader = () => (
   </div>
 );
 
+import AIAssistant from '@/components/AIAssistant';
+import { Toaster } from 'react-hot-toast';
+
 // =====================================================
 //  APP — Root Component
 // =====================================================
 function App() {
+  const dispatch = useDispatch();
+  const { token, user, loading } = useSelector(selectAuth);
+
+  useEffect(() => {
+    // Chỉ fetch user nếu có token, chưa có user và KHÔNG phải đang trong quá trình load (login)
+    if (token && !user && !loading) {
+      dispatch(getCurrentUser());
+    }
+  }, [dispatch, token, user, loading]);
+
   return (
-    <Provider store={store}>
+    <>
+      <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
       <BrowserRouter>
+        <ScrollToTop />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             {/* Consumer Routes */}
@@ -51,27 +100,49 @@ function App() {
             <Route path="/books/:slug" element={<MainLayout><BookDetailPage /></MainLayout>} />
             <Route path="/cart" element={<MainLayout><CartPage /></MainLayout>} />
             <Route path="/wishlist" element={<MainLayout><WishlistPage /></MainLayout>} />
-            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
+            <Route path="/order-success" element={<ProtectedRoute><OrderSuccessPage /></ProtectedRoute>} />
             
             {/* Auth Routes */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             
             {/* Account Routes */}
-            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+
+            {/* Admin Routes */}
+            <Route path="/admin" element={<ProtectedRoute role="ROLE_ADMIN"><AdminLayout /></ProtectedRoute>}>
+              <Route path="dashboard" element={<AdminDashboardPage />} />
+              <Route path="books" element={<AdminBooksPage />} />
+              <Route path="categories" element={<AdminCategoriesPage />} />
+              <Route path="users" element={<AdminUsersPage />} />
+              <Route path="orders" element={<PlaceholderPage title="Quản lý đơn hàng" />} />
+              <Route path="analytics" element={<PlaceholderPage title="Thống kê chuyên sâu" />} />
+              <Route index element={<Navigate to="/admin/dashboard" replace />} />
+            </Route>
             
             {/* Other Placeholders */}
-            <Route path="/categories" element={<MainLayout><CategoriesPage /></MainLayout>} />
-            <Route path="/blog" element={<MainLayout><PlaceholderPage title="Nhật ký BookVerse" /></MainLayout>} />
-            <Route path="/about" element={<MainLayout><AboutPage /></MainLayout>} />
+            <Route path="/authors" element={<MainLayout><AuthorsPage /></MainLayout>} />
             <Route path="/contact" element={<MainLayout><ContactPage /></MainLayout>} />
+            <Route path="/categories" element={<MainLayout><CategoriesPage /></MainLayout>} />
+            <Route path="/blog" element={<MainLayout><BlogPage /></MainLayout>} />
+            <Route path="/blog/:id" element={<MainLayout><BlogPostPage /></MainLayout>} />
+            
+            {/* Static Content Pages */}
+            <Route path="/about" element={<MainLayout><StaticPage /></MainLayout>} />
+            <Route path="/contact" element={<MainLayout><StaticPage /></MainLayout>} />
+            <Route path="/privacy-policy" element={<MainLayout><StaticPage /></MainLayout>} />
+            <Route path="/terms-of-service" element={<MainLayout><StaticPage /></MainLayout>} />
+            <Route path="/shipping-returns" element={<MainLayout><StaticPage /></MainLayout>} />
+            <Route path="/faqs" element={<MainLayout><StaticPage /></MainLayout>} />
 
             {/* 404 */}
             <Route path="*" element={<MainLayout><PlaceholderPage title="404 — Không tìm thấy trang" /></MainLayout>} />
           </Routes>
+          <AIAssistant />
         </Suspense>
       </BrowserRouter>
-    </Provider>
+    </>
   );
 }
 

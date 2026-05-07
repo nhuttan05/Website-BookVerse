@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#7b2f00",
+                      "surface-variant": "#e4e2de",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#e2dfff",
+                      "surface": "#fbf9f5",
+                      "outline": "#777587",
+                      "primary": "#3525cd",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "error-container": "#ffdad6",
+                      "surface-container-highest": "#e4e2de",
+                      "on-secondary-fixed": "#140f54",
+                      "tertiary-fixed": "#ffdbcc",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#fbf9f5",
+                      "secondary-container": "#b6b4ff",
+                      "tertiary-container": "#a44100",
+                      "surface-container": "#efeeea",
+                      "on-surface": "#1b1c1a",
+                      "tertiary": "#7e3000",
+                      "surface-tint": "#4d44e3",
+                      "on-surface-variant": "#464555",
+                      "on-secondary-fixed-variant": "#413f82",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#454386",
+                      "on-tertiary-fixed": "#351000",
+                      "primary-container": "#4f46e5",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#e2dfff",
+                      "error": "#ba1a1a",
+                      "on-tertiary": "#ffffff",
+                      "secondary": "#58579b",
+                      "on-primary": "#ffffff",
+                      "background": "#fbf9f5",
+                      "on-background": "#1b1c1a",
+                      "surface-container-high": "#eae8e4",
+                      "inverse-surface": "#30312e",
+                      "inverse-primary": "#c3c0ff",
+                      "tertiary-fixed-dim": "#ffb695",
+                      "outline-variant": "#c7c4d8",
+                      "on-tertiary-container": "#ffd2be",
+                      "on-primary-fixed": "#0f0069",
+                      "secondary-fixed-dim": "#c3c0ff",
+                      "surface-dim": "#dbdad6",
+                      "surface-container-low": "#f5f3ef",
+                      "inverse-on-surface": "#f2f0ed",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "on-primary-container": "#dad7ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Inter"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<header class="bg-[#fbf9f5]/70 dark:bg-[#1a1a2e]/70 backdrop-blur-xl docked full-width top-0 z-50 sticky transition-colors duration-300">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-[1440px] mx-auto font-['Inter'] antialiased tracking-tight">
+<div class="text-2xl font-semibold tracking-tighter text-[#3525cd] dark:text-[#4f46e5]">BookVerse</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-[#464555] dark:text-[#efeeea] hover:text-[#4f46e5] transition-all duration-200" href="#">Archive</a>
+<a class="text-[#464555] dark:text-[#efeeea] hover:text-[#4f46e5] transition-all duration-200" href="#">Curations</a>
+<a class="text-[#464555] dark:text-[#efeeea] hover:text-[#4f46e5] transition-all duration-200" href="#">Authors</a>
+<a class="text-[#464555] dark:text-[#efeeea] hover:text-[#4f46e5] transition-all duration-200" href="#">Community</a>
+</nav>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors cursor-pointer">search</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer hover:scale-95">shopping_bag</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer hover:scale-95">person</span>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-8 py-8 space-y-12">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 text-sm text-on-surface-variant font-medium">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Categories</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Literature</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-on-surface">The Art of Silence</span>
+</nav>
+<!-- Product Hero Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+<!-- Left Column: Imagery -->
+<div class="lg:col-span-5 space-y-6">
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm overflow-hidden aspect-[3/4] flex items-center justify-center">
+<img alt="The Art of Silence Book Cover" class="w-full h-full object-cover rounded-sm shadow-md transition-transform hover:scale-[1.02] duration-500" data-alt="Minimalist book cover titled The Art of Silence, featuring a single white feather on a deep indigo textured background, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvU4JuADG2m52pOqrwKUNK6wcir-WFEohBO_ttjYKCQ9AA4huGQI7S4nvFtOGg0tzoV4JzVSnSC1u73fg0tb4w8_9xg9tgFUbbUNLCWP7nEnYC0FZ8DeWoUIucpnTCOAqWrjGDYdGTunkzG1Lrufo13j6XvovH6z6zdpjYWfoWIdGCMJD74qi4jcSOT7gYMpp0OU_zYWRGUobb08YO92eQf2AwgYLL6QoEmNuMKgr4zuUz22z5x3sBxUJuZWcN8ywTlsQOemokZ2Y"/>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<button class="bg-surface-container-high rounded-lg overflow-hidden border-2 border-primary">
+<img class="w-full aspect-square object-cover opacity-100" data-alt="close up of book cover details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJUvzLmXEbD_i1tAaWvQ4QhHBbbLGLnBPE-QYVv3xIQtiFyyuaYsh0p3Hkr4VgtmSCoxF-7wkxGRtpFx9pODMbqgiJcCIuHMboHX1UDQQ9T2bw9G64JxXN7Rl2EnMynF3_0CsQgY-bxDqRSKN34A6rW_cR81h58md6JFXO1kDFPogYumkPg5MhOK4DmF46cNPx8uqb6AdiytqnXXdwyFwvz-QmCHPP1JQysjVmiTQvIu5ZqrAyzBH6kyDJ0sqbjfGRDTArkcfmKG0"/>
+</button>
+<button class="bg-surface-container-high rounded-lg overflow-hidden hover:border-primary border-2 border-transparent transition-all">
+<img class="w-full aspect-square object-cover opacity-80 hover:opacity-100" data-alt="interior pages of an open book with elegant typography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtBZ3Zf3D0dfU_ijXRZpE_tN255mMQmh5KD7qyPdPJnxTtFIo0HMngQfVgsPZVtpEd70F0QmjnJFeMuBw_QZgPKCobxmaGs9ALQ_I-1g6mgIqdStrZdW3bs-w1lIBXRrHxguczgM3kv5wg64WRsfyb-pUfO3TVxxTQRVTOS_0k218uvuaimfNMWwV1QMVxOX1TUzpNPLent-Hm-TxGrC-o4YAV_OZ4_GDf5h6Vz2dJnqw3a_de_9hoTlR_7ZKEI8Bv8YLjJj5quc4"/>
+</button>
+<button class="bg-surface-container-high rounded-lg overflow-hidden hover:border-primary border-2 border-transparent transition-all">
+<img class="w-full aspect-square object-cover opacity-80 hover:opacity-100" data-alt="stack of books on a wooden table in a sunlit library" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjJe5fWogd7Zd2qL08_LxVUnt3tvTU9Zt6ujb-PKW0RaXCavL8cS_rNtnGtsL-a17hnhTI_cTHFJ4Egt9sh0KFEkrPcl2RzJNHTVdP7Z-E4WYU5mWEE9JL7DqtdagQ8a4r1uN3nu5K6ALQA49IRM3rsmTNWYZDTWylnS9iMPcgIbtj2vu66Nf_qm7njtIm2K1Ijz9aJGce_OksIsm9F29vrbgdN607f_l6yaQqserpt9JnjV9BHEkPBmxBkywpUHB5idJQ19tTKeA"/>
+</button>
+<button class="bg-surface-container-high rounded-lg overflow-hidden hover:border-primary border-2 border-transparent transition-all">
+<img class="w-full aspect-square object-cover opacity-80 hover:opacity-100" data-alt="person reading a book with a coffee cup in a cozy cafe setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVdp_3SYQiSTFKI487-XOFf-e9iEs-yhSh6-vVaiRal0NENDS0ADwaRHwqZ8fBuxu34cDq-_MSEQoInxD_jbEO5PkHfhoL3mRU79JEw5GziBmy5aU5Sye7y4PyPHW-jz01rRzdgzdaYmymr7Ae5Qh4IheJREw2wcQKB4_38Z96P0yVk1J49IbSlBIRIfzl22nYZaNmG__jxKJW6_tFejRXEw7XWceC-yuJlruK5qJaLi8m8ABh1geWpC5FJN9jQJesiqOo9rAFu_4"/>
+</button>
+</div>
+</div>
+<!-- Right Column: Details -->
+<div class="lg:col-span-7 space-y-8">
+<div class="space-y-4">
+<span class="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold tracking-widest uppercase">Editor's Choice</span>
+<h1 class="text-5xl font-bold tracking-tight text-on-surface leading-tight">The Art of Silence</h1>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="font-medium text-lg">by <a class="text-primary hover:underline" href="#">Evelyn St. Claire</a></span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<div class="flex items-center">
+<div class="flex text-primary">
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star_half</span>
+</div>
+<span class="ml-2 text-sm font-semibold">4.8 (1,240 reviews)</span>
+</div>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl flex items-baseline gap-4">
+<span class="text-4xl font-extrabold text-primary tracking-tighter">185.000đ</span>
+<span class="text-on-surface-variant line-through text-lg">220.000đ</span>
+<span class="text-error font-bold text-sm bg-error-container px-2 py-0.5 rounded">-15%</span>
+</div>
+<p class="text-lg leading-relaxed text-on-surface-variant max-w-2xl">
+                    Khám phá sức mạnh của sự tĩnh lặng trong một thế giới ồn ào. "The Art of Silence" dẫn dắt người đọc qua hành trình tìm lại bản thân, học cách lắng nghe tiếng nói nội tâm và xây dựng sự an nhiên giữa nhịp sống hối hả của thế kỷ 21.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="flex-1 px-8 py-4 bg-primary text-on-primary rounded-xl font-bold text-sm uppercase tracking-widest hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-lg">bolt</span>
+                        Mua ngay
+                    </button>
+<button class="flex-1 px-8 py-4 bg-transparent border-2 border-primary text-primary rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-primary/5 transition-all flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-lg">shopping_cart</span>
+                        Thêm vào giỏ hàng
+                    </button>
+</div>
+<div class="grid grid-cols-3 gap-4 pt-8 border-t border-surface-container">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Giao hàng</span>
+<span class="text-sm font-medium">Miễn phí toàn quốc</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Đổi trả</span>
+<span class="text-sm font-medium">Trong vòng 30 ngày</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Tình trạng</span>
+<span class="text-sm font-medium text-primary">Còn hàng</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Information Tabs -->
+<section class="space-y-8">
+<div class="flex gap-12 border-b border-surface-container text-lg font-medium">
+<button class="pb-4 border-b-2 border-primary text-primary">Giới thiệu nội dung</button>
+<button class="pb-4 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface transition-colors">Thông tin chi tiết</button>
+<button class="pb-4 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface transition-colors">Về tác giả</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<div class="lg:col-span-8 space-y-6">
+<div class="prose max-w-none text-on-surface-variant leading-relaxed">
+<p class="text-lg">Tác phẩm không chỉ đơn thuần là một cuốn sách hướng dẫn; nó là một người bạn đồng hành tinh thần. Evelyn St. Claire đã khéo léo đan xen những câu chuyện từ triết lý cổ đại đến những nghiên cứu tâm lý học hiện đại để minh chứng cho giá trị của sự yên lặng.</p>
+<p>Trong cuốn sách này, bạn sẽ khám phá:</p>
+<ul class="list-disc pl-5 space-y-2 mt-4">
+<li>Kỹ thuật chánh niệm ứng dụng trong công việc hàng ngày.</li>
+<li>Cách xây dựng không gian "yên lặng chủ động" tại nhà.</li>
+<li>Tại sao chúng ta lại sợ hãi sự im lặng và cách vượt qua nó.</li>
+</ul>
+</div>
+</div>
+<div class="lg:col-span-4 bg-surface-container-low rounded-xl p-8 h-fit">
+<h3 class="text-xs uppercase tracking-widest font-bold text-on-surface-variant mb-6">Thông số kỹ thuật</h3>
+<div class="space-y-4">
+<div class="flex justify-between py-2 border-b border-surface-container">
+<span class="text-sm text-on-surface-variant">ISBN</span>
+<span class="text-sm font-semibold">978-604-331-522-1</span>
+</div>
+<div class="flex justify-between py-2 border-b border-surface-container">
+<span class="text-sm text-on-surface-variant">Nhà xuất bản</span>
+<span class="text-sm font-semibold">NXB Văn Học</span>
+</div>
+<div class="flex justify-between py-2 border-b border-surface-container">
+<span class="text-sm text-on-surface-variant">Số trang</span>
+<span class="text-sm font-semibold">324 trang</span>
+</div>
+<div class="flex justify-between py-2 border-b border-surface-container">
+<span class="text-sm text-on-surface-variant">Năm XB</span>
+<span class="text-sm font-semibold">2023</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Review Section -->
+<section class="space-y-8 bg-surface-container/30 p-12 rounded-3xl">
+<div class="flex flex-col md:flex-row justify-between items-end gap-6">
+<div class="space-y-2">
+<h2 class="text-3xl font-bold tracking-tight">Đánh giá từ độc giả</h2>
+<div class="flex items-center gap-4">
+<div class="text-5xl font-black text-primary">4.8</div>
+<div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined filled-icon">star</span>
+<span class="material-symbols-outlined filled-icon">star</span>
+<span class="material-symbols-outlined filled-icon">star</span>
+<span class="material-symbols-outlined filled-icon">star</span>
+<span class="material-symbols-outlined filled-icon">star</span>
+</div>
+<p class="text-sm text-on-surface-variant font-medium">Dựa trên 1,240 đánh giá</p>
+</div>
+</div>
+</div>
+<button class="px-6 py-3 bg-on-surface text-surface rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">edit_note</span>
+                    Viết đánh giá
+                </button>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-full text-xs font-bold">Tất cả</button>
+<button class="px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-xs font-bold hover:bg-outline-variant transition-colors">5 Sao (850)</button>
+<button class="px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-xs font-bold hover:bg-outline-variant transition-colors">4 Sao (320)</button>
+<button class="px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-xs font-bold hover:bg-outline-variant transition-colors">3 Sao (50)</button>
+<button class="px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-xs font-bold hover:bg-outline-variant transition-colors">Có hình ảnh</button>
+</div>
+<div class="space-y-6">
+<!-- Review 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl shadow-sm space-y-4">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a man smiling gently" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWvuUv0OSv3_6vMWfhD8YMJcuicJBsHhqAAoQ-K6yDho4IP5RemhE_X-PvLmKEMo_vDsBlp7q703OVsvXyRwXHJWc_1KLLSm8hqcHezCwDU3dOWa36o76DHAybbetl-2MeiEDsLi3V075BJEjq-cddojac_WyOYiE-JRwateky3QKqEY36o-Y049j6ZnjwIJJGpGFSm6JPp5ZdCt0IGUZt9FDw1QP0MTQR67GYPPPQe8PQi_7UVDYMRaYdylJb1ZxLdYPyVfT0_r4"/>
+</div>
+<div>
+<h4 class="font-bold">Minh Hoàng</h4>
+<span class="text-xs text-on-surface-variant">2 ngày trước</span>
+</div>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+</div>
+</div>
+<p class="text-on-surface-variant">Một cuốn sách tuyệt vời giúp tôi cân bằng lại cuộc sống. Cách hành văn rất nhẹ nhàng nhưng đầy sức nặng. Giao hàng cực nhanh!</p>
+</div>
+<!-- Review 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl shadow-sm space-y-4">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="portrait of a young woman with a warm friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1Bcu-A6o_4sQ5ODkcwZY75E5hk_PAk9LQhOJuq7TS4lNks0Dr0upPH-6jGWOA8KAu8vohT3CNUuWQOvzLo73Rrz_sgkpra0TiUziJsRx9EzAMS7bURBXQupvnWP2OTrpIp52ttpwMTBzKHnhFODwGSzR6PxEi3fedTivOKnWVyVI2LfdnIeqmgdwkoXwes2GMGZfy6_9DqYDlhDNHMcegWRWtKzUkIRs1109Sy1X3OEPs8M9iLlPwwKSgInJ_ZQPHDIqq5TbsZS4"/>
+</div>
+<div>
+<h4 class="font-bold">Linh Chi</h4>
+<span class="text-xs text-on-surface-variant">1 tuần trước</span>
+</div>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+<span class="material-symbols-outlined filled-icon text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+</div>
+<p class="text-on-surface-variant">Sách rất đẹp, giấy xịn cầm rất thích tay. Nội dung cực kỳ hữu ích cho những ai đang gặp stress.</p>
+</div>
+</div>
+</section>
+<!-- Related Section -->
+<section class="space-y-8">
+<div class="flex justify-between items-center">
+<h2 class="text-3xl font-bold tracking-tight">Có thể bạn sẽ thích</h2>
+<div class="flex gap-2">
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+<!-- Book Card 1 -->
+<div class="group cursor-pointer">
+<div class="bg-surface-container-lowest rounded-xl p-4 transition-all group-hover:scale-[1.02] group-hover:shadow-xl group-hover:shadow-on-surface/5">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="book cover with abstract blue watercolor and gold foil title" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEBOtkMXUL0ZT9d50yU2x7W-sbuz-2yG3u8qPMDZz8Guae9LNV9R-A15x5MQ4rbRfQuaiL6QF2ninAKdWqTLpuJbkeFdrM_zlYtBRgsS43TBx3Q6lChpdiJpK9PjS_VlcOZxQUmCpVd0Ys9c9CnY1nQMLfi42QtDbM1IIOaUhytmS-ZE6uaMVKB-k0YjwbQc2xonhoP1If6Bg0sIWQ03LpBesQYgOXyjRPn5hBLA23pIC7o6HNI2jUMo5ux3MyGK9ICWU6qfi_KGo"/>
+</div>
+<h3 class="font-bold text-sm line-clamp-1 mb-1">Dòng Chảy Tâm Hồn</h3>
+<p class="text-xs text-on-surface-variant mb-3">Marcus Aurelius</p>
+<span class="text-primary font-bold">145.000đ</span>
+</div>
+</div>
+<!-- Book Card 2 -->
+<div class="group cursor-pointer">
+<div class="bg-surface-container-lowest rounded-xl p-4 transition-all group-hover:scale-[1.02] group-hover:shadow-xl group-hover:shadow-on-surface/5">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="vibrant book cover with floral illustrations on a yellow background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkinJQzgahQMG55EzPe2lkoICMY7QWbDrRHXgTVvJ2afTErVSnn9Vzi6o6d-XGURMBbW46RTjzQf1rLo5GBJd_eMT9Am9ZdQKab2FPkZQBPZLnckiBPzhY1LN1xQav8cYYk4skI_HgZpEsZ_hzcbZzACb7rko_VB6hHaj1KlcRTOPrzbUQShCWt67UUas4jVxq_l8L3KCPWuxSV81oy5us7pJIgkQRlAWys6cXGt0MVfPJT2HytEVyywJCU_cP5B5J1I4TjNuEZ1M"/>
+</div>
+<h3 class="font-bold text-sm line-clamp-1 mb-1">Mùa Hè Năm Ấy</h3>
+<p class="text-xs text-on-surface-variant mb-3">Elena Gilbert</p>
+<span class="text-primary font-bold">120.000đ</span>
+</div>
+</div>
+<!-- Book Card 3 -->
+<div class="group cursor-pointer">
+<div class="bg-surface-container-lowest rounded-xl p-4 transition-all group-hover:scale-[1.02] group-hover:shadow-xl group-hover:shadow-on-surface/5">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="minimalist white book cover with geometric black circles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-M0qLITeygHj9CyNZTso8N_EwM1V-ZdWdrfH1lRITGu-12RH6bij6gnwz5JTR0E2k2GQnERlnm80UOqWTI5w23uHAAyzgtOV8ctbpeSGE9kf0vRlPejGj8BS3C4Q-ke5NzaxLfPfYpe4aaAXyj8NJxQFjYQB8RxuVKyotzhfkWxDxZNQ7M0j0jQCLx5gkxU-qag6t8czXc6n7QjMTqxn2QnV1E70EVQc6OVCp3p8vyce6NbYeq8nCtSBdWaJdjUuX1lZ451LNRGo"/>
+</div>
+<h3 class="font-bold text-sm line-clamp-1 mb-1">Tư Duy Hệ Thống</h3>
+<p class="text-xs text-on-surface-variant mb-3">John Miller</p>
+<span class="text-primary font-bold">210.000đ</span>
+</div>
+</div>
+<!-- Book Card 4 -->
+<div class="group cursor-pointer">
+<div class="bg-surface-container-lowest rounded-xl p-4 transition-all group-hover:scale-[1.02] group-hover:shadow-xl group-hover:shadow-on-surface/5">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="ancient scroll and leather bound book on dark wood" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHW1kC1pUMGccGE4Empd1Apwui7ql5YV6NvbFs3F-BNfl31YsROX8XW-uKs7HO95uw49uJyBaN7HnuuEgaRW4-s7-tvaWeEXhQLJzxqljJJfEN3oVnZVED0dzfhVYxre_A8sJK-OhfpkMc6Ya97i8Zy4oCOjX04opNr35q4BZbHR5BSYsfK3mGfRxhG23HtxFb8X9goB_MQMCy-jIc_aw174P-QjyZGjhhVnKxZMdooi75X-4Wu2fyVGBWkezlkHe-8d1JfTOfOdw"/>
+</div>
+<h3 class="font-bold text-sm line-clamp-1 mb-1">Lịch Sử Văn Minh</h3>
+<p class="text-xs text-on-surface-variant mb-3">Nhiều tác giả</p>
+<span class="text-primary font-bold">350.000đ</span>
+</div>
+</div>
+<!-- Book Card 5 -->
+<div class="group cursor-pointer hidden lg:block">
+<div class="bg-surface-container-lowest rounded-xl p-4 transition-all group-hover:scale-[1.02] group-hover:shadow-xl group-hover:shadow-on-surface/5">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="dark textured book cover with a single lit candle illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8R0IPUG3psomOTp1_nGyqDA3irCF027PEXl8V-hPKa903D39psPfMmrzl9Fbplxxq-4G00oo6Eaw186wNL90GdFax3EGgwDWfOSvSUA8TMSvMcaiZ7Z966JS1l2YQeUbxziG0nsCdL2sCTZ5HLAj16hJwk7cK0GL0GibU4arM2y4KNjzkIi_WFCBcgc06miw4Txjp_6eMURz-4uYBRstYNSsgBKpEf5CZahMdqCS-J-8xeki_iXNE_Sb5bVA9K23CHkg05nT9tIc"/>
+</div>
+<h3 class="font-bold text-sm line-clamp-1 mb-1">Trong Bóng Đêm</h3>
+<p class="text-xs text-on-surface-variant mb-3">Sarah J. Maas</p>
+<span class="text-primary font-bold">195.000đ</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#fbf9f5] dark:bg-[#1a1a2e] full-width py-12 border-t-0 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-8 max-w-[1440px] mx-auto">
+<div class="space-y-6">
+<div class="text-lg font-bold text-[#3525cd]">BookVerse</div>
+<p class="font-['Inter'] text-sm uppercase tracking-widest text-[#464555] dark:text-[#efeeea]">Điểm đến cho những tâm hồn yêu sách và khao khát tri thức.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-['Inter'] text-sm uppercase tracking-widest text-[#4f46e5] dark:text-[#818cf8] font-bold">Quick Links</h4>
+<div class="flex flex-col gap-2 font-['Inter'] text-sm uppercase tracking-widest text-[#464555] dark:text-[#efeeea]">
+<a class="hover:text-[#4f46e5] transition-colors" href="#">Archive</a>
+<a class="hover:text-[#4f46e5] transition-colors" href="#">Curations</a>
+<a class="hover:text-[#4f46e5] transition-colors" href="#">Authors</a>
+<a class="hover:text-[#4f46e5] transition-colors" href="#">Community</a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-['Inter'] text-sm uppercase tracking-widest text-[#4f46e5] dark:text-[#818cf8] font-bold">Legal</h4>
+<div class="flex flex-col gap-2 font-['Inter'] text-sm uppercase tracking-widest text-[#464555] dark:text-[#efeeea]">
+<a class="hover:text-[#4f46e5] transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-[#4f46e5] transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-[#4f46e5] transition-colors" href="#">Shipping &amp; Returns</a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-['Inter'] text-sm uppercase tracking-widest text-[#4f46e5] dark:text-[#818cf8] font-bold">Support</h4>
+<div class="flex flex-col gap-2 font-['Inter'] text-sm uppercase tracking-widest text-[#464555] dark:text-[#efeeea]">
+<a class="hover:text-[#4f46e5] transition-colors" href="#">Contact Curator</a>
+<a class="hover:text-[#4f46e5] transition-colors" href="#">FAQ</a>
+</div>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-8 mt-12 pt-8 border-t border-surface-container flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-['Inter'] text-sm uppercase tracking-widest text-[#464555] dark:text-[#efeeea]">© 2024 BookVerse Digital Archive. All rights reserved.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">social_leaderboard</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">retweet</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">retweet</span>
+</div>
+</div>
+</footer>
+</body></html>

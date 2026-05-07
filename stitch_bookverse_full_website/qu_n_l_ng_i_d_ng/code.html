@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#e2dfff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1b1c1a",
+                        "on-tertiary-fixed": "#351000",
+                        "outline-variant": "#c7c4d8",
+                        "tertiary-container": "#a44100",
+                        "inverse-surface": "#30312e",
+                        "tertiary": "#7e3000",
+                        "surface-container": "#efeeea",
+                        "on-secondary-fixed": "#140f54",
+                        "inverse-on-surface": "#f2f0ed",
+                        "surface-container-low": "#f5f3ef",
+                        "background": "#fbf9f5",
+                        "on-surface": "#1b1c1a",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-primary-fixed": "#0f0069",
+                        "secondary": "#58579b",
+                        "outline": "#777587",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdbcc",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-primary-container": "#dad7ff",
+                        "surface-bright": "#fbf9f5",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "on-tertiary-container": "#ffd2be",
+                        "surface": "#fbf9f5",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e4e2de",
+                        "primary-container": "#4f46e5",
+                        "on-secondary-container": "#454386",
+                        "inverse-primary": "#c3c0ff",
+                        "primary": "#3525cd",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#e2dfff",
+                        "surface-dim": "#dbdad6",
+                        "on-secondary-fixed-variant": "#413f82",
+                        "surface-tint": "#4d44e3",
+                        "on-surface-variant": "#464555",
+                        "surface-container-highest": "#e4e2de",
+                        "surface-container-high": "#eae8e4",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#b6b4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "display": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fbf9f5]/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-indigo-700">BookVerse</span>
+<nav class="hidden md:flex gap-6 font-['Inter'] tracking-tight">
+<a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#">Archive</a>
+<a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#">Authors</a>
+<a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#">Categories</a>
+<a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#">Wishlist</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-container-high border-none rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Tìm kiếm tài liệu..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-slate-100/50 rounded-full transition-all">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-slate-100/50 rounded-full transition-all">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen pt-20">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 pt-20 bg-slate-50 border-r border-transparent flex flex-col p-4 gap-2 hidden md:flex">
+<div class="px-4 py-6 mb-2">
+<h2 class="text-lg font-black text-indigo-700 uppercase tracking-wider">Admin Console</h2>
+<p class="text-xs text-on-surface-variant/70 italic">Curated Intelligence</p>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-lg hover:translate-x-1 transition-all duration-200 text-sm font-medium" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Management
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-indigo-50 text-indigo-700 rounded-lg font-bold hover:translate-x-1 transition-all duration-200 text-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+                    User Directory
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-lg hover:translate-x-1 transition-all duration-200 text-sm font-medium" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                    Archive Stats
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-lg hover:translate-x-1 transition-all duration-200 text-sm font-medium" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+                    System Logs
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-lg hover:translate-x-1 transition-all duration-200 text-sm font-medium" href="#">
+<span class="material-symbols-outlined">security</span>
+                    Permissions
+                </a>
+</nav>
+<div class="mt-auto p-4 bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="professional headshot of an administrative curator in a minimalist library setting with soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGS6-2vhbeguT09GpNjdjQvIPJ4Y17FNbcM-B5yLeqkBP-pBsbA54Wi0fJ6kWi0eaWcPFRHA0gCZzqzt9MFaTHm64_hyLKJTVuhKNX9OaABpoin2MECP874aCCsTJUa_DX5FaTewp8wGIcV9JMH0kG1cp3QmfmHqYM2w3ewEzvKHoDYKV3UdmCg9NG48mT3HMuldC0fd_MTGul-SE1ZdqhfpZ4d-VowyA806Zq7pQRa9LFy34j_HgBTPl7titsnWkoOVwUXc8L80g"/>
+<div>
+<p class="text-xs font-bold text-on-surface">Admin User</p>
+<p class="text-[10px] text-on-surface-variant">Thành viên Ban quản trị</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 p-8 bg-background overflow-y-auto">
+<div class="max-w-6xl mx-auto space-y-8">
+<!-- Header & Bento Stats -->
+<div class="flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<h1 class="text-4xl font-bold tracking-tight text-on-surface">Quản lý Người dùng</h1>
+<p class="text-on-surface-variant mt-2 max-w-lg">Giám sát và điều phối cộng đồng học giả trong hệ thống lưu trữ số BookVerse.</p>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-3 rounded-xl font-semibold shadow-lg shadow-primary/20 flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-lg">person_add</span>
+                        Thêm Người dùng Mới
+                    </button>
+</div>
+<!-- Bento Grid Summary -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.02)] border-l-4 border-primary">
+<p class="text-xs font-medium text-on-surface-variant uppercase tracking-widest">Tổng số thành viên</p>
+<h3 class="text-3xl font-bold mt-2">1,284</h3>
+<div class="mt-2 text-xs text-green-600 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+                            +12% so với tháng trước
+                        </div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+<p class="text-xs font-medium text-on-surface-variant uppercase tracking-widest">Đang hoạt động</p>
+<h3 class="text-3xl font-bold mt-2">1,152</h3>
+<div class="mt-2 h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="bg-indigo-500 h-full w-[89%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+<p class="text-xs font-medium text-on-surface-variant uppercase tracking-widest">Đình chỉ / Vi phạm</p>
+<h3 class="text-3xl font-bold mt-2">132</h3>
+<p class="mt-2 text-[10px] text-on-surface-variant italic">Cần xem xét lại các trường hợp này</p>
+</div>
+</div>
+<!-- Control Bar -->
+<div class="bg-surface-container-low p-2 rounded-2xl flex flex-col sm:flex-row gap-2">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Tìm theo tên hoặc email..." type="text"/>
+</div>
+<div class="flex gap-2">
+<select class="bg-surface-container-lowest border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 appearance-none min-w-[140px]">
+<option>Mọi vai trò</option>
+<option>Quản trị viên</option>
+<option>Người giám tuyển</option>
+<option>Người dùng</option>
+</select>
+<button class="bg-surface-container-lowest p-3 rounded-xl hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">tune</span>
+</button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-hidden rounded-2xl bg-surface-container-lowest shadow-[0_32px_64px_rgba(53,37,205,0.04)]">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low/50 border-b border-surface-container">
+<tr>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant">Người dùng</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant">Vai trò</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant">Trạng thái</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant text-right">Thao tác</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container/30">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">NH</div>
+<div>
+<p class="font-bold text-on-surface group-hover:text-primary transition-colors">Nguyễn Văn Hiếu</p>
+<p class="text-sm text-on-surface-variant">hieu.nguyen@bookverse.vn</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-bold rounded-full">Quản trị viên</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-green-500"></div>
+<span class="text-sm font-medium">Hoạt động</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-fixed/30 rounded-lg transition-all" title="Chỉnh sửa">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/30 rounded-lg transition-all" title="Đình chỉ">
+<span class="material-symbols-outlined text-lg">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<img class="h-10 w-10 rounded-full object-cover" data-alt="close up profile of a young vietnamese woman curator in a modern art gallery setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY4nvrFvk_CYFwI5AyfvmFB0dAAD13nDW_zthhdJUXGuvI6YtxjCcObNKfs8tNZGOtAebPMf1sbdSU_gfClFsvOcyOzQiF_BLRiNk2bINfyIG015Ndq45It-Gaiyid3gSMfn-Nb6_mvsiyA1zLCobKaX7_cyqTKcHbowYxYnrKKTP-skNHgE1rHzCTDQNMAefIt59sdOW4wMMVupxN-u9YZ8ByB1_C191d-87i_VBbPaI-X8NzZgqK4H_93X43ecStBfvnCTtH5-Q"/>
+<div>
+<p class="font-bold text-on-surface group-hover:text-primary transition-colors">Lê Thị Mai</p>
+<p class="text-sm text-on-surface-variant">mai.le@culture.org</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-tertiary-fixed text-tertiary-container text-xs font-bold rounded-full">Người giám tuyển</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-green-500"></div>
+<span class="text-sm font-medium">Hoạt động</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-fixed/30 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/30 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50/50 transition-colors group opacity-70">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant font-bold">TD</div>
+<div>
+<p class="font-bold text-on-surface">Trần Minh Đức</p>
+<p class="text-sm text-on-surface-variant">duc.tran@outlook.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">Người dùng</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-error">
+<div class="h-2 w-2 rounded-full bg-error"></div>
+<span class="text-sm font-medium">Bị đình chỉ</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-fixed/30 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-primary hover:bg-primary-fixed/30 rounded-lg transition-all" title="Khôi phục">
+<span class="material-symbols-outlined text-lg">undo</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<img class="h-10 w-10 rounded-full object-cover" data-alt="professional male portrait with high key lighting and clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQgQpMKJi4guVCV1ty8WGWSSI7NP0zekYfiRm5k0brOS7QVirkHHxWYvwmrApheiOqDXHO95d4uKymatC6YQHopGkzxdArzu9xoQdMXLzPMvoPiCczQFl_8zrYvhGPGyD04wFMPKRb1T-hFSw1ur1Y8rTVHguc-C_jyI0whrO98Bac01188XWVldAvPFamIXYGyOj_eXHOcCkvJ90_ValQqV6sFAU_AeohfNaQzaWY72VtUHipUzPu6XfbcD4q2squM2HJc31VL7s"/>
+<div>
+<p class="font-bold text-on-surface group-hover:text-primary transition-colors">Phạm Quốc Anh</p>
+<p class="text-sm text-on-surface-variant">anh.pham@university.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-bold rounded-full">Người dùng</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-green-500"></div>
+<span class="text-sm font-medium">Hoạt động</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-fixed/30 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/30 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">block</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="bg-surface-container-low/30 px-6 py-4 flex justify-between items-center">
+<p class="text-xs text-on-surface-variant font-medium">Hiển thị 1-10 trên 1,284 người dùng</p>
+<div class="flex gap-1">
+<button class="p-2 hover:bg-white rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-primary text-on-primary rounded-lg text-xs font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-white rounded-lg text-xs font-medium">2</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-white rounded-lg text-xs font-medium">3</button>
+<span class="px-2">...</span>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-white rounded-lg text-xs font-medium">129</button>
+<button class="p-2 hover:bg-white rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto border-t border-slate-100 bg-[#fbf9f5]">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-semibold text-slate-900">BookVerse Archive</span>
+<p class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400">© 2024 BookVerse Digital Archive. All discoveries preserved.</p>
+</div>
+<nav class="flex gap-8">
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 hover:text-indigo-500 transition-colors" href="#">Collection Policy</a>
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 hover:text-indigo-500 transition-colors" href="#">Archive Ethics</a>
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 hover:text-indigo-500 transition-colors" href="#">Terms</a>
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 hover:text-indigo-500 transition-colors" href="#">Support</a>
+</nav>
+</div>
+</footer>
+</body></html>

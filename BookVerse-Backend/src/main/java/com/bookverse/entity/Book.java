@@ -77,4 +77,8 @@ public class Book {
 
     @Column(name = "stock_quantity")
     private Integer stockQuantity;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("displayOrder ASC")
+    private java.util.List<BookImage> images;
 }

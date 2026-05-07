@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#dad7ff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "inverse-primary": "#c3c0ff",
+                        "inverse-on-surface": "#f2f0ed",
+                        "surface-container-highest": "#e4e2de",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "on-surface": "#1b1c1a",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#4d44e3",
+                        "primary": "#3525cd",
+                        "on-secondary-container": "#454386",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#a44100",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#eae8e4",
+                        "secondary": "#58579b",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "outline": "#777587",
+                        "on-surface-variant": "#464555",
+                        "on-background": "#1b1c1a",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f5f3ef",
+                        "surface": "#fbf9f5",
+                        "primary-container": "#4f46e5",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "surface-variant": "#e4e2de",
+                        "inverse-surface": "#30312e",
+                        "on-tertiary-container": "#ffd2be",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-container": "#efeeea",
+                        "primary-fixed": "#e2dfff",
+                        "secondary-fixed": "#e2dfff",
+                        "secondary-container": "#b6b4ff",
+                        "on-tertiary-fixed": "#351000",
+                        "on-secondary-fixed": "#140f54",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#7e3000",
+                        "background": "#fbf9f5",
+                        "surface-bright": "#fbf9f5",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#dbdad6",
+                        "outline-variant": "#c7c4d8",
+                        "on-secondary-fixed-variant": "#413f82",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .ambient-shadow { box-shadow: 0 0 64px 0 rgba(53, 37, 205, 0.04); }
+        .glass-header { backdrop-filter: blur(24px); background-color: rgba(251, 249, 245, 0.7); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed-dim">
+<!-- SideNavBar Integration -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#efeeea] dark:bg-[#121225] flex flex-col py-8 space-y-6 z-50">
+<div class="px-8 mb-8">
+<h1 class="text-xl font-black text-[#4f46e5] dark:text-white tracking-tighter">BookVerse</h1>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-bold">The Curated Intelligence</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 py-3 text-[#4f46e5] dark:text-white font-bold border-r-4 border-[#4f46e5] pl-4 transition-all duration-200 translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-['Inter'] font-medium text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-[#464555] dark:text-slate-400 pl-4 hover:bg-[#fbf9f5] dark:hover:bg-[#1a1a2e] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="font-['Inter'] font-medium text-sm">My Library</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-[#464555] dark:text-slate-400 pl-4 hover:bg-[#fbf9f5] dark:hover:bg-[#1a1a2e] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-['Inter'] font-medium text-sm">Wishlist</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-[#464555] dark:text-slate-400 pl-4 hover:bg-[#fbf9f5] dark:hover:bg-[#1a1a2e] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-['Inter'] font-medium text-sm">Orders</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-[#464555] dark:text-slate-400 pl-4 hover:bg-[#fbf9f5] dark:hover:bg-[#1a1a2e] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Inter'] font-medium text-sm">Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<div class="bg-primary-container p-6 rounded-2xl relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+<p class="text-white text-xs font-semibold mb-2 relative z-10">Premium Access</p>
+<p class="text-on-primary-container text-[11px] mb-4 relative z-10 leading-tight">Unlock unlimited access to the full digital archive.</p>
+<button class="w-full bg-white text-primary text-[10px] font-bold py-2 rounded-lg uppercase tracking-wider relative z-10 active:scale-95 transition-transform">Upgrade to Premium</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen bg-surface">
+<!-- TopAppBar Integration -->
+<header class="w-full sticky top-0 z-40 glass-header flex justify-between items-center px-8 py-4">
+<div class="flex items-center gap-4 bg-surface-container-high px-4 py-2 rounded-xl w-96">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/50" placeholder="Search the archive..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="hover:text-primary transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:text-primary transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</div>
+<div class="h-10 w-10 rounded-full bg-surface-container-highest overflow-hidden border-2 border-white shadow-sm">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional man with a friendly expression in soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8UKsHHWkQWF0n1QPRPBIPtGOMxuCTe6cwBqQTULmAGhMbRkBSSWr1fBMkM8qtsIYIZxq0ufYaKXmXRR-Yu4hls3er2xYdFFSbjN4mRKMUTmkP7XHXxt36RE_sd75WBeQ126IqJrnifbUT3egUzzDq9YxbaAAyNRD_gcv_LnDEphymsRHfR5edUNpBDCIoQgp3pGK6M2ya-IUvQzNOAa3t1Mw44MMIwuWV0wyByY42SG2BZ2pkNC1V_Vrxh3G56-dvonZiQpcN44g"/>
+</div>
+</div>
+</header>
+<div class="px-12 py-8 max-w-7xl mx-auto space-y-12">
+<!-- Profile Header Bento -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-surface-container-low rounded-3xl p-8 flex items-center gap-8 relative overflow-hidden">
+<div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-primary/5 to-transparent"></div>
+<div class="relative z-10 w-32 h-32 rounded-3xl overflow-hidden shadow-2xl rotate-3">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a stylish young man in a minimalist studio setting with neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDiSoSENUkj-yf1R0ZT_kfhDNqkXugTb743qmgMCDB3Gq4QwvTFJliFHSvwz9fjolrDZwxnVxtoQywqTa64TEz0v_qSc6OA6OGv2FxmG-cqQ57WgVvssVeQ8ag8zFnxdLaOOTHUMFyHiuoShE6bMr9aDPGXz4ySgoZksUDQ93raPXQno8lU3IyLwnA1wM8toD4Eko_u35AO9m2sFf-ZiEtpT17ad1pwgK58pKx6OR-k1yRWZWUO-uxi0vEUXy3ujkkcm4BbP3GfvE"/>
+</div>
+<div class="relative z-10">
+<span class="text-xs font-bold text-primary bg-primary-fixed px-3 py-1 rounded-full uppercase tracking-widest mb-4 inline-block">Curator Level 4</span>
+<h2 class="text-4xl font-bold tracking-tight text-on-surface mb-1">Nguyễn Văn A</h2>
+<p class="text-on-surface-variant italic">Thành viên từ tháng 10, 2021</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-1 gap-6">
+<div class="bg-surface-container-lowest rounded-3xl p-6 ambient-shadow flex flex-col justify-between">
+<span class="material-symbols-outlined text-primary text-3xl">menu_book</span>
+<div>
+<p class="text-3xl font-black text-on-surface">12</p>
+<p class="text-sm font-medium text-on-surface-variant">Sách đã đọc</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-3xl p-6 ambient-shadow flex flex-col justify-between">
+<span class="material-symbols-outlined text-tertiary text-3xl">star</span>
+<div>
+<p class="text-3xl font-black text-on-surface">48</p>
+<p class="text-sm font-medium text-on-surface-variant">Đánh giá</p>
+</div>
+</div>
+</div>
+</section>
+<!-- My Library Section -->
+<section>
+<div class="flex justify-between items-end mb-8">
+<div>
+<h3 class="text-2xl font-bold tracking-tight mb-2">Đang đọc</h3>
+<p class="text-on-surface-variant">Tiếp tục hành trình khám phá kiến thức của bạn.</p>
+</div>
+<button class="text-primary font-bold text-sm hover:underline flex items-center gap-1">
+                        Xem tất cả <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Book Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl ambient-shadow group hover:-translate-y-1 transition-transform duration-300">
+<div class="flex gap-6 mb-6">
+<div class="w-24 h-36 flex-shrink-0 rounded-lg overflow-hidden shadow-lg outline outline-1 outline-black/5">
+<img class="w-full h-full object-cover" data-alt="Cover of a minimalist book with bold typography on a textured white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9NA0a1TsSbhFi5yRKwu8jAOHGJksE5agjTB8bTqoj198BojKDx9Bub658ucEjQQVCRkCMeopHPQgT7uGVuf-WtvKxYK5xfASzdwaESQb6pkhR_f1EacZ_sTicOOfA7EnU9DvYcFAgzSMekzxhRTFA5lQKRu_sIDaizxV6_aN-4sOh0C64K8YK9gkAtmWbtWnkSZwunRL6SBXLi57sZOA_KTPPpaRfLYSE71gBupXuxdBECsXDw0yBqUqqijHMaSGLmk8s1kNHPdU"/>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="font-bold text-lg leading-tight mb-1">Tư Duy Hệ Thống</h4>
+<p class="text-sm text-on-surface-variant mb-4">Donella H. Meadows</p>
+<span class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest">Kinh doanh</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 65%;"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs font-bold text-on-surface-variant">65% Hoàn thành</span>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-5 py-2 rounded-xl text-xs font-bold tracking-wide shadow-lg shadow-primary/20 active:scale-95 transition-transform">Đọc ngay</button>
+</div>
+</div>
+</div>
+<!-- Book Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl ambient-shadow group hover:-translate-y-1 transition-transform duration-300">
+<div class="flex gap-6 mb-6">
+<div class="w-24 h-36 flex-shrink-0 rounded-lg overflow-hidden shadow-lg outline outline-1 outline-black/5">
+<img class="w-full h-full object-cover" data-alt="Classical book cover design with gold filigree and dark blue leather texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArR9JZycDYKswGc9vrolDHFe9JA8ndVdZH1UQTe_m8D4ceRyJVrNmiYra4xYbshcfs2CWhA6GYc17VwhPIevvXf2Tvv9lhaj-r-4uTlZTJ2EpSbAlWCcUctpSG1rpw_v9CHQlHU2GXwrlSLI_i2bvo0cYxvQU8og-wq1pLo2hjmsL_F8p6XkgujM8xl9d4VzHFykCEdRQ5hxU2vSFwugyB6IWdrEF7zgLwafKtkhLQwR4Df6dgLY431JQoOKoD8yTHKDNzrNf5mKw"/>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="font-bold text-lg leading-tight mb-1">Sapiens</h4>
+<p class="text-sm text-on-surface-variant mb-4">Yuval Noah Harari</p>
+<span class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest">Lịch sử</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 22%;"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs font-bold text-on-surface-variant">22% Hoàn thành</span>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-5 py-2 rounded-xl text-xs font-bold tracking-wide shadow-lg shadow-primary/20 active:scale-95 transition-transform">Đọc ngay</button>
+</div>
+</div>
+</div>
+<!-- Book Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl ambient-shadow group hover:-translate-y-1 transition-transform duration-300">
+<div class="flex gap-6 mb-6">
+<div class="w-24 h-36 flex-shrink-0 rounded-lg overflow-hidden shadow-lg outline outline-1 outline-black/5">
+<img class="w-full h-full object-cover" data-alt="Vintage book cover with warm colors and a weathered aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvAK3kpgXxlwpMqddDDZ5x4ikTtjzQBJJO6fIzc7CaK8MDPBhchejhqWhTphcKPT52b9wOXDo4DhqfPskpkEn3TCw8h-pBG1D6d4igC7iVVxHjl6BEHADS3KMo9O3qBHd30WjsCTRUdpUc2Gkr8lt9fFZH1PvKnGdKfnEB9Mcs7BrOCsLd63j3YJyfXoNnhCSpkA1nHYz94dSctkMkTJMmUBXPn1YMLmBfxaJ7-y-TxU61sC3wIrYLaFDvEbeUwz-du_D1YgNqevs"/>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="font-bold text-lg leading-tight mb-1">Deep Work</h4>
+<p class="text-sm text-on-surface-variant mb-4">Cal Newport</p>
+<span class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest">Kỹ năng</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 88%;"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs font-bold text-on-surface-variant">88% Hoàn thành</span>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-5 py-2 rounded-xl text-xs font-bold tracking-wide shadow-lg shadow-primary/20 active:scale-95 transition-transform">Đọc ngay</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Wishlist & Orders Row -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- Wishlist Section -->
+<div>
+<h3 class="text-2xl font-bold tracking-tight mb-8">Danh sách mong muốn</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-2xl ambient-shadow">
+<div class="flex items-center gap-4">
+<div class="w-12 h-16 rounded-md overflow-hidden outline outline-1 outline-black/5">
+<img class="w-full h-full object-cover" data-alt="Abstract book cover with geometric shapes in teal and orange" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD58SwsKZN90pNfiCWCXGtatMnD1ywzIfHxicvIc1F4Lsy263ZRB7iHtGf7ZXq246lBR9Hrb5IHnbRkZe3sw7gKwQJd3E1AWt6vo_paeo-m3jYe1qKuEBngKT9Jjyx4dvVH4AxEJ8ZWuyBfl0qQqTFj7gy6_ix8l2_Yk49FJ4a-7bG8ExtmR-KAnWs1nPGBx0eTgvQiA6VAxrFN_gV_VIYmq8vCfd2h594X0J4O1EJNlr3KY_NP8P_e6sETmcrYeGJxcUlyaPfQ6WQ"/>
+</div>
+<div>
+<h5 class="font-bold text-sm">Grit: Sức mạnh lòng kiên trì</h5>
+<p class="text-xs text-on-surface-variant">Angela Duckworth</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+<button class="bg-primary-fixed text-on-primary-fixed-variant px-4 py-2 rounded-xl text-xs font-bold">Mua ngay</button>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-2xl ambient-shadow opacity-80">
+<div class="flex items-center gap-4">
+<div class="w-12 h-16 rounded-md overflow-hidden outline outline-1 outline-black/5">
+<img class="w-full h-full object-cover" data-alt="Minimalist modern book cover with subtle textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA55lPJfrY-JKDcW9DwImRBl7FOzpvraqLpmLCRWymLuxb-iStAXU-5lFQxNjIZL5S2azRpVzoALbfOLV3orFXV0N25-h-2_xTBed5SjGgQ-xvQQdOiZBxkWGDAFe1mWx2yMc7zX8p-FoKUDosxOOjJzD4EF7UeR0de8g4b4DhsyJexbFi4Kci6EFTClTFKWfSkxr5nDDfYqiInwVNsGbPO1jZzWYgvJYE3RQCFSLdaLAJpLZKSq1h8uxqPK_JTGM4Q1OGj0Bj-Aew"/>
+</div>
+<div>
+<h5 class="font-bold text-sm">Atomic Habits</h5>
+<p class="text-xs text-on-surface-variant">James Clear</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+<button class="bg-primary-fixed text-on-primary-fixed-variant px-4 py-2 rounded-xl text-xs font-bold">Mua ngay</button>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-2xl ambient-shadow opacity-60">
+<div class="flex items-center gap-4">
+<div class="w-12 h-16 rounded-md overflow-hidden outline outline-1 outline-black/5">
+<img class="w-full h-full object-cover" data-alt="Sophisticated typography-heavy book cover design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHQ9aDLB-J-hVs8iWS2XusLW0ve-J406NAKnoNpArR36n8GvSNZsqIRbNyxpE8btTT_8MSyMk0SLi60-iliuNzHthzRCD4cfm13_mEfA0OkC6AukbdYREXGQ8EGr_V-ZsIKut29K60seiN9nhmuNRPlUFIQLJqODUzYt0o02-EG0EcWTMHP2IsgM-zyCjXZHv4ECOJHFSZ7sjYAO8o1aOlxaBo813bmPHI_kn9lQ4NZhB0JsLHSN1iL1V3Wm6Ebcb3G1J_T5gkjGE"/>
+</div>
+<div>
+<h5 class="font-bold text-sm">Zero to One</h5>
+<p class="text-xs text-on-surface-variant">Peter Thiel</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+<button class="bg-primary-fixed text-on-primary-fixed-variant px-4 py-2 rounded-xl text-xs font-bold">Mua ngay</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Orders Section -->
+<div>
+<h3 class="text-2xl font-bold tracking-tight mb-8">Đơn hàng gần đây</h3>
+<div class="bg-surface-container-lowest rounded-3xl ambient-shadow overflow-hidden">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-left">
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">ID Đơn</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Ngày đặt</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Trạng thái</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Tổng</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr>
+<td class="px-6 py-4 text-sm font-bold">#BV9921</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">12/10/2023</td>
+<td class="px-6 py-4">
+<span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">Hoàn thành</span>
+</td>
+<td class="px-6 py-4 text-sm font-black">450.000đ</td>
+</tr>
+<tr>
+<td class="px-6 py-4 text-sm font-bold">#BV9854</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">05/10/2023</td>
+<td class="px-6 py-4">
+<span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">Hoàn thành</span>
+</td>
+<td class="px-6 py-4 text-sm font-black">210.000đ</td>
+</tr>
+<tr>
+<td class="px-6 py-4 text-sm font-bold">#BV9712</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">28/09/2023</td>
+<td class="px-6 py-4">
+<span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">Hoàn thành</span>
+</td>
+<td class="px-6 py-4 text-sm font-black">890.000đ</td>
+</tr>
+<tr>
+<td class="px-6 py-4 text-sm font-bold">#BV9601</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">15/09/2023</td>
+<td class="px-6 py-4">
+<span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">Hoàn thành</span>
+</td>
+<td class="px-6 py-4 text-sm font-black">325.000đ</td>
+</tr>
+</tbody>
+</table>
+<div class="p-4 text-center">
+<button class="text-xs font-bold text-primary hover:underline">Tải lên tất cả hóa đơn</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Decoration -->
+<footer class="mt-12 px-12 pb-12 opacity-40">
+<div class="h-[1px] bg-outline-variant/30 w-full mb-8"></div>
+<div class="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
+<span>© 2023 BookVerse Architecture</span>
+<div class="flex gap-8">
+<a class="hover:text-primary" href="#">Quyền riêng tư</a>
+<a class="hover:text-primary" href="#">Điều khoản</a>
+<a class="hover:text-primary" href="#">Hỗ trợ</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

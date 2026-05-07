@@ -4,13 +4,20 @@
 //  Aether Verse: Grid layout, empty states, quick actions
 // =====================================================
 
-import { useSelector } from 'react-redux';
-import { selectWishlistItems } from '@/redux/wishlistSlice';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchWishlist, selectWishlistItems, selectIsWishlistLoading } from '@/redux/wishlistSlice';
 import BookCard from '@/components/BookCard';
 import { Link } from 'react-router-dom';
 
 const WishlistPage = () => {
+  const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlistItems);
+  const isLoading = useSelector(selectIsWishlistLoading);
+
+  useEffect(() => {
+    dispatch(fetchWishlist());
+  }, [dispatch]);
 
   return (
     <div className="bg-surface min-h-screen pb-20">
@@ -25,7 +32,13 @@ const WishlistPage = () => {
       </section>
 
       <section className="max-w-7xl mx-auto px-6">
-        {wishlistItems.length > 0 ? (
+        {isLoading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {Array(4).fill(0).map((_, i) => (
+              <div key={i} className="aspect-[2/3] bg-surface-container-low animate-pulse rounded-[2rem]"></div>
+            ))}
+          </div>
+        ) : wishlistItems.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {wishlistItems.map(book => (
               <BookCard key={book.id} book={book} />
@@ -42,7 +55,7 @@ const WishlistPage = () => {
             </div>
             <Link 
               to="/browse" 
-              className="inline-flex px-8 py-4 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-primary/20 hover:scale-[1.05] transition-transform active:scale-95"
+              className="inline-flex px-8 py-4 bg-primary text-on-primary rounded-2xl font-bold shadow-lg shadow-primary/20 hover:scale-[1.05] transition-transform active:scale-95"
             >
               Khám phá ngay
             </Link>

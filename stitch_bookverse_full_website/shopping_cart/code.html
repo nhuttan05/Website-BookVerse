@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e4e2de",
+                        "on-surface": "#1b1c1a",
+                        "on-secondary-fixed": "#140f54",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-secondary-fixed-variant": "#413f82",
+                        "primary": "#3525cd",
+                        "on-tertiary-container": "#ffd2be",
+                        "primary-fixed": "#e2dfff",
+                        "surface-container-highest": "#e4e2de",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#454386",
+                        "tertiary": "#7e3000",
+                        "tertiary-container": "#a44100",
+                        "primary-container": "#4f46e5",
+                        "surface-dim": "#dbdad6",
+                        "on-background": "#1b1c1a",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#4d44e3",
+                        "inverse-primary": "#c3c0ff",
+                        "secondary": "#58579b",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#e2dfff",
+                        "outline-variant": "#c7c4d8",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "surface": "#fbf9f5",
+                        "surface-container-high": "#eae8e4",
+                        "inverse-on-surface": "#f2f0ed",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fbf9f5",
+                        "on-surface-variant": "#464555",
+                        "outline": "#777587",
+                        "on-primary-container": "#dad7ff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#efeeea",
+                        "inverse-surface": "#30312e",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "secondary-container": "#b6b4ff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#0f0069",
+                        "on-error-container": "#93000a",
+                        "background": "#fbf9f5",
+                        "surface-container-low": "#f5f3ef",
+                        "on-tertiary-fixed": "#351000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fbf9f5]/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none font-['Inter'] tracking-tight antialiased">
+<div class="flex justify-between items-center h-20 px-8 max-w-[1440px] mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#3525cd] dark:text-white">BookVerse</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-[#4f46e5] dark:hover:text-indigo-300 transition-all duration-300 active:scale-95 transform transition-transform" href="#">Archive</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-[#4f46e5] dark:hover:text-indigo-300 transition-all duration-300 active:scale-95 transform transition-transform" href="#">Curations</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-[#4f46e5] dark:hover:text-indigo-300 transition-all duration-300 active:scale-95 transform transition-transform" href="#">Journal</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-[#3525cd] dark:text-[#818cf8] hover:text-[#4f46e5] transition-all" data-icon="shopping_cart">shopping_cart</button>
+<button class="material-symbols-outlined text-[#3525cd] dark:text-[#818cf8] hover:text-[#4f46e5] transition-all" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-32 pb-20 px-8 max-w-[1440px] mx-auto w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Main Cart Content -->
+<div class="lg:col-span-8">
+<h1 class="text-4xl font-bold tracking-tight mb-8">Giỏ hàng của bạn</h1>
+<!-- Free Shipping Progress -->
+<div class="bg-surface-container-low p-6 rounded-xl mb-10">
+<div class="flex justify-between items-center mb-3">
+<span class="text-sm font-semibold text-primary">Mua thêm để được miễn phí vận chuyển</span>
+<span class="text-sm font-medium text-on-surface-variant">Còn 150.000₫</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 70%"></div>
+</div>
+</div>
+<!-- Cart Items List -->
+<div class="space-y-6">
+<!-- Item 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl flex gap-6 items-center transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<img alt="" class="w-24 h-32 object-cover rounded-sm border border-outline-variant/10" data-alt="High quality book cover of a minimalist modern novel with abstract blue patterns on a clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj5y0NwbKKSNmIKAvvVSSRYMqe07VNOLTKTEBhwronRlz3UoFKf0gHA2S0lO55MlidT5HapJrnqHfLiXI69k6T2wwNQnQ0YvxcsiBEtox5__H8w7dbUwjCQYX3HDtB5S1Ac7RVx9j-wZsd6PCoApfoCSS81Ik0AKveO0TDMfr3M249ufEcV7c3wv8z_cem7lVtxeOeKlSvaGehhbbwD3EC0SFIKfTiLAh51yChV2bzebBNQxgSGez3yh365KoSwpwl4d1s4jXOftI"/>
+<div class="flex-grow grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+<div class="md:col-span-2">
+<h3 class="text-lg font-bold leading-tight">The Art of Stillness</h3>
+<p class="text-sm text-on-surface-variant">Pico Iyer</p>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs text-on-surface-variant font-medium">Đơn giá</span>
+<span class="font-semibold">320.000₫</span>
+</div>
+<div class="flex items-center gap-3 bg-surface-container rounded-lg p-2 w-fit">
+<button class="material-symbols-outlined text-sm hover:text-primary transition-colors">remove</button>
+<span class="text-sm font-bold w-4 text-center">1</span>
+<button class="material-symbols-outlined text-sm hover:text-primary transition-colors">add</button>
+</div>
+</div>
+<div class="flex flex-col items-end gap-4 min-w-[100px]">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors" data-icon="delete">delete</button>
+<span class="font-bold text-lg">320.000₫</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl flex gap-6 items-center transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<img alt="" class="w-24 h-32 object-cover rounded-sm border border-outline-variant/10" data-alt="Professional hardcover book with dark textured cover and gold leaf typography on a wooden table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyVzOpuEx0EXKOqYeCgVtHggzCIqDC5Wg5O7KiBfLkIyVYJXKnhs_GyCzUU64QkbDVEnfXNFtUrx4Ki1_Mu5FSzehRbNN4DcCOpSFxD_eRsubfH1nVr2ifh33k2i7n2xLnsK7DowXi-Se9X3G_iGcqeInYA6XAPVAG03vKrkAINOvsoeDdym2ieDbEv2xklOwtvS9L09RkJqzZKlJ3ehgmah8RVy0w-u_AraAP9ohwQdWB6OCDRhKRmcyAPpyHZH_P-IFsWmJ98OQ"/>
+<div class="flex-grow grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+<div class="md:col-span-2">
+<h3 class="text-lg font-bold leading-tight">Digital Minimalism</h3>
+<p class="text-sm text-on-surface-variant">Cal Newport</p>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs text-on-surface-variant font-medium">Đơn giá</span>
+<span class="font-semibold">450.000₫</span>
+</div>
+<div class="flex items-center gap-3 bg-surface-container rounded-lg p-2 w-fit">
+<button class="material-symbols-outlined text-sm hover:text-primary transition-colors">remove</button>
+<span class="text-sm font-bold w-4 text-center">2</span>
+<button class="material-symbols-outlined text-sm hover:text-primary transition-colors">add</button>
+</div>
+</div>
+<div class="flex flex-col items-end gap-4 min-w-[100px]">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors" data-icon="delete">delete</button>
+<span class="font-bold text-lg">900.000₫</span>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-start">
+<button class="text-primary font-semibold flex items-center gap-2 hover:underline decoration-2 underline-offset-4">
+<span class="material-symbols-outlined">arrow_back</span>
+                        Tiếp tục mua sắm
+                    </button>
+</div>
+</div>
+<!-- Sidebar Summary -->
+<div class="lg:col-span-4">
+<div class="bg-surface-container-low p-8 rounded-xl sticky top-32">
+<h2 class="text-2xl font-bold tracking-tight mb-8">Tổng đơn hàng</h2>
+<div class="space-y-4 mb-8 border-b border-outline-variant/20 pb-8">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Tạm tính</span>
+<span class="font-medium text-on-surface">1.220.000₫</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Phí vận chuyển</span>
+<span class="font-medium text-on-surface">35.000₫</span>
+</div>
+<div class="flex justify-between items-center text-tertiary">
+<span>Giảm giá</span>
+<span class="font-medium">-0₫</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 mb-8">
+<span class="text-sm font-semibold uppercase tracking-wider text-on-surface-variant">Tổng cộng</span>
+<span class="text-4xl font-black text-primary">1.255.000₫</span>
+</div>
+<button class="w-full py-4 px-6 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl font-bold tracking-wide transition-all active:scale-[0.98] hover:shadow-lg hover:shadow-primary/20 flex justify-center items-center gap-2 mb-4">
+                        Thanh toán ngay
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<div class="p-4 bg-surface-container-high rounded-lg flex gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">Giao dịch an toàn &amp; bảo mật. Cam kết hoàn tiền trong 7 ngày nếu có lỗi từ nhà xuất bản.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto bg-[#fbf9f5] dark:bg-slate-950 font-['Inter'] text-sm tracking-wide">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-lg font-black text-[#3525cd] dark:text-white">BookVerse</div>
+<div class="text-slate-500 dark:text-slate-400 opacity-80">© 2024 BookVerse Archive. Curated Intelligence for the Modern Reader.</div>
+<nav class="flex gap-8">
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#3525cd] dark:hover:text-white underline decoration-2 underline-offset-4 transition-all" href="#">Terms</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#3525cd] dark:hover:text-white underline decoration-2 underline-offset-4 transition-all" href="#">Privacy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#3525cd] dark:hover:text-white underline decoration-2 underline-offset-4 transition-all" href="#">Accessibility</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#3525cd] dark:hover:text-white underline decoration-2 underline-offset-4 transition-all" href="#">Contact</a>
+</nav>
+</div>
+</footer>
+</body></html>

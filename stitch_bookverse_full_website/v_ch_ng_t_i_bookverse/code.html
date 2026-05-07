@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-primary-container": "#dad7ff",
+                    "surface-dim": "#dbdad6",
+                    "surface-container-low": "#f5f3ef",
+                    "inverse-on-surface": "#f2f0ed",
+                    "on-background": "#1b1c1a",
+                    "surface-container-high": "#eae8e4",
+                    "inverse-surface": "#30312e",
+                    "inverse-primary": "#c3c0ff",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "outline-variant": "#c7c4d8",
+                    "on-tertiary-container": "#ffd2be",
+                    "on-primary-fixed": "#0f0069",
+                    "secondary-fixed-dim": "#c3c0ff",
+                    "primary-container": "#4f46e5",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#e2dfff",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#58579b",
+                    "on-primary": "#ffffff",
+                    "background": "#fbf9f5",
+                    "on-surface-variant": "#464555",
+                    "on-secondary-fixed-variant": "#413f82",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#454386",
+                    "on-tertiary-fixed": "#351000",
+                    "surface-container-highest": "#e4e2de",
+                    "on-secondary-fixed": "#140f54",
+                    "tertiary-fixed": "#ffdbcc",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fbf9f5",
+                    "secondary-container": "#b6b4ff",
+                    "tertiary-container": "#a44100",
+                    "surface-container": "#efeeea",
+                    "on-surface": "#1b1c1a",
+                    "tertiary": "#7e3000",
+                    "surface-tint": "#4d44e3",
+                    "secondary-fixed": "#e2dfff",
+                    "surface": "#fbf9f5",
+                    "outline": "#777587",
+                    "primary": "#3525cd",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "surface-variant": "#e4e2de",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .paper-shadow {
+            box-shadow: 0 32px 64px rgba(53, 37, 205, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fbf9f5]/90 dark:bg-slate-950/90 backdrop-blur-xl shadow-[0_32px_64px_rgba(53,37,205,0.04)]">
+<div class="flex justify-between items-center px-8 h-20 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#3525cd] dark:text-[#c7d2fe]">BookVerse</div>
+<div class="hidden md:flex items-center space-x-8 font-['Inter'] font-medium tracking-tight">
+<a class="text-[#464555] dark:text-slate-400 hover:text-[#3525cd] dark:hover:text-[#c7d2fe] transition-colors duration-300" href="#">Archive</a>
+<a class="text-[#464555] dark:text-slate-400 hover:text-[#3525cd] dark:hover:text-[#c7d2fe] transition-colors duration-300" href="#">Collections</a>
+<a class="text-[#464555] dark:text-slate-400 hover:text-[#3525cd] dark:hover:text-[#c7d2fe] transition-colors duration-300" href="#">Curations</a>
+<a class="text-[#4f46e5] dark:text-[#818cf8] border-b-2 border-[#4f46e5] pb-1 hover:text-[#3525cd] transition-colors duration-300" href="#">About</a>
+<a class="text-[#464555] dark:text-slate-400 hover:text-[#3525cd] dark:hover:text-[#c7d2fe] transition-colors duration-300" href="#">Contact</a>
+</div>
+<div class="flex items-center space-x-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer scale-95 active:opacity-80 transition-transform">shopping_bag</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer scale-95 active:opacity-80 transition-transform">account_circle</span>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Section 1: Hero -->
+<section class="relative min-h-[819px] flex items-center px-8 overflow-hidden bg-surface">
+<div class="max-w-screen-2xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7 z-10">
+<h1 class="text-display-lg font-extrabold tracking-tighter text-on-surface mb-6 leading-none lg:text-7xl">
+                        Lưu trữ tinh hoa <br/>
+<span class="text-primary italic font-light">tri thức nhân loại</span>
+</h1>
+<p class="text-headline-sm text-on-surface-variant max-w-xl mb-10 leading-relaxed">
+                        Chào mừng bạn đến với BookVerse — nơi mỗi tác phẩm không chỉ là một cuốn sách, mà là một hành trình khám phá trí tuệ được tuyển chọn khắt khe.
+                    </p>
+<div class="flex space-x-4">
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-xl font-medium tracking-tight shadow-lg shadow-primary/20 hover:opacity-90 transition-all">
+                            Khám phá Archive
+                        </button>
+</div>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden paper-shadow transform rotate-3 hover:rotate-0 transition-transform duration-700">
+<img class="w-full h-full object-cover" data-alt="Stunning architectural view of a minimalist library with tall white shelves, soft morning light streaming through windows, creating a serene scholarly atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd-MyFc0RjOfXQrvJh-G2bn_vIiAmGBEo4KUX5EEbx0h46bmwKm__cCiwC3fNGKQhtv9JPexUKS5wrBgDdbWePAyeejcAAexLA8n0mgAve_HB1JVTUIfguCPHmjgcbygmxyaE0-gcuXlkGsm2ekVVQgW43JLZ4yvSA9GYs2K9xgInK7xJFMuvZLZ-l-Lbs6FMm2gd2L3ayxelL62Hmsba46dVX2RfC1q3vYG0jIwprAuixDRf_XoawLnrPJ2ZmsZb2Ruo9gca6jwM"/>
+</div>
+<div class="absolute -bottom-10 -left-10 bg-surface-container-lowest p-8 rounded-2xl paper-shadow max-w-[280px] hidden md:block">
+<p class="text-sm italic text-on-surface-variant leading-relaxed">
+                            "Tri thức là ngọn hải đăng giữa đại dương thông tin."
+                        </p>
+<p class="text-label-md font-bold text-primary mt-4">— BookVerse Curator</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Sứ mệnh -->
+<section class="py-32 px-8 bg-surface-container-low">
+<div class="max-w-screen-xl mx-auto">
+<div class="flex flex-col md:flex-row gap-16 items-start">
+<div class="md:w-1/3 sticky top-32">
+<span class="text-primary font-bold tracking-widest text-sm uppercase">Sứ mệnh của chúng tôi</span>
+<h2 class="text-headline-lg font-bold mt-4 leading-tight">Định nghĩa lại trải nghiệm đọc số</h2>
+</div>
+<div class="md:w-2/3 space-y-12">
+<p class="text-body-lg text-on-surface-variant leading-relaxed first-letter:text-7xl first-letter:font-bold first-letter:text-primary first-letter:mr-4 first-letter:float-left">
+                            Chúng tôi tin rằng trong kỷ nguyên số, thách thức lớn nhất không phải là sự thiếu hụt thông tin mà là sự dư thừa của những thứ tầm thường. Sứ mệnh của BookVerse là trở thành một màng lọc tinh tế, giúp độc giả tiếp cận những giá trị nguyên bản nhất của tri thức. Chúng tôi không chỉ bán sách; chúng tôi kiến tạo một không gian văn hóa.
+                        </p>
+<blockquote class="border-l-4 border-primary pl-8 py-4">
+<p class="text-3xl font-light italic leading-snug text-on-surface">
+                                "BookVerse ra đời để bảo tồn sự tập trung. Trong thế giới của những cú click chuột vội vã, chúng tôi mời bạn dừng lại và chiêm nghiệm."
+                            </p>
+</blockquote>
+<p class="text-body-lg text-on-surface-variant leading-relaxed">
+                            Mỗi đầu sách trong thư viện của chúng tôi đều trải qua một quy trình thẩm định đa tầng, từ giá trị học thuật đến tính ứng dụng thực tiễn, đảm bảo rằng mỗi giờ phút bạn bỏ ra đều mang lại sự chuyển hóa thực sự.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Tầm nhìn (Bento Style) -->
+<section class="py-32 px-8 bg-surface">
+<div class="max-w-screen-2xl mx-auto">
+<div class="mb-20 text-center">
+<h2 class="text-display-sm font-bold tracking-tight">Tầm nhìn: The Curated Intelligence</h2>
+<p class="text-on-surface-variant mt-4 max-w-2xl mx-auto">Sự kết hợp giữa trí tuệ nhân loại và công nghệ tinh lọc.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto lg:h-[600px]">
+<div class="md:col-span-8 bg-surface-container-high rounded-3xl p-12 flex flex-col justify-end relative overflow-hidden group">
+<div class="absolute inset-0 opacity-10 group-hover:scale-105 transition-transform duration-1000">
+<img class="w-full h-full object-cover" data-alt="Macro view of complex digital neural networks glowing in soft blue and purple tones against a dark background representing artificial intelligence" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo2CFMx6LZQa62axeS3FTJ8TVURftp54a-lIw1_4Wi0pDwNthZT8TIe7FP4_3fu9KBulUx6q_4NYZ9tISQ0wh1P5kKCExoioYVxDsxHQAsoSC9KZ3ax4lU6-tkclIlF7lqYM2MjzJs3VErNd8SN9nGBC2oev6o7Pad2T0psoM5OJcdXcaZ-mLy_0BL4XTECMnZ9HZr71ItccydjyGhJWjZ7wlwvWQataonnHRsiDj5eroKChnR23r8SQPgAdfyJQZQajUjIz8mMts"/>
+</div>
+<div class="relative z-10">
+<h3 class="text-3xl font-bold mb-4">Trí tuệ tuyển chọn</h3>
+<p class="max-w-md text-on-surface-variant">Chúng tôi áp dụng các thuật toán phân tích ngữ nghĩa tiên tiến để nhận diện những kết nối tư duy sâu sắc nhất giữa các tác phẩm thuộc nhiều lĩnh vực khác nhau.</p>
+</div>
+</div>
+<div class="md:col-span-4 bg-primary text-on-primary rounded-3xl p-12 flex flex-col justify-center text-center">
+<div class="text-6xl font-extrabold mb-4">10k+</div>
+<p class="text-primary-fixed-dim uppercase tracking-widest text-sm font-bold">Tác phẩm tinh hoa</p>
+<div class="h-px bg-on-primary/20 my-8"></div>
+<div class="text-6xl font-extrabold mb-4">50+</div>
+<p class="text-primary-fixed-dim uppercase tracking-widest text-sm font-bold">Chuyên gia giám tuyển</p>
+</div>
+<div class="md:col-span-4 bg-surface-container-lowest border border-surface-container rounded-3xl p-12 paper-shadow">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">auto_awesome</span>
+<h3 class="text-xl font-bold mb-4">Đề xuất cá nhân hóa</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Hệ thống AI của chúng tôi thấu hiểu gu thẩm mỹ và trình độ chuyên môn của bạn để gợi ý những hành trình đọc phù hợp nhất.</p>
+</div>
+<div class="md:col-span-8 bg-secondary-container rounded-3xl p-12 flex flex-col md:flex-row items-center gap-8">
+<div class="flex-1">
+<h3 class="text-2xl font-bold text-on-secondary-container mb-4">Khai phóng tiềm năng</h3>
+<p class="text-on-secondary-fixed-variant">Mục tiêu của chúng tôi là rút ngắn khoảng cách giữa tò mò và thấu hiểu, giúp bạn trở thành phiên bản thông tuệ nhất của chính mình.</p>
+</div>
+<div class="w-full md:w-1/3 aspect-video bg-surface-container-lowest rounded-xl flex items-center justify-center p-4">
+<span class="material-symbols-outlined text-primary text-5xl">lightbulb</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Đội ngũ sáng lập -->
+<section class="py-32 px-8 bg-surface-container-low">
+<div class="max-w-screen-2xl mx-auto">
+<div class="flex justify-between items-end mb-16">
+<div>
+<span class="text-primary font-bold tracking-widest text-sm uppercase">Đội ngũ</span>
+<h2 class="text-headline-lg font-bold mt-2">Những người dẫn đường</h2>
+</div>
+<p class="text-on-surface-variant max-w-xs text-right hidden md:block">Gặp gỡ những bộ óc đứng sau cuộc cách mạng tri thức tại BookVerse.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Team Member 1 -->
+<div class="group">
+<div class="aspect-[4/5] bg-surface-container-high rounded-2xl overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Professional portrait of a middle-aged man in a sharp navy blazer, intellectual appearance, confident warm smile, studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQjqaeziJ5ZGSnbaqh81apy4ZhIodgXp2Z5wSTYN-Us8A6cp0YomztfSgOasy2IxIwci-CXMcxcmMZyxwOOWeJQJEkQimKtw0Aq7McABGA7NytiuoiMP6r-HyrcGtdSafROoyWvsSGpW4s6JcdIcdR_5hCZmQgkvICex5oevTNRzy0rZ76QmqLIdKk6TAIgUfuKhySQ28SK64LrWwpl-WNyMrq8P0ZbAoFsWmJLCgA94Zu71Il7H8fdoq9Gugd7A1V4q3uEdIjJyk"/>
+</div>
+<h4 class="text-xl font-bold text-on-surface">Dr. Anh Nguyen</h4>
+<p class="text-primary text-sm font-medium mb-4">Founder &amp; CEO</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">Cựu chuyên gia dữ liệu với hơn 15 năm kinh nghiệm trong việc xây dựng hệ thống quản lý tri thức toàn cầu.</p>
+</div>
+<!-- Team Member 2 -->
+<div class="group">
+<div class="aspect-[4/5] bg-surface-container-high rounded-2xl overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Portrait of a professional woman with glasses, elegant business attire, warm and intelligent expression, neutral office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkbbcCfwolwRt-TXJI7nQ1mextE4FubpQF_CHbfu9FtTAIUcatySihbLdj7wtNmU5KjZhPoLMgN5zgD_s-oifJXi1veyUPhmNzFXqk5S9pGrC11OtsiVjMhxChxiRxsbQVnKBihg2u05p772bwHZspSU-LBbvR2pNX8O-EHmNKC3F4hWAXN_ci-tCY3-JE3DTNeNmjABNVkSiZINdEV8wOeKDV9ixLvdarT2Zioqwn0j-c_cqnILh-TyPmxWivmH4u0JTA0LtSvX8"/>
+</div>
+<h4 class="text-xl font-bold text-on-surface">Minh Tu</h4>
+<p class="text-primary text-sm font-medium mb-4">Chief Curator</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">Nhà nghiên cứu văn hóa, người đảm bảo mỗi cuốn sách trong Archive đều mang một thông điệp ý nghĩa.</p>
+</div>
+<!-- Team Member 3 -->
+<div class="group">
+<div class="aspect-[4/5] bg-surface-container-high rounded-2xl overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Portrait of a young creative professional man in a minimal grey sweater, modern urban studio setting, thoughtful gaze" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjwErAXPr1UZ1TIY4Dn7u0WwnQ4jyrTPIHwjCWiS9AtFL0oyfLOtXrlUPpHezYvpVXiClXVfslOmW_xMEWrs-_zbvSIGn5efbHAPRir_RHt-GpfOOnruK0uRR12wX4eTzNnVSjkUPU6E7XnjVR0RGluLV7paOy-AyUJrUpmQFRoRz90OyUJQVVu9ey1_CVDqclFY7uGQWVeSuNaQEa3-E7t6uamZ9bMvCkJu5e7dhlh2OnHSuR8N7Qkum1B4e0LB43NiVF496gEvI"/>
+</div>
+<h4 class="text-xl font-bold text-on-surface">Lê Hoàng</h4>
+<p class="text-primary text-sm font-medium mb-4">Design Director</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">Người thổi hồn cho ngôn ngữ hình ảnh và trải nghiệm người dùng tại BookVerse.</p>
+</div>
+<!-- Team Member 4 -->
+<div class="group">
+<div class="aspect-[4/5] bg-surface-container-high rounded-2xl overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Portrait of a smiling young woman professional, smart casual outfit, soft natural lighting, creative office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJsnMjsrUmBplSVQ_XNO3-ypwwYURtt6gSTcU0V-V_uhM3dLqiBnqWYNHRM_4XziOJ028eVn6lNc3PSENURsNbYxI70wX4GvSEA2afCy5Bx7sYcbLC3AauCHqeWly0aimyM9vmoozusgB_8MF5_dVEmV0x0GhAF01vSNiNEiuICLGk1UofwaQIO2azODDO2mN3310yaWEAUtKpPkD_rvbp9Hy7vu6tEEJmtoKgIWr27uM_55vKZB1k5iC5Cz8D9J-ROfUBXlT9mlI"/>
+</div>
+<h4 class="text-xl font-bold text-on-surface">Elena Phạm</h4>
+<p class="text-primary text-sm font-medium mb-4">AI Strategy Lead</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">Tiến sĩ khoa học máy tính, chuyên gia về xử lý ngôn ngữ tự nhiên và hệ thống gợi ý.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-8">
+<div class="max-w-screen-xl mx-auto bg-primary rounded-[2rem] p-16 text-center text-on-primary overflow-hidden relative">
+<div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+<div class="relative z-10">
+<h2 class="text-4xl md:text-5xl font-bold mb-8">Bắt đầu hành trình trí tuệ của bạn</h2>
+<p class="text-on-primary-container text-lg mb-12 max-w-xl mx-auto opacity-90">Tham gia cùng cộng đồng những người khao khát kiến thức và sở hữu quyền truy cập vào Archive độc quyền.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<button class="bg-white text-primary px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-opacity-90 transition-all">Gia nhập ngay</button>
+<button class="border border-white/30 text-white px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all">Tìm hiểu thêm</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-8 border-t border-[#efeeea] dark:border-slate-800 bg-[#fbf9f5] dark:bg-slate-950">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end max-w-screen-2xl mx-auto">
+<div>
+<div class="text-lg font-bold text-[#3525cd] dark:text-[#c7d2fe] mb-4">BookVerse</div>
+<div class="font-['Inter'] text-sm uppercase tracking-widest text-[#464555] dark:text-slate-500">
+                    © 2024 BookVerse Digital Archive. Curated Intelligence.
+                </div>
+</div>
+<div class="flex flex-wrap justify-end gap-6 font-['Inter'] text-sm uppercase tracking-widest">
+<a class="text-[#464555] dark:text-slate-500 hover:opacity-70 hover:underline decoration-[#4f46e5] underline-offset-4 transition-all" href="#">Privacy Policy</a>
+<a class="text-[#464555] dark:text-slate-500 hover:opacity-70 hover:underline decoration-[#4f46e5] underline-offset-4 transition-all" href="#">Terms of Service</a>
+<a class="text-[#464555] dark:text-slate-500 hover:opacity-70 hover:underline decoration-[#4f46e5] underline-offset-4 transition-all" href="#">Institutional Access</a>
+<a class="text-[#464555] dark:text-slate-500 hover:opacity-70 hover:underline decoration-[#4f46e5] underline-offset-4 transition-all" href="#">Press Kit</a>
+</div>
+</div>
+</footer>
+</body></html>

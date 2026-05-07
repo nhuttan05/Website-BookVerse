@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BookVerse - Danh Mục Lưu Trữ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#e2dfff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1b1c1a",
+                        "on-tertiary-fixed": "#351000",
+                        "outline-variant": "#c7c4d8",
+                        "tertiary-container": "#a44100",
+                        "inverse-surface": "#30312e",
+                        "tertiary": "#7e3000",
+                        "surface-container": "#efeeea",
+                        "on-secondary-fixed": "#140f54",
+                        "inverse-on-surface": "#f2f0ed",
+                        "surface-container-low": "#f5f3ef",
+                        "background": "#fbf9f5",
+                        "on-surface": "#1b1c1a",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-primary-fixed": "#0f0069",
+                        "secondary": "#58579b",
+                        "outline": "#777587",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdbcc",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-primary-container": "#dad7ff",
+                        "surface-bright": "#fbf9f5",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "on-tertiary-container": "#ffd2be",
+                        "surface": "#fbf9f5",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e4e2de",
+                        "primary-container": "#4f46e5",
+                        "on-secondary-container": "#454386",
+                        "inverse-primary": "#c3c0ff",
+                        "primary": "#3525cd",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#e2dfff",
+                        "surface-dim": "#dbdad6",
+                        "on-secondary-fixed-variant": "#413f82",
+                        "surface-tint": "#4d44e3",
+                        "on-surface-variant": "#464555",
+                        "surface-container-highest": "#e4e2de",
+                        "surface-container-high": "#eae8e4",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#b6b4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "display": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fbf9f5]/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] font-['Inter'] tracking-tight antialiased">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-indigo-700 dark:text-indigo-300">BookVerse</span>
+<div class="hidden md:flex gap-6">
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Archive</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Authors</a>
+<a class="text-indigo-700 dark:text-indigo-300 border-b-2 border-indigo-600 dark:border-indigo-400 pb-1 font-semibold" href="#">Categories</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Wishlist</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-surface-container-high rounded-full px-4 py-2 w-64">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-outline-variant" placeholder="Tìm kiếm tư liệu..." type="text"/>
+</div>
+<button class="p-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-all duration-300 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="p-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-all duration-300 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="flex-grow pt-28 pb-20 px-6 max-w-screen-2xl mx-auto w-full">
+<!-- Header Section -->
+<header class="mb-12 max-w-3xl">
+<h1 class="text-5xl font-extrabold tracking-tight text-on-surface mb-4">Khám Phá Di Sản</h1>
+<p class="text-lg text-on-surface-variant leading-relaxed">
+                Hành trình qua các kỷ nguyên tri thức. Từ những bản thảo cổ điển đến những đột phá khoa học đương đại, hãy tìm thấy nguồn cảm hứng trong kho lưu trữ được giám tuyển tỉ mỉ của chúng tôi.
+            </p>
+</header>
+<!-- Category Bento Grid -->
+<div class="bento-grid">
+<!-- Category: Fiction (Large Feature) -->
+<div class="col-span-12 md:col-span-8 bg-surface-container-lowest rounded-xl overflow-hidden group hover:shadow-xl transition-all duration-500 flex flex-col md:flex-row">
+<div class="w-full md:w-1/2 h-64 md:h-auto overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="conceptual artistic book cover with abstract swirling shapes in indigo and cream tones representing the depths of human imagination and storytelling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6r-X-HVJtaJlWpwjyKLIHvIegGF5_yOvAr6vqnXxEIL4EvgMdQ1H9d5AOGwH0ig5e8ptRxr6b1tNUMjJ-xM050bM-NV-W76qmaIIT406QV7Q9odOgE3M5KUmUIoreSEUtaob5pZ-oblkPux8LxYL4qX9ovuwRbbVd0X5vfqutxT27kbV9o-2MZ5XSohfTrF35KMVNMVuSnXJhwW5lfUOSYR_7pFE2FgeFhVR4cLNiW7YWuaAfDOERLG-a6UdbgyuXLyFFUiksbOo"/>
+</div>
+<div class="p-8 flex flex-col justify-center flex-1">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-[10px] font-bold rounded-full uppercase tracking-widest">Kinh Điển</span>
+<span class="text-sm font-medium text-primary">12,450 cuốn</span>
+</div>
+<h3 class="text-3xl font-bold mb-3">Văn Học Hư Cấu</h3>
+<p class="text-on-surface-variant mb-6 text-sm leading-relaxed">Khám phá sức mạnh của ngôn từ qua những câu chuyện vượt thời gian, định hình tâm hồn và trí tưởng tượng của nhân loại qua nhiều thế hệ.</p>
+<button class="mt-auto flex items-center gap-2 text-primary font-bold text-sm group/btn">
+                        Khám phá kho lưu trữ
+                        <span class="material-symbols-outlined group-hover/btn:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Category: Science -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest rounded-xl p-6 group hover:bg-primary-fixed transition-colors duration-300">
+<div class="mb-6 flex justify-between items-center">
+<div class="p-3 bg-surface-container-high rounded-lg group-hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="science">science</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant">8,200 cuốn</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Khoa Học</h3>
+<p class="text-sm text-on-surface-variant mb-4 leading-relaxed">Từ vật lý lượng tử đến sinh học tiến hóa, mở khóa những bí mật của vũ trụ.</p>
+<div class="h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+</div>
+<!-- Category: Art & Design -->
+<div class="col-span-12 md:col-span-4 bg-surface-container rounded-xl p-6 relative overflow-hidden group">
+<div class="relative z-10">
+<span class="text-xs font-bold text-tertiary-container mb-2 block uppercase tracking-tighter">Thẩm mỹ học</span>
+<h3 class="text-2xl font-bold mb-2">Nghệ Thuật</h3>
+<p class="text-sm text-on-surface-variant mb-8">Nghiên cứu về cái đẹp, thiết kế và lịch sử thị giác của con người.</p>
+<span class="text-sm font-semibold text-on-surface">3,150 đầu sách</span>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-9xl text-outline-variant/20 rotate-12 group-hover:rotate-0 transition-transform duration-700" data-icon="palette">palette</span>
+</div>
+<!-- Category: History -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest rounded-xl overflow-hidden group flex flex-col">
+<div class="h-40 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="monochrome vintage photograph of an ancient stone library aisle with soft dust motes dancing in shafts of sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbB4fIjXw5J8UkisgY9nzl794z9X3YpWfjYOFbFm_7Dk_JOMg2H43OMZanZMjj4swsz0m5P2qXbXgt2SeAHG2VhTEQoNNYx3Rro7mcQ5oilBOLAgQKGovVfvG9_8NppUj1sClvVTK0i4LIY2Mx5-mkF2Qh_yUjIsHAlyNakQX7pPkbtmf4mteT9e3D2zGGt40J8p9oGz064USvzjFYu7OVtBQp3kJX5GNi3CZkB-bDY72vj9VmbEhYKGf11lRqeYTMQL4LFSD0jh8"/>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Lịch Sử</h3>
+<p class="text-xs text-on-surface-variant mb-4">Ghi chép về hành trình của các nền văn minh và những bước ngoặt của nhân loại.</p>
+<div class="flex items-center justify-between">
+<span class="text-primary font-bold text-xs uppercase tracking-widest">Xem chi tiết</span>
+<span class="text-xs text-outline italic">5,900 bản lưu</span>
+</div>
+</div>
+</div>
+<!-- Category: Philosophy -->
+<div class="col-span-12 md:col-span-4 bg-primary text-on-primary rounded-xl p-8 flex flex-col justify-between group">
+<div>
+<span class="material-symbols-outlined text-4xl mb-4" data-icon="psychology" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<h3 class="text-2xl font-bold mb-3">Triết Học</h3>
+<p class="text-on-primary/80 text-sm leading-relaxed">Đi tìm ý nghĩa của sự tồn tại thông qua tư duy của những triết gia vĩ đại nhất.</p>
+</div>
+<div class="mt-8 flex items-center gap-4">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a focused student in a library" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-iyJX32wbMwowoC8YFAh_awPzsGhRdg-hDlPPZbqwfdD4cJyrbkNb9AKGT1iP1TVHN0j_DUpLdZTlJKWwJVxEEduvoBxn3WWsNfbWvmUnRGmZ7jiSp7nuH67S8ECtW-TOUuoHfxtZ49Nl5rx3FMjQDFsXELVwu59RnfyNR2esLAda23hasvwayPUAW-zSwpIZL-HcE42jMUFCfnDQkhIrotDBpsJR7eA54x3J9ynDS4uH8DCfyfhRwoayuaSf1VeXI-7ZjDclcV4"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-slate-300 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of an elderly professor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK_mwOFmQQGNBVcl5BxThfB3XfGmfUAm9g9Mjk21CTqt-wZ3o20J2N5CLJU50jqCEX7yLTCyxdde-sT8GB2inEJcrOZo_JOVEDaYEpyBDk2CQXya8j6HMJkNP0X5oTSCE_VI4SHmlqJlsW818pSHDLKXpuNqiSc6lNGvb6NoTpbZItY-taIDXzOqms38C15sH0W5nEeDAx_A93S0R0BWAXbfEIUXgaC_vrgx1hLyols4dPtc1DV61uBj6acwahnhK7SFW8Yf6UTiM"/>
+</div>
+</div>
+<span class="text-xs font-medium">1.2k người đang đọc</span>
+</div>
+</div>
+<!-- Small Categories Row -->
+<div class="col-span-12 md:col-span-3 bg-surface-container-low rounded-xl p-5 flex items-center gap-4 group hover:bg-white transition-all">
+<span class="material-symbols-outlined text-tertiary-container" data-icon="restaurant">restaurant</span>
+<div>
+<h4 class="font-bold text-sm">Ẩm Thực</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">1,200 Cuốn</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-3 bg-surface-container-low rounded-xl p-5 flex items-center gap-4 group hover:bg-white transition-all">
+<span class="material-symbols-outlined text-primary" data-icon="travel_explore">travel_explore</span>
+<div>
+<h4 class="font-bold text-sm">Du Lịch</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">950 Cuốn</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-3 bg-surface-container-low rounded-xl p-5 flex items-center gap-4 group hover:bg-white transition-all">
+<span class="material-symbols-outlined text-secondary" data-icon="self_improvement">self_improvement</span>
+<div>
+<h4 class="font-bold text-sm">Kỹ Năng</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">2,400 Cuốn</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-3 bg-surface-container-low rounded-xl p-5 flex items-center gap-4 group hover:bg-white transition-all">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_horiz">more_horiz</span>
+<div>
+<h4 class="font-bold text-sm">Xem Thêm</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">15+ Thể loại</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto border-t border-slate-100 dark:border-slate-900 bg-[#fbf9f5] dark:bg-slate-950">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-semibold text-slate-900 dark:text-slate-100 mb-2">BookVerse</span>
+<p class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600">© 2024 BookVerse Digital Archive. All discoveries preserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Collection Policy</a>
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Archive Ethics</a>
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Terms</a>
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+<!-- FAB (Suppressed on Details but active here for general category exploration aid) -->
+<button class="fixed bottom-8 right-8 bg-primary text-on-primary w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</button>
+</body></html>

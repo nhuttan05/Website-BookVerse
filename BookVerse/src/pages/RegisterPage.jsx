@@ -125,7 +125,7 @@ const RegisterPage = () => {
           <button 
             type="submit"
             disabled={loading}
-            className="w-full py-5 bg-primary text-white rounded-3xl font-black text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95 mt-6 disabled:opacity-50 disabled:scale-100 flex items-center justify-center"
+            className="w-full py-5 bg-primary text-on-primary rounded-3xl font-black text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95 mt-6 disabled:opacity-50 disabled:scale-100 flex items-center justify-center"
           >
             {loading ? (
               <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>

@@ -11,9 +11,12 @@ import { ShoppingCart, Heart, Moon, Menu, X } from 'lucide-react';
 import { selectCartTotalQuantity } from '@/redux/cartSlice';
 import { selectAuth, logout, getCurrentUser } from '@/redux/authSlice';
 import { selectWishlistItems } from '@/redux/wishlistSlice';
+import { toggleTheme, selectTheme } from '@/redux/themeSlice';
 
 const NAV_LINKS = [
   { path: '/',          label: 'Trang chủ', id: 'nav-home' },
+  { path: '/authors',     label: 'Tác giả',    id: 'nav-authors' },
+  { path: '/contact',     label: 'Liên hệ',    id: 'nav-contact' },
   { path: '/categories', label: 'Danh mục',  id: 'nav-categories' },
   { path: '/blog',      label: 'Blog',       id: 'nav-blog' },
 ];
@@ -28,6 +31,15 @@ const MainLayout = ({ children }) => {
   const totalQuantity = useSelector(selectCartTotalQuantity);
   const { user, isAuthenticated } = useSelector(selectAuth);
   const wishlistItems = useSelector(selectWishlistItems);
+  const theme = useSelector(selectTheme);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
 
   useEffect(() => {
     // Khôi phục phiên làm việc nếu có token
@@ -51,14 +63,9 @@ const MainLayout = ({ children }) => {
       {/* ══════════ STICKY HEADER ══════════ */}
       <header
         id="main-header"
-        className={`fixed top-0 w-full z-50 transition-shadow duration-300 ${
-          isScrolled ? 'shadow-[0_1px_40px_rgba(27,28,26,0.07)]' : ''
+        className={`fixed top-0 w-full z-50 transition-shadow duration-300 glass ${
+          isScrolled ? 'shadow-ambient' : ''
         }`}
-        style={{
-          background: 'rgba(251,249,245,0.85)',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
-        }}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
@@ -111,21 +118,32 @@ const MainLayout = ({ children }) => {
             >
               <ShoppingCart size={22} />
               {totalQuantity > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-error text-white text-[10px] font-bold rounded-full flex items-center justify-center animate-in zoom-in duration-300 shadow-sm">
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-error text-on-error text-[10px] font-bold rounded-full flex items-center justify-center animate-in zoom-in duration-300 shadow-sm">
                   {totalQuantity}
                 </span>
               )}
             </Link>
             
             <button
+              onClick={() => dispatch(toggleTheme())}
               className="p-2 hover:bg-surface-container rounded-xl transition-colors text-on-surface-variant hidden md:flex"
               title="Chế độ tối"
             >
-              <Moon size={22} />
+              {theme === 'dark' ? <span className="material-symbols-outlined">light_mode</span> : <Moon size={22} />}
             </button>
 
             {isAuthenticated ? (
               <div className="flex items-center gap-2">
+                {user?.roles?.includes('ROLE_ADMIN') && (
+                  <Link
+                    to="/admin"
+                    className="p-2 bg-primary/10 text-primary hover:bg-primary/20 rounded-xl transition-all flex items-center gap-2 px-4 group"
+                    title="Quản trị"
+                  >
+                    <span className="material-symbols-outlined text-[20px] group-hover:rotate-45 transition-transform">shield_person</span>
+                    <span className="text-xs font-black uppercase tracking-widest hidden lg:block">Admin</span>
+                  </Link>
+                )}
                 <Link
                   to="/dashboard"
                   id="nav-user"
@@ -134,7 +152,7 @@ const MainLayout = ({ children }) => {
                 >
                   <div className="w-8 h-8 rounded-full overflow-hidden shadow-sm border border-outline-variant/20">
                     <img 
-                      src={user?.avatarUrl || `https://i.pravatar.cc/150?u=${user?.email}`} 
+                      src={user?.avatarUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.email}`} 
                       alt="Avatar" 
                       className="w-full h-full object-cover"
                     />
@@ -153,7 +171,7 @@ const MainLayout = ({ children }) => {
               <Link
                 to="/login"
                 id="nav-login"
-                className="px-5 py-2 bg-primary text-white rounded-xl font-semibold text-sm hover:bg-primary-container transition-colors active:scale-95"
+                className="px-5 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:bg-primary-container transition-colors active:scale-95"
               >
                 Đăng nhập
               </Link>
@@ -212,9 +230,9 @@ const MainLayout = ({ children }) => {
           <div>
             <h4 className="font-bold text-on-surface mb-5">Về chúng tôi</h4>
             <ul className="space-y-3 text-sm text-on-surface-variant">
-              {['About us', 'Privacy Policy', 'Terms of Service'].map(t => (
-                <li key={t}><a href="#" className="hover:text-primary hover:underline transition-colors">{t}</a></li>
-              ))}
+              <li><Link to="/about" className="hover:text-primary hover:underline transition-colors">Về chúng tôi (About Us)</Link></li>
+              <li><Link to="/privacy-policy" className="hover:text-primary hover:underline transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms-of-service" className="hover:text-primary hover:underline transition-colors">Terms of Service</Link></li>
             </ul>
           </div>
 
@@ -222,9 +240,9 @@ const MainLayout = ({ children }) => {
           <div>
             <h4 className="font-bold text-on-surface mb-5">Hỗ trợ khách hàng</h4>
             <ul className="space-y-3 text-sm text-on-surface-variant">
-              {['Shipping & Returns', 'Contact', 'FAQs'].map(t => (
-                <li key={t}><a href="#" className="hover:text-primary hover:underline transition-colors">{t}</a></li>
-              ))}
+              <li><Link to="/shipping-returns" className="hover:text-primary hover:underline transition-colors">Shipping & Returns</Link></li>
+              <li><Link to="/contact" className="hover:text-primary hover:underline transition-colors">Contact</Link></li>
+              <li><Link to="/faqs" className="hover:text-primary hover:underline transition-colors">FAQs</Link></li>
             </ul>
           </div>
 
@@ -238,7 +256,7 @@ const MainLayout = ({ children }) => {
                 placeholder="Email của bạn"
                 className="bg-surface px-4 py-2 rounded-xl text-sm w-full focus:outline-none focus:ring-1 focus:ring-primary"
               />
-              <button className="bg-primary text-white px-4 py-2 rounded-xl font-semibold text-sm hover:bg-primary-container transition-colors active:scale-95">
+              <button className="bg-primary text-on-primary px-4 py-2 rounded-xl font-semibold text-sm hover:bg-primary-container transition-colors active:scale-95">
                 Gửi
               </button>
             </div>

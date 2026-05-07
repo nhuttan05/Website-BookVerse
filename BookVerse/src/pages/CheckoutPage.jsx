@@ -6,35 +6,79 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MOCK_BOOKS } from '@/data/mockBooks';
 import { formatPrice } from '@/utils/formatters';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { 
-  selectCartItems, 
-  selectCartTotalAmount,
-  clearCart
-} from '@/redux/cartSlice';
+import { selectCartItems, selectCartTotalAmount, clearCart } from '@/redux/cartSlice';
+import { selectAuth } from '@/redux/authSlice';
+import { createOrder, selectOrderLoading, selectOrderSuccess, resetOrderState } from '@/redux/orderSlice';
+import { useEffect } from 'react';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
+  const [form, setForm] = useState({
+    fullName: '',
+    phone: '',
+    address: '',
+    city: '',
+    district: '',
+    note: '',
+    paymentMethod: 'COD'
+  });
   
-  // Redux cart state
+  // Redux state
   const cartItems = useSelector(selectCartItems);
   const subtotal = useSelector(selectCartTotalAmount);
+  const { user } = useSelector(selectAuth);
+  const isLoading = useSelector(selectOrderLoading);
+  const isSuccess = useSelector(selectOrderSuccess);
+  const [orderId, setOrderId] = useState(null);
 
   const shipping = subtotal > 500000 || subtotal === 0 ? 0 : 35000;
   const total = subtotal + shipping;
 
-  const handleNextStep = () => {
-    if (step === 2) {
-      // Logic gọi API đặt hàng sẽ ở đây
-      dispatch(clearCart());
-      setStep(3);
-    } else {
-      setStep(step + 1);
+  useEffect(() => {
+    if (!user) {
+      alert('Vui lòng đăng nhập để tiến hành thanh toán.');
+      navigate('/login?redirect=/checkout');
+    } else if (cartItems.length === 0 && step === 1) {
+      navigate('/cart');
+    }
+  }, [user, navigate, cartItems.length, step]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleNextStep = async () => {
+    if (step === 1) {
+      if (!form.fullName || !form.phone || !form.address) {
+        alert('Vui lòng điền đầy đủ thông tin giao hàng');
+        return;
+      }
+      setStep(2);
+    } else if (step === 2) {
+      const orderData = {
+        shippingAddress: `${form.address}, ${form.district}, ${form.city}. Ghi chú: ${form.note}`,
+        phoneNumber: form.phone,
+        paymentMethod: form.paymentMethod,
+        items: cartItems.map(item => ({
+          bookId: item.id,
+          quantity: item.quantity
+        }))
+      };
+      
+      const resultAction = await dispatch(createOrder(orderData));
+      if (createOrder.fulfilled.match(resultAction)) {
+        setOrderId(resultAction.payload.id);
+        dispatch(clearCart());
+        setStep(3);
+      } else {
+        alert('Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại.');
+      }
     }
   };
 
@@ -48,27 +92,54 @@ const CheckoutPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-3">
           <label className="text-[10px] font-black text-outline uppercase tracking-widest px-4">Họ tên</label>
-          <input type="text" placeholder="Nhập họ và tên người nhận" className="w-full bg-surface-container-low px-6 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium" />
+          <input 
+            type="text" 
+            name="fullName"
+            value={form.fullName}
+            onChange={handleInputChange}
+            placeholder="Nhập họ và tên người nhận" 
+            className="w-full bg-surface-container-low px-6 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium" 
+          />
         </div>
         <div className="space-y-3">
           <label className="text-[10px] font-black text-outline uppercase tracking-widest px-4">Số điện thoại</label>
-          <input type="text" placeholder="Ví dụ: 0912345678" className="w-full bg-surface-container-low px-6 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium" />
+          <input 
+            type="text" 
+            name="phone"
+            value={form.phone}
+            onChange={handleInputChange}
+            placeholder="Ví dụ: 0912345678" 
+            className="w-full bg-surface-container-low px-6 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium" 
+          />
         </div>
       </div>
 
       <div className="space-y-3">
         <label className="text-[10px] font-black text-outline uppercase tracking-widest px-4">Địa chỉ chi tiết</label>
-        <input type="text" placeholder="Số nhà, tên đường, phường/xã..." className="w-full bg-surface-container-low px-6 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium" />
+        <input 
+          type="text" 
+          name="address"
+          value={form.address}
+          onChange={handleInputChange}
+          placeholder="Số nhà, tên đường, phường/xã..." 
+          className="w-full bg-surface-container-low px-6 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium" 
+        />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-3">
           <label className="text-[10px] font-black text-outline uppercase tracking-widest px-4">Tỉnh / Thành phố</label>
           <div className="relative">
-            <select className="w-full bg-surface-container-low px-6 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium appearance-none">
-              <option>Chọn Tỉnh/Thành phố</option>
-              <option>Hà Nội</option>
-              <option>TP. Hồ Chí Minh</option>
+            <select 
+              name="city"
+              value={form.city}
+              onChange={handleInputChange}
+              className="w-full bg-surface-container-low px-6 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium appearance-none"
+            >
+              <option value="">Chọn Tỉnh/Thành phố</option>
+              <option value="Hà Nội">Hà Nội</option>
+              <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+              <option value="Đà Nẵng">Đà Nẵng</option>
             </select>
             <span className="material-symbols-outlined absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
           </div>
@@ -76,17 +147,28 @@ const CheckoutPage = () => {
         <div className="space-y-3">
           <label className="text-[10px] font-black text-outline uppercase tracking-widest px-4">Quận / Huyện</label>
           <div className="relative">
-            <select className="w-full bg-surface-container-low px-6 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium appearance-none">
-              <option>Chọn Quận/Huyện</option>
-            </select>
-            <span className="material-symbols-outlined absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+            <input 
+              type="text"
+              name="district"
+              value={form.district}
+              onChange={handleInputChange}
+              placeholder="Nhập Quận/Huyện"
+              className="w-full bg-surface-container-low px-6 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium"
+            />
           </div>
         </div>
       </div>
 
       <div className="space-y-3">
         <label className="text-[10px] font-black text-outline uppercase tracking-widest px-4">Ghi chú giao hàng (Tùy chọn)</label>
-        <textarea rows="4" placeholder="Ví dụ: Giao vào giờ hành chính, gọi điện trước khi tới..." className="w-full bg-surface-container-low px-6 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium resize-none"></textarea>
+        <textarea 
+          name="note"
+          value={form.note}
+          onChange={handleInputChange}
+          rows="4" 
+          placeholder="Ví dụ: Giao vào giờ hành chính, gọi điện trước khi tới..." 
+          className="w-full bg-surface-container-low px-6 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium resize-none"
+        ></textarea>
       </div>
     </div>
   );
@@ -100,12 +182,19 @@ const CheckoutPage = () => {
 
       <div className="space-y-4">
         {[
-          { id: 'cod', label: 'Thanh toán khi nhận hàng (COD)', icon: 'payments' },
-          { id: 'bank', label: 'Chuyển khoản ngân hàng', icon: 'account_balance' },
-          { id: 'momo', label: 'Ví MoMo', icon: 'account_balance_wallet' },
+          { id: 'COD', label: 'Thanh toán khi nhận hàng (COD)', icon: 'payments' },
+          { id: 'BANK', label: 'Chuyển khoản ngân hàng', icon: 'account_balance' },
+          { id: 'MOMO', label: 'Ví MoMo', icon: 'account_balance_wallet' },
         ].map(method => (
           <label key={method.id} className="flex items-center gap-6 p-6 bg-surface-container-low rounded-3xl cursor-pointer border-2 border-transparent hover:border-primary/20 has-[:checked]:border-primary transition-all">
-            <input type="radio" name="payment" value={method.id} className="w-6 h-6 border-2 border-outline-variant rounded-full appearance-none checked:border-primary checked:border-[7px] transition-all" defaultChecked={method.id === 'cod'} />
+            <input 
+              type="radio" 
+              name="paymentMethod" 
+              value={method.id} 
+              checked={form.paymentMethod === method.id}
+              onChange={handleInputChange}
+              className="w-6 h-6 border-2 border-outline-variant rounded-full appearance-none checked:border-primary checked:border-[7px] transition-all" 
+            />
             <span className="material-symbols-outlined text-primary text-3xl">{method.icon}</span>
             <span className="text-lg font-bold text-on-surface">{method.label}</span>
           </label>
@@ -121,9 +210,9 @@ const CheckoutPage = () => {
       </div>
       <div className="space-y-2">
         <h1 className="text-4xl font-black tracking-tight text-on-surface">Đặt hàng thành công!</h1>
-        <p className="text-on-surface-variant text-lg">Mã đơn hàng của bạn là <span className="font-bold text-primary">#BV-889922</span>. Cảm ơn bạn đã tin tưởng BookVerse.</p>
+        <p className="text-on-surface-variant text-lg">Mã đơn hàng của bạn là <span className="font-bold text-primary">#BV-{orderId}</span>. Cảm ơn bạn đã tin tưởng BookVerse.</p>
       </div>
-      <button onClick={() => navigate('/')} className="px-10 py-4 bg-primary text-white rounded-2xl font-bold hover:scale-105 transition-transform active:scale-95">
+      <button onClick={() => navigate('/')} className="px-10 py-4 bg-primary text-on-primary rounded-2xl font-bold hover:scale-105 transition-transform active:scale-95">
         Quay về trang chủ
       </button>
     </div>
@@ -143,7 +232,7 @@ const CheckoutPage = () => {
           ].map(s => (
             <div key={s.n} className="flex flex-col items-center gap-3">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all ${
-                step >= s.n ? 'bg-primary text-white shadow-lg' : 'bg-surface-container text-outline'
+                step >= s.n ? 'bg-primary text-on-primary shadow-lg' : 'bg-surface-container text-outline'
               }`}>
                 {s.n}
               </div>
@@ -199,10 +288,13 @@ const CheckoutPage = () => {
                 </div>
 
                 <button 
-                  disabled={cartItems.length === 0}
+                  disabled={cartItems.length === 0 || isLoading}
                   onClick={handleNextStep}
-                  className="w-full mt-10 py-5 bg-primary text-white rounded-3xl font-black text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95 flex items-center justify-center gap-3 disabled:opacity-50"
+                  className="w-full mt-10 py-5 bg-primary text-on-primary rounded-3xl font-black text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95 flex items-center justify-center gap-3 disabled:opacity-50"
                 >
+                  {isLoading ? (
+                    <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  ) : null}
                   {step === 1 ? 'TIẾP TỤC' : 'HOÀN TẤT ĐẶT HÀNG'}
                 </button>
                 

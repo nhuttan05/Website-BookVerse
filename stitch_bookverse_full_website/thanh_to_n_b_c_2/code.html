@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#e2dfff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#1b1c1a",
+                    "on-tertiary-fixed": "#351000",
+                    "outline-variant": "#c7c4d8",
+                    "tertiary-container": "#a44100",
+                    "inverse-surface": "#30312e",
+                    "tertiary": "#7e3000",
+                    "surface-container": "#efeeea",
+                    "on-secondary-fixed": "#140f54",
+                    "inverse-on-surface": "#f2f0ed",
+                    "surface-container-low": "#f5f3ef",
+                    "background": "#fbf9f5",
+                    "on-surface": "#1b1c1a",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-primary-fixed": "#0f0069",
+                    "secondary": "#58579b",
+                    "outline": "#777587",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffdbcc",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "on-primary-container": "#dad7ff",
+                    "surface-bright": "#fbf9f5",
+                    "secondary-fixed-dim": "#c3c0ff",
+                    "on-tertiary-container": "#ffd2be",
+                    "surface": "#fbf9f5",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e4e2de",
+                    "primary-container": "#4f46e5",
+                    "on-secondary-container": "#454386",
+                    "inverse-primary": "#c3c0ff",
+                    "primary": "#3525cd",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#e2dfff",
+                    "surface-dim": "#dbdad6",
+                    "on-secondary-fixed-variant": "#413f82",
+                    "surface-tint": "#4d44e3",
+                    "on-surface-variant": "#464555",
+                    "surface-container-highest": "#e4e2de",
+                    "surface-container-high": "#eae8e4",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#b6b4ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "display": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fbf9f5]/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto font-['Inter'] tracking-tight antialiased">
+<div class="text-2xl font-bold tracking-tighter text-indigo-700 dark:text-indigo-300">BookVerse</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Archive</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Authors</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Categories</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">Wishlist</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-surface-container-high px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 ml-2" placeholder="Tìm kiếm tài liệu..." type="text"/>
+</div>
+<button class="p-2 rounded-full hover:bg-slate-100/50 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-100/50 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="flex-grow pt-32 pb-20 px-6 max-w-7xl mx-auto w-full">
+<!-- Step Indicator -->
+<div class="flex items-center justify-center mb-16">
+<div class="flex items-center w-full max-w-2xl">
+<div class="flex flex-col items-center flex-1">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-sm">1</div>
+<span class="mt-2 text-xs font-semibold text-on-surface-variant uppercase tracking-widest">Giao hàng</span>
+</div>
+<div class="h-0.5 flex-grow bg-primary-container/30"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm shadow-lg">2</div>
+<span class="mt-2 text-xs font-semibold text-primary uppercase tracking-widest">Thanh toán</span>
+</div>
+<div class="h-0.5 flex-grow bg-surface-container-high"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-bold text-sm">3</div>
+<span class="mt-2 text-xs font-semibold text-on-surface-variant uppercase tracking-widest">Hoàn tất</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left: Payment Form -->
+<div class="lg:col-span-7 space-y-8">
+<div>
+<h1 class="text-3xl font-bold tracking-tight text-on-surface mb-2">Phương thức thanh toán</h1>
+<p class="text-on-surface-variant">Vui lòng chọn cách thức bạn muốn thanh toán cho đơn hàng này.</p>
+</div>
+<!-- Payment Methods Grid -->
+<div class="space-y-4">
+<!-- Credit Card Option -->
+<label class="group relative flex items-center p-6 bg-surface-container-lowest rounded-xl cursor-pointer border-2 border-transparent hover:border-primary/20 transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+<input checked="" class="hidden peer" name="payment" type="radio"/>
+<div class="peer-checked:border-primary absolute inset-0 border-2 border-transparent rounded-xl pointer-events-none"></div>
+<div class="w-12 h-12 flex items-center justify-center bg-primary-fixed rounded-lg mr-6 text-primary">
+<span class="material-symbols-outlined text-3xl">credit_card</span>
+</div>
+<div class="flex-grow">
+<p class="font-bold text-on-surface">Thẻ tín dụng / Ghi nợ</p>
+<p class="text-sm text-on-surface-variant">Visa, Mastercard, JCB</p>
+</div>
+<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100 transition-opacity" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</label>
+<!-- E-Wallet Option -->
+<label class="group relative flex items-center p-6 bg-surface-container-lowest rounded-xl cursor-pointer border-2 border-transparent hover:border-primary/20 transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+<input class="hidden peer" name="payment" type="radio"/>
+<div class="peer-checked:border-primary absolute inset-0 border-2 border-transparent rounded-xl pointer-events-none"></div>
+<div class="w-12 h-12 flex items-center justify-center bg-tertiary-fixed rounded-lg mr-6 text-tertiary">
+<span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+</div>
+<div class="flex-grow">
+<p class="font-bold text-on-surface">Ví điện tử</p>
+<p class="text-sm text-on-surface-variant">Momo, ZaloPay, ShopeePay</p>
+</div>
+<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100 transition-opacity" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</label>
+<!-- Bank Transfer Option -->
+<label class="group relative flex items-center p-6 bg-surface-container-lowest rounded-xl cursor-pointer border-2 border-transparent hover:border-primary/20 transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+<input class="hidden peer" name="payment" type="radio"/>
+<div class="peer-checked:border-primary absolute inset-0 border-2 border-transparent rounded-xl pointer-events-none"></div>
+<div class="w-12 h-12 flex items-center justify-center bg-secondary-fixed rounded-lg mr-6 text-secondary">
+<span class="material-symbols-outlined text-3xl">account_balance</span>
+</div>
+<div class="flex-grow">
+<p class="font-bold text-on-surface">Chuyển khoản ngân hàng</p>
+<p class="text-sm text-on-surface-variant">QR code hoặc Chuyển khoản trực tiếp</p>
+</div>
+<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100 transition-opacity" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</label>
+</div>
+<!-- Form Inputs for Card (Conditional Mockup) -->
+<div class="bg-surface-container-low p-8 rounded-xl space-y-6">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant uppercase tracking-wider">Tên trên thẻ</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-4 focus:ring-2 focus:ring-primary shadow-sm text-on-surface" placeholder="NGUYEN VAN A" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant uppercase tracking-wider">Số thẻ</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-4 focus:ring-2 focus:ring-primary shadow-sm text-on-surface" placeholder="0000 0000 0000 0000" type="text"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">credit_card</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant uppercase tracking-wider">Ngày hết hạn</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-4 focus:ring-2 focus:ring-primary shadow-sm text-on-surface" placeholder="MM/YY" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant uppercase tracking-wider">CVV</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-4 focus:ring-2 focus:ring-primary shadow-sm text-on-surface" placeholder="***" type="password"/>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 pt-4">
+<button class="flex-1 py-4 px-6 rounded-xl border border-outline-variant font-bold text-on-surface-variant hover:bg-surface-container-high transition-all">Quay lại</button>
+<button class="flex-[2] py-4 px-6 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold shadow-lg hover:opacity-90 active:scale-[0.99] transition-all">Xác nhận thanh toán</button>
+</div>
+</div>
+<!-- Right: Order Summary -->
+<aside class="lg:col-span-5">
+<div class="bg-surface-container p-8 rounded-2xl sticky top-32">
+<h2 class="text-xl font-bold mb-8 text-on-surface">Tóm tắt đơn hàng</h2>
+<div class="space-y-6 mb-8">
+<!-- Book Item 1 -->
+<div class="flex gap-4">
+<div class="w-20 h-28 flex-shrink-0 bg-surface-container-highest rounded-sm shadow-sm overflow-hidden border border-outline-variant/10">
+<img class="w-full h-full object-cover" data-alt="Minimalist book cover featuring abstract geometric shapes in deep blue and gold on a textured paper background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4UVnUvpMth_7a_2fj2GSKsFA2j-up1ZwPbqX880NJEMaPrF4VT1jxRJ86NQ09IBSNe2ckuGUTR7hl1UaOwuwC9bojlwimjpZgT_WRhDRPEsyygRELxRdWdqqOKD9D_ParG9V8JmxopowKRYKlfOiX_vgHbW86WoDgGwb1jYJHxnP5iFoj0xWf09UX7mRlPybB73RyAeOT-nWdxFELmZozRrz3ce7RQUV-YYGNSVbBUHHsytqknNwTLBQ15x9oWH8VeeVIy21bxNg"/>
+</div>
+<div class="flex flex-col justify-center">
+<h3 class="font-bold text-on-surface line-clamp-2">Kiến Trúc Của Sự Lựa Chọn</h3>
+<p class="text-sm text-on-surface-variant">Richard Thaler</p>
+<p class="mt-1 font-bold text-primary">185.000đ</p>
+</div>
+</div>
+<!-- Book Item 2 -->
+<div class="flex gap-4">
+<div class="w-20 h-28 flex-shrink-0 bg-surface-container-highest rounded-sm shadow-sm overflow-hidden border border-outline-variant/10">
+<img class="w-full h-full object-cover" data-alt="Classic leather bound book lying on an old wooden desk with warm cinematic lighting and dust particles in the air" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYlsmX5ysctcQnGuOv8Q3pfPzgSBhR174FvweKa0bSsb2PVaxr95f236t9CrVi_ZhmLzbOZgquWP48kaYICC_uCHnGMUgaUrxYXH1V2anx2mamYU44oY7BCp7Y8xmLPjUM6JieBnx2SKnwrUrelRhyr_eXehIHsYjh-dVWnwfEYNA9EnHIqeRzpmz7kwr4Q6rW111bndfZ54W-hMkILvTaznJGXwRTsSUBbYf85FyytA9Dv9kWAe7NFbuIyaJqrFuzn5_FS4pp8_s"/>
+</div>
+<div class="flex flex-col justify-center">
+<h3 class="font-bold text-on-surface line-clamp-2">Lược Sử Thời Gian</h3>
+<p class="text-sm text-on-surface-variant">Stephen Hawking</p>
+<p class="mt-1 font-bold text-primary">120.000đ</p>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/30 pt-6 space-y-3">
+<div class="flex justify-between text-on-surface-variant">
+<span>Tạm tính</span>
+<span>305.000đ</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Phí vận chuyển</span>
+<span>30.000đ</span>
+</div>
+<div class="flex justify-between text-on-surface-variant italic">
+<span>Giảm giá</span>
+<span class="text-tertiary">-15.000đ</span>
+</div>
+<div class="flex justify-between text-xl font-black text-on-surface pt-4 border-t border-outline-variant/30 mt-4">
+<span>Tổng cộng</span>
+<span class="text-primary">320.000đ</span>
+</div>
+</div>
+<div class="mt-8 p-4 bg-primary-fixed/50 rounded-xl flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<p class="text-xs text-on-primary-fixed-variant leading-relaxed">Mọi thông tin thanh toán của bạn đều được mã hóa theo tiêu chuẩn bảo mật SSL quốc tế để đảm bảo an toàn tuyệt đối.</p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto border-t border-slate-100 dark:border-slate-900 bg-[#fbf9f5] dark:bg-slate-950">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
+<div class="flex flex-col gap-2">
+<span class="font-semibold text-slate-900 dark:text-slate-100">BookVerse Archive</span>
+<p class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600">© 2024 BookVerse Digital Archive. All discoveries preserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Collection Policy</a>
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Archive Ethics</a>
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Terms</a>
+<a class="text-xs font-['Inter'] uppercase tracking-widest text-slate-400 dark:text-slate-600 hover:text-indigo-500 transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>
