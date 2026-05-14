@@ -55,6 +55,9 @@ public class BookController {
     public ResponseEntity<Page<BookDTO>> searchBooks(
             @RequestParam(required = false, name = "q") String q,
             @RequestParam(required = false) List<String> categories,
+            @RequestParam(required = false) List<String> suppliers,
+            @RequestParam(required = false) List<String> languages,
+            @RequestParam(required = false) List<String> ageRanges,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,
             @RequestParam(required = false) Double minRating,
@@ -65,7 +68,7 @@ public class BookController {
     ) {
         Sort sort = direction.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         Pageable pageable = PageRequest.of(page, size, sort);
-        return ResponseEntity.ok(bookService.searchBooks(q, categories, minPrice, maxPrice, minRating, pageable));
+        return ResponseEntity.ok(bookService.searchBooks(q, categories, suppliers, languages, ageRanges, minPrice, maxPrice, minRating, pageable));
     }
 
     @GetMapping("/category/{slug}")

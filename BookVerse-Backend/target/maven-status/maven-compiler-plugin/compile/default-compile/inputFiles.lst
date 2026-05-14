@@ -1,47 +1,57 @@
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\BookController.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\AuthController.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\UserDTO.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\RecommendationService.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\CategoryDTO.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\Review.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\JwtResponse.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\CategoryService.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\BookRepository.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\WishlistRepository.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\WishlistController.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\security\AuthEntryPointJwt.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\security\UserDetailsServiceImpl.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\LoginRequest.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\OrderService.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\Role.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\BookService.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\BookImage.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\User.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\ChatController.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\OrderRepository.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\ReviewService.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\Category.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\BookVerseApplication.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\RecommendationController.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\ReviewController.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\security\JwtUtils.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\OrderItem.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\security\AuthTokenFilter.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\UserController.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\security\WebSecurityConfig.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\BookDTO.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\OrderRequest.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\WishlistItem.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\RoleRepository.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\CategoryRepository.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\ReviewRepository.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\OrderController.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\Order.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\SignupRequest.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\CategoryController.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\UserRepository.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\Book.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\AdminService.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\WishlistService.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\AdminController.java
-D:\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\AiService.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\CouponValidationResponse.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\CategoryController.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\BookDTO.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\AiService.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\security\AuthEntryPointJwt.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\RecommendationController.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\BookImage.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\Review.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\ReviewController.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\OrderStatus.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\OrderService.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\Category.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\Book.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\ReviewRepository.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\CouponRepository.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\SignupRequest.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\BookVerseApplication.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\Order.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\OrderStatusHistoryRepository.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\UserRepository.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\ReviewService.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\DiscountType.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\User.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\BookController.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\security\JwtUtils.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\CategoryDTO.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\RoleRepository.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\Role.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\security\UserDetailsServiceImpl.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\AuthController.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\BookRepository.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\OrderRepository.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\WishlistRepository.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\BookService.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\CategoryService.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\WishlistController.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\RecommendationService.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\OrderController.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\LoginRequest.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\security\AuthTokenFilter.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\UserController.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\AdminController.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\OrderItem.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\Coupon.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\OrderRequest.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\CouponService.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\UserDTO.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\ChatController.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\security\WebSecurityConfig.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\AdminService.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\controller\CouponController.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\OrderStatusHistory.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\service\WishlistService.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\JwtResponse.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\entity\WishlistItem.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\dto\OrderDetailDTO.java
+C:\Users\Windows\OneDrive\Máy tính\Code\Website-BookVerse\BookVerse-Backend\src\main\java\com\bookverse\repository\CategoryRepository.java

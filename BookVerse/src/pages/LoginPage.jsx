@@ -39,6 +39,12 @@ const LoginPage = () => {
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
       <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
 
+      {/* Back to Home */}
+      <Link to="/" className="absolute top-8 left-8 z-20 flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-bold group">
+        <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+        <span>Trang chủ</span>
+      </Link>
+
       <div className="w-full max-w-md bg-white rounded-[2.5rem] p-12 shadow-2xl relative z-10 border border-outline-variant/10">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-black tracking-tight text-on-surface mb-2">Welcome back</h1>
@@ -104,14 +110,20 @@ const LoginPage = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <button className="flex items-center justify-center gap-3 py-4 bg-surface-container-low rounded-2xl border border-outline-variant/10 hover:bg-surface-container transition-colors">
+          <a 
+            href="http://localhost:8080/api/oauth2/authorization/google"
+            className="flex items-center justify-center gap-3 py-4 bg-surface-container-low rounded-2xl border border-outline-variant/10 hover:bg-surface-container transition-colors"
+          >
             <img src="https://www.google.com/favicon.ico" className="w-4 h-4" alt="Google" />
             <span className="text-sm font-bold">Google</span>
-          </button>
-          <button className="flex items-center justify-center gap-3 py-4 bg-surface-container-low rounded-2xl border border-outline-variant/10 hover:bg-surface-container transition-colors">
-            <span className="material-symbols-outlined text-sm">apple</span>
-            <span className="text-sm font-bold">Apple</span>
-          </button>
+          </a>
+          <a 
+            href="http://localhost:8080/api/oauth2/authorization/github"
+            className="flex items-center justify-center gap-3 py-4 bg-surface-container-low rounded-2xl border border-outline-variant/10 hover:bg-surface-container transition-colors"
+          >
+            <img src="https://github.githubassets.com/favicons/favicon.svg" className="w-4 h-4" alt="GitHub" />
+            <span className="text-sm font-bold">GitHub</span>
+          </a>
         </div>
 
         <p className="text-center mt-10 text-sm font-medium text-on-surface-variant">

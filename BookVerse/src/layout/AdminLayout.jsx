@@ -26,6 +26,7 @@ const AdminLayout = () => {
     { path: '/admin/books',      label: 'Quản lý sách', icon: <BookOpen size={20} /> },
     { path: '/admin/categories', label: 'Danh mục', icon: <Layers size={20} /> },
     { path: '/admin/orders',     label: 'Đơn hàng', icon: <ShoppingBag size={20} /> },
+    { path: '/admin/coupons',    label: 'Mã giảm giá', icon: <Layers size={20} /> },
     { path: '/admin/users',      label: 'Người dùng', icon: <Users size={20} /> },
     { path: '/admin/analytics',  label: 'Thống kê', icon: <BarChart3 size={20} /> },
   ];
@@ -46,6 +47,17 @@ const AdminLayout = () => {
           {isSidebarOpen && (
             <span className="text-xl font-black tracking-tighter text-primary whitespace-nowrap">Admin Portal</span>
           )}
+        </div>
+
+        {/* Back to Home Link */}
+        <div className="px-4 mb-4">
+          <NavLink 
+            to="/" 
+            className="flex items-center gap-4 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-all no-underline border border-transparent hover:border-primary/10"
+          >
+            <span className="material-symbols-outlined text-[20px]">home</span>
+            {isSidebarOpen && <span className="text-sm font-bold">Xem trang chủ</span>}
+          </NavLink>
         </div>
 
         <nav className="flex-1 px-4 space-y-2 mt-4">

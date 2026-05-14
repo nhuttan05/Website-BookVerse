@@ -17,6 +17,7 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
     private final BookRepository bookRepository;
+    private final com.bookverse.repository.OrderRepository orderRepository;
 
     public List<Review> getReviewsByBook(String slug) {
         Book book = bookRepository.findBySlug(slug)
@@ -26,6 +27,10 @@ public class ReviewService {
 
     @Transactional
     public Review addReview(User user, Long bookId, Integer rating, String comment) {
+        if (!orderRepository.hasPurchasedBook(user, bookId)) {
+            throw new RuntimeException("Bạn chỉ có thể đánh giá sách sau khi đã mua và nhận được hàng (Verified Buyer).");
+        }
+
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new RuntimeException("Book not found"));
 

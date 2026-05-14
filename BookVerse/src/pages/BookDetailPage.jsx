@@ -34,6 +34,7 @@ const BookDetailPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
   const [mainImage, setMainImage] = useState('');
+  const [showPreview, setShowPreview] = useState(false);
 
   useEffect(() => {
     if (slug) {
@@ -134,7 +135,7 @@ const BookDetailPage = () => {
             )}
             <h1 className="text-5xl font-black tracking-tighter text-on-surface leading-tight">{book.title}</h1>
             <div className="flex items-center gap-4">
-              <p className="text-lg font-medium text-on-surface-variant">by <span className="text-primary font-bold cursor-pointer hover:underline">{book.author?.name}</span></p>
+              <p className="text-lg font-medium text-on-surface-variant">by <span className="text-primary font-bold cursor-pointer hover:underline">{book.author}</span></p>
               <span className="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
               <div className="flex items-center gap-1">
                 <div className="flex text-tertiary">
@@ -185,6 +186,15 @@ const BookDetailPage = () => {
               {isAdding ? 'ĐÃ THÊM' : 'THÊM VÀO GIỎ HÀNG'}
             </button>
           </div>
+
+          {book.previewUrl && (
+            <button 
+              onClick={() => setShowPreview(true)}
+              className="w-full py-4 bg-tertiary/10 text-tertiary rounded-2xl font-black text-sm tracking-widest uppercase flex items-center justify-center gap-3 hover:bg-tertiary/20 transition-all border-2 border-tertiary/5"
+            >
+              <span className="material-symbols-outlined">visibility</span> Đọc thử chương đầu (Look Inside)
+            </button>
+          )}
 
           <div className="grid grid-cols-3 gap-8 pt-6">
             <div>
@@ -251,10 +261,10 @@ const BookDetailPage = () => {
             {activeTab === 'author' && (
               <div className="flex items-start gap-8 p-8 bg-surface-container-low rounded-3xl">
                 <div className="w-24 h-24 rounded-full bg-surface-container-high overflow-hidden shrink-0">
-                  <img className="w-full h-full object-cover" src={`https://i.pravatar.cc/150?u=${book.author.name}`} alt="Author" />
+                  <img className="w-full h-full object-cover" src={`https://i.pravatar.cc/150?u=${book.author}`} alt="Author" />
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-2xl font-bold text-on-surface">{book.author.name}</h4>
+                  <h4 className="text-2xl font-bold text-on-surface">{book.author}</h4>
                   <p className="text-on-surface-variant leading-relaxed italic">"Tri thức là chìa khóa duy nhất để mở ra cánh cửa tự do."</p>
                   <p className="text-sm text-on-surface-variant leading-relaxed">Nhà văn, diễn giả và chuyên gia hàng đầu trong lĩnh vực nghiên cứu hành vi con người với hơn 20 năm kinh nghiệm.</p>
                 </div>
@@ -265,28 +275,23 @@ const BookDetailPage = () => {
           {/* Technical Info Card */}
           <div className="lg:col-span-4">
             <div className="p-8 bg-surface-container-low rounded-[2rem] space-y-6 border border-outline-variant/10">
-              <h3 className="text-xs font-black text-primary uppercase tracking-[0.2em]">Thông số kỹ thuật</h3>
+              <h3 className="text-xs font-black text-primary uppercase tracking-[0.2em]">Thông tin chi tiết</h3>
               <div className="space-y-4 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-outline">ISBN</span>
-                  <span className="font-bold text-on-surface">{book.isbn}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-outline">Nhà xuất bản</span>
-                  <span className="font-bold text-on-surface">{book.publisher}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-outline">Số trang</span>
-                  <span className="font-bold text-on-surface">{book.pageCount} trang</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-outline">Năm XB</span>
-                  <span className="font-bold text-on-surface">{book.publishedDate.split('-')[0]}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-outline">Ngôn ngữ</span>
-                  <span className="font-bold text-on-surface">{book.language}</span>
-                </div>
+                {[
+                  { label: 'Nhà cung cấp', value: book.supplier },
+                  { label: 'Tác giả', value: book.author },
+                  { label: 'Nhà xuất bản', value: book.publisher },
+                  { label: 'ISBN', value: book.isbn },
+                  { label: 'Ngôn ngữ', value: book.language },
+                  { label: 'Độ tuổi', value: book.ageRange || 'Mọi độ tuổi' },
+                  { label: 'Số trang', value: `${book.pageCount} trang` },
+                  { label: 'Năm XB', value: book.publishedDate ? book.publishedDate.split('-')[0] : '2023' },
+                ].map(item => (
+                  <div key={item.label} className="flex justify-between items-start gap-4">
+                    <span className="text-outline shrink-0">{item.label}</span>
+                    <span className="font-bold text-on-surface text-right">{item.value || 'N/A'}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -382,6 +387,48 @@ const BookDetailPage = () => {
             ))}
           </div>
         </section>
+      )}
+      
+      {/* ══════════ PREVIEW MODAL ══════════ */}
+      {showPreview && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-10">
+          <div className="absolute inset-0 bg-on-surface/60 backdrop-blur-sm" onClick={() => setShowPreview(false)}></div>
+          <div className="relative bg-white w-full max-w-5xl h-full max-h-[90vh] rounded-[3rem] overflow-hidden shadow-2xl flex flex-col animate-in zoom-in duration-300">
+            <div className="p-6 border-b flex items-center justify-between bg-surface-container-low">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                  <span className="material-symbols-outlined">auto_stories</span>
+                </div>
+                <div>
+                  <h3 className="font-black tracking-tight">Đọc thử: {book.title}</h3>
+                  <p className="text-[10px] font-bold text-outline uppercase tracking-widest">Chương 1 (Xem trước)</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setShowPreview(false)}
+                className="w-10 h-10 rounded-full hover:bg-surface-container transition-colors flex items-center justify-center"
+              >
+                <span className="material-symbols-outlined">close</span>
+              </button>
+            </div>
+            <div className="flex-1 overflow-auto bg-surface-container-lowest p-10">
+              {book.previewType === 'PDF' ? (
+                <iframe 
+                  src={`${book.previewUrl}#toolbar=0`} 
+                  className="w-full h-full border-none rounded-xl"
+                  title="PDF Preview"
+                />
+              ) : (
+                <div className="max-w-2xl mx-auto prose prose-slate">
+                   <h1 className="text-center mb-10">Chương 1</h1>
+                   <div className="text-lg leading-loose text-on-surface-variant whitespace-pre-wrap">
+                     {book.previewUrl || "Nội dung đang được cập nhật..."}
+                   </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

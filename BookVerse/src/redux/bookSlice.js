@@ -263,7 +263,15 @@ const bookSlice = createSlice({
       })
       .addCase(searchBooks.fulfilled, (state, action) => {
         state.loading.search = false;
-        state.searchResults = action.payload;
+        // Nếu là trang đầu (0) thì thay thế, nếu trang sau thì append content
+        if (action.meta.arg.page > 0 && state.searchResults) {
+          state.searchResults = {
+            ...action.payload,
+            content: [...state.searchResults.content, ...action.payload.content]
+          };
+        } else {
+          state.searchResults = action.payload;
+        }
       })
       .addCase(searchBooks.rejected, (state, action) => {
         state.loading.search = false;

@@ -30,6 +30,9 @@ const AdminCategoriesPage = lazy(() => import('@/pages/AdminCategoriesPage'));
 const AdminUsersPage = lazy(() => import('@/pages/AdminUsersPage'));
 const AuthorsPage = lazy(() => import('@/pages/AuthorsPage'));
 const OrderSuccessPage = lazy(() => import('@/pages/OrderSuccessPage'));
+const OrderTrackingPage = lazy(() => import('@/pages/OrderTrackingPage'));
+const AdminOrdersPage = lazy(() => import('@/pages/AdminOrdersPage'));
+const AdminCouponsPage = lazy(() => import('@/pages/AdminCouponsPage'));
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -102,6 +105,7 @@ function App() {
             <Route path="/wishlist" element={<MainLayout><WishlistPage /></MainLayout>} />
             <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
             <Route path="/order-success" element={<ProtectedRoute><OrderSuccessPage /></ProtectedRoute>} />
+            <Route path="/orders/:id" element={<ProtectedRoute><OrderTrackingPage /></ProtectedRoute>} />
             
             {/* Auth Routes */}
             <Route path="/login" element={<LoginPage />} />
@@ -116,7 +120,8 @@ function App() {
               <Route path="books" element={<AdminBooksPage />} />
               <Route path="categories" element={<AdminCategoriesPage />} />
               <Route path="users" element={<AdminUsersPage />} />
-              <Route path="orders" element={<PlaceholderPage title="Quản lý đơn hàng" />} />
+              <Route path="orders" element={<AdminOrdersPage />} />
+              <Route path="coupons" element={<AdminCouponsPage />} />
               <Route path="analytics" element={<PlaceholderPage title="Thống kê chuyên sâu" />} />
               <Route index element={<Navigate to="/admin/dashboard" replace />} />
             </Route>

@@ -23,6 +23,9 @@ const BrowsePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('q') || '';
   const categories = useMemo(() => searchParams.getAll('categories') || [], [searchParams]);
+  const suppliers = useMemo(() => searchParams.getAll('suppliers') || [], [searchParams]);
+  const languages = useMemo(() => searchParams.getAll('languages') || [], [searchParams]);
+  const ageRanges = useMemo(() => searchParams.getAll('ageRanges') || [], [searchParams]);
   const maxPrice = Number(searchParams.get('maxPrice')) || 2000000;
   const minRating = Number(searchParams.get('minRating')) || 0;
   const sortBy = searchParams.get('sortBy') || 'id';
@@ -70,6 +73,9 @@ const BrowsePage = () => {
     const params = {
       q: query,
       categories: categories.length > 0 ? categories : null,
+      suppliers: suppliers.length > 0 ? suppliers : null,
+      languages: languages.length > 0 ? languages : null,
+      ageRanges: ageRanges.length > 0 ? ageRanges : null,
       maxPrice,
       minRating,
       sortBy,
@@ -80,21 +86,19 @@ const BrowsePage = () => {
     dispatch(searchBooks(params));
     
     return () => dispatch(clearSearchResults());
-  }, [dispatch, query, categories, maxPrice, minRating, sortBy, direction, page]);
+  }, [dispatch, query, categories, suppliers, languages, ageRanges, maxPrice, minRating, sortBy, direction, page]);
 
-  const toggleCat = (slug) => {
+  const toggleFilter = (key, value) => {
     const newParams = new URLSearchParams(searchParams);
-    const currentCats = newParams.getAll('categories');
+    const currentValues = newParams.getAll(key);
     
-    newParams.delete('categories'); // Remove all first
+    newParams.delete(key);
     
-    if (currentCats.includes(slug)) {
-      // If it was already checked, add back the others
-      currentCats.filter(c => c !== slug).forEach(c => newParams.append('categories', c));
+    if (currentValues.includes(value)) {
+      currentValues.filter(v => v !== value).forEach(v => newParams.append(key, v));
     } else {
-      // If it wasn't checked, add all existing + the new one
-      currentCats.forEach(c => newParams.append('categories', c));
-      newParams.append('categories', slug);
+      currentValues.forEach(v => newParams.append(key, v));
+      newParams.append(key, value);
     }
     
     newParams.set('page', '0');
@@ -141,12 +145,63 @@ const BrowsePage = () => {
                         type="checkbox" 
                         className="peer appearance-none w-4 h-4 border-2 border-outline-variant rounded-md checked:bg-primary checked:border-primary transition-all"
                         checked={categories.includes(cat.slug)}
-                        onChange={() => toggleCat(cat.slug)}
+                        onChange={() => toggleFilter('categories', cat.slug)}
                       />
                       <span className="material-symbols-outlined absolute text-white text-[10px] opacity-0 peer-checked:opacity-100 left-1/2 -translate-x-1/2 pointer-events-none">check</span>
                     </div>
                     <span className="text-xs font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">{cat.name}</span>
                   </div>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Nhà cung cấp */}
+          <div>
+            <h3 className="text-xs font-bold text-primary tracking-widest uppercase mb-6">Nhà cung cấp</h3>
+            <div className="space-y-3">
+              {['Fahasa', 'Nhã Nam', 'First News', 'Alphabooks', 'NXB Trẻ', 'NXB Kim Đồng'].map(s => (
+                <label key={s} className="flex items-center gap-3 cursor-pointer group">
+                  <div className="relative flex items-center">
+                    <input type="checkbox" className="peer appearance-none w-4 h-4 border-2 border-outline-variant rounded-md checked:bg-primary checked:border-primary transition-all"
+                      checked={suppliers.includes(s)} onChange={() => toggleFilter('suppliers', s)} />
+                    <span className="material-symbols-outlined absolute text-white text-[10px] opacity-0 peer-checked:opacity-100 left-1/2 -translate-x-1/2 pointer-events-none">check</span>
+                  </div>
+                  <span className="text-xs font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">{s}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Độ tuổi */}
+          <div>
+            <h3 className="text-xs font-bold text-primary tracking-widest uppercase mb-6">Độ tuổi</h3>
+            <div className="space-y-3">
+              {['0-6', '6-12', '12-15', '15-18', '18+'].map(a => (
+                <label key={a} className="flex items-center gap-3 cursor-pointer group">
+                  <div className="relative flex items-center">
+                    <input type="checkbox" className="peer appearance-none w-4 h-4 border-2 border-outline-variant rounded-md checked:bg-primary checked:border-primary transition-all"
+                      checked={ageRanges.includes(a)} onChange={() => toggleFilter('ageRanges', a)} />
+                    <span className="material-symbols-outlined absolute text-white text-[10px] opacity-0 peer-checked:opacity-100 left-1/2 -translate-x-1/2 pointer-events-none">check</span>
+                  </div>
+                  <span className="text-xs font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">{a}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Ngôn ngữ */}
+          <div>
+            <h3 className="text-xs font-bold text-primary tracking-widest uppercase mb-6">Ngôn ngữ</h3>
+            <div className="space-y-3">
+              {['Tiếng Việt', 'Tiếng Anh', 'Tiếng Nhật', 'Tiếng Pháp'].map(l => (
+                <label key={l} className="flex items-center gap-3 cursor-pointer group">
+                  <div className="relative flex items-center">
+                    <input type="checkbox" className="peer appearance-none w-4 h-4 border-2 border-outline-variant rounded-md checked:bg-primary checked:border-primary transition-all"
+                      checked={languages.includes(l)} onChange={() => toggleFilter('languages', l)} />
+                    <span className="material-symbols-outlined absolute text-white text-[10px] opacity-0 peer-checked:opacity-100 left-1/2 -translate-x-1/2 pointer-events-none">check</span>
+                  </div>
+                  <span className="text-xs font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">{l}</span>
                 </label>
               ))}
             </div>
@@ -271,83 +326,28 @@ const BrowsePage = () => {
             </div>
           )}
 
-          {/* Pagination */}
-          {books.length > 0 && searchResults?.totalPages > 1 && (
-            <div className="mt-20 flex justify-center items-center gap-2">
-              {/* Previous */}
+          {/* Infinite Scroll / Load More */}
+          {searchResults?.totalPages > page + 1 && (
+            <div className="mt-20 flex justify-center">
               <button 
-                disabled={page === 0}
-                onClick={() => {
-                  const newParams = new URLSearchParams(searchParams);
-                  newParams.set('page', (page - 1).toString());
-                  setSearchParams(newParams);
-                }}
-                className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-all disabled:opacity-20 disabled:cursor-not-allowed group"
-              >
-                <span className="material-symbols-outlined text-outline group-hover:text-primary">chevron_left</span>
-              </button>
-              
-              {/* Page Numbers */}
-              <div className="flex items-center gap-1">
-                {(() => {
-                  const total = searchResults.totalPages;
-                  const current = page;
-                  const pages = [];
-                  
-                  // Logic: Always show first, last, and range around current
-                  const range = 1; // Number of neighbors to show
-                  
-                  for (let i = 0; i < total; i++) {
-                    if (
-                      i === 0 || // First
-                      i === total - 1 || // Last
-                      (i >= current - range && i <= current + range) // Around current
-                    ) {
-                      pages.push(i);
-                    } else if (
-                      (i === current - range - 1 && i > 0) ||
-                      (i === current + range + 1 && i < total - 1)
-                    ) {
-                      pages.push('...');
-                    }
-                  }
-                  
-                  // Filter out consecutive dots
-                  return pages.filter((p, idx) => p !== '...' || pages[idx - 1] !== '...').map((p, i) => (
-                    p === '...' ? (
-                      <span key={`dot-${i}`} className="w-10 text-center text-outline-variant font-bold">...</span>
-                    ) : (
-                      <button 
-                        key={p}
-                        onClick={() => {
-                          const newParams = new URLSearchParams(searchParams);
-                          newParams.set('page', p.toString());
-                          setSearchParams(newParams);
-                        }}
-                        className={`w-10 h-10 flex items-center justify-center rounded-xl transition-all text-xs font-black tracking-tighter ${
-                          page === p 
-                            ? 'bg-primary text-on-primary shadow-lg shadow-primary/30 scale-110' 
-                            : 'text-on-surface-variant hover:bg-surface-container hover:text-primary'
-                        }`}
-                      >
-                        {p + 1}
-                      </button>
-                    )
-                  ));
-                })()}
-              </div>
-
-              {/* Next */}
-              <button 
-                disabled={page === searchResults.totalPages - 1}
+                disabled={isLoading}
                 onClick={() => {
                   const newParams = new URLSearchParams(searchParams);
                   newParams.set('page', (page + 1).toString());
                   setSearchParams(newParams);
                 }}
-                className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-all disabled:opacity-20 disabled:cursor-not-allowed group"
+                className="group flex flex-col items-center gap-4 transition-all"
               >
-                <span className="material-symbols-outlined text-outline group-hover:text-primary">chevron_right</span>
+                <div className="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all shadow-lg group-active:scale-95">
+                  {isLoading ? (
+                    <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                  ) : (
+                    <span className="material-symbols-outlined text-primary group-hover:text-white transition-colors">expand_more</span>
+                  )}
+                </div>
+                <span className="text-[10px] font-black text-outline uppercase tracking-[0.3em] group-hover:text-primary transition-colors">
+                  {isLoading ? 'Đang tải...' : 'Xem thêm kết quả'}
+                </span>
               </button>
             </div>
           )}

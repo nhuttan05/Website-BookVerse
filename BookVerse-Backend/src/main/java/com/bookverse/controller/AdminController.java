@@ -1,9 +1,13 @@
 package com.bookverse.controller;
 
 import com.bookverse.dto.BookDTO;
+import com.bookverse.dto.OrderDetailDTO;
+import com.bookverse.entity.Coupon;
 import com.bookverse.service.AdminService;
 import com.bookverse.service.BookService;
 import com.bookverse.service.CategoryService;
+import com.bookverse.service.CouponService;
+import com.bookverse.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -25,6 +30,9 @@ public class AdminController {
     private final AdminService adminService;
     private final BookService bookService;
     private final CategoryService categoryService;
+    private final CouponService couponService;
+    private final OrderService orderService;
+    private final com.bookverse.repository.UserRepository userRepository;
 
     @GetMapping("/stats")
     public ResponseEntity<Map<String, Object>> getStats() {
@@ -64,7 +72,7 @@ public class AdminController {
     // --- Category Management ---
 
     @GetMapping("/categories")
-    public ResponseEntity<java.util.List<com.bookverse.entity.Category>> getAllCategories() {
+    public ResponseEntity<List<com.bookverse.entity.Category>> getAllCategories() {
         return ResponseEntity.ok(categoryService.getAllCategories());
     }
 
@@ -86,11 +94,52 @@ public class AdminController {
 
     // --- User Management ---
 
-    private final com.bookverse.repository.UserRepository userRepository;
-
     @GetMapping("/users")
-    public ResponseEntity<java.util.List<com.bookverse.entity.User>> getAllUsers() {
-        // Trong thực tế nên dùng DTO, ở đây tôi trả về User entity nhưng đã có @JsonIgnore mật khẩu
+    public ResponseEntity<List<com.bookverse.entity.User>> getAllUsers() {
         return ResponseEntity.ok(userRepository.findAll());
+    }
+
+    // --- Order Management ---
+
+    @GetMapping("/orders")
+    public ResponseEntity<Page<OrderDetailDTO>> getAllOrders(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("orderDate").descending());
+        return ResponseEntity.ok(orderService.getAllOrders(pageable));
+    }
+
+    @PutMapping("/orders/{id}/status")
+    public ResponseEntity<OrderDetailDTO> updateOrderStatus(
+            @PathVariable Long id,
+            @RequestBody Map<String, String> body
+    ) {
+        String status = body.get("status");
+        String note = body.get("note");
+        return ResponseEntity.ok(orderService.updateOrderStatus(id, status, note));
+    }
+
+    // --- Coupon Management ---
+
+    @GetMapping("/coupons")
+    public ResponseEntity<List<Coupon>> getAllCoupons() {
+        return ResponseEntity.ok(couponService.getAllCoupons());
+    }
+
+    @PostMapping("/coupons")
+    public ResponseEntity<Coupon> createCoupon(@RequestBody Coupon coupon) {
+        return ResponseEntity.ok(couponService.createCoupon(coupon));
+    }
+
+    @PutMapping("/coupons/{id}")
+    public ResponseEntity<Coupon> updateCoupon(@PathVariable Long id, @RequestBody Coupon coupon) {
+        return ResponseEntity.ok(couponService.updateCoupon(id, coupon));
+    }
+
+    @DeleteMapping("/coupons/{id}")
+    public ResponseEntity<Void> deleteCoupon(@PathVariable Long id) {
+        couponService.deleteCoupon(id);
+        return ResponseEntity.noContent().build();
     }
 }

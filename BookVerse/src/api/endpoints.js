@@ -56,6 +56,11 @@ export const ENDPOINTS = {
     RETURN:  (id) => `/orders/${id}/return`,
   },
 
+  // --- Coupons ---
+  COUPONS: {
+    VALIDATE: '/coupons/validate',
+  },
+
   // --- User ---
   USER: {
     PROFILE:  '/user/profile',
@@ -72,12 +77,16 @@ export const ENDPOINTS = {
 
   // --- Admin ---
   ADMIN: {
-    OVERVIEW:    '/admin/overview',
-    BOOKS:       '/admin/books',
-    CATEGORIES:  '/admin/categories',
-    ORDERS:      '/admin/orders',
-    USERS:       '/admin/users',
-    ANALYTICS:   '/admin/analytics',
+    OVERVIEW:         '/admin/overview',
+    STATS:            '/admin/stats',
+    BOOKS:            '/admin/books',
+    CATEGORIES:       '/admin/categories',
+    ORDERS:           '/admin/orders',
+    ORDER_STATUS:     (id) => `/admin/orders/${id}/status`,
+    USERS:            '/admin/users',
+    ANALYTICS:        '/admin/analytics',
+    COUPONS:          '/admin/coupons',
+    COUPON_BY_ID:     (id) => `/admin/coupons/${id}`,
   },
 
   // --- Reviews ---

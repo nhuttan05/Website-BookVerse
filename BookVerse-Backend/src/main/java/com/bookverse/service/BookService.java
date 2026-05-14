@@ -43,15 +43,19 @@ public class BookService {
                 .orElseThrow(() -> new RuntimeException("Book not found"));
     }
 
-    public Page<BookDTO> searchBooks(String q, List<String> categories, Double minPrice, Double maxPrice, Double minRating, Pageable pageable) {
+    public Page<BookDTO> searchBooks(String q, List<String> categories, List<String> suppliers, List<String> languages, List<String> ageRanges, Double minPrice, Double maxPrice, Double minRating, Pageable pageable) {
         // Log để debug trên server
         System.out.println("Search API called with - q: [" + q + "], categories: " + categories + 
+                           ", suppliers: " + suppliers + ", languages: " + languages + ", ageRanges: " + ageRanges +
                            ", minPrice: " + minPrice + ", maxPrice: " + maxPrice + ", minRating: " + minRating);
 
         String queryParam = (q == null || q.trim().isEmpty()) ? null : q;
         List<String> categoriesParam = (categories == null || categories.isEmpty()) ? null : categories;
+        List<String> suppliersParam = (suppliers == null || suppliers.isEmpty()) ? null : suppliers;
+        List<String> languagesParam = (languages == null || languages.isEmpty()) ? null : languages;
+        List<String> ageRangesParam = (ageRanges == null || ageRanges.isEmpty()) ? null : ageRanges;
         
-        return bookRepository.searchBooksAdvanced(queryParam, categoriesParam, minPrice, maxPrice, minRating, pageable)
+        return bookRepository.searchBooksAdvanced(queryParam, categoriesParam, suppliersParam, languagesParam, ageRangesParam, minPrice, maxPrice, minRating, pageable)
                 .map(this::convertToDTO);
     }
 
@@ -104,6 +108,10 @@ public class BookService {
         book.setPageCount(dto.getPageCount());
         book.setPublishedDate(dto.getPublishedDate());
         book.setLanguage(dto.getLanguage());
+        book.setSupplier(dto.getSupplier());
+        book.setAgeRange(dto.getAgeRange());
+        book.setPreviewUrl(dto.getPreviewUrl());
+        book.setPreviewType(dto.getPreviewType());
 
         if (dto.getCategorySlug() != null) {
             categoryRepository.findBySlug(dto.getCategorySlug())
@@ -129,6 +137,10 @@ public class BookService {
                 .pageCount(dto.getPageCount())
                 .publishedDate(dto.getPublishedDate())
                 .language(dto.getLanguage())
+                .supplier(dto.getSupplier())
+                .ageRange(dto.getAgeRange())
+                .previewUrl(dto.getPreviewUrl())
+                .previewType(dto.getPreviewType())
                 .rating(0.0)
                 .reviewCount(0)
                 .build();
@@ -171,6 +183,10 @@ public class BookService {
                 .pageCount(book.getPageCount())
                 .publishedDate(book.getPublishedDate())
                 .language(book.getLanguage())
+                .supplier(book.getSupplier())
+                .ageRange(book.getAgeRange())
+                .previewUrl(book.getPreviewUrl())
+                .previewType(book.getPreviewType())
                 .images(book.getImages() != null ? 
                         book.getImages().stream().map(com.bookverse.entity.BookImage::getImageUrl).collect(Collectors.toList()) : 
                         null)

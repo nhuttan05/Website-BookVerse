@@ -66,6 +66,16 @@ const DashboardPage = () => {
               <span className="font-bold text-sm">{item.label}</span>
             </button>
           ))}
+          
+          <div className="pt-4 mt-4 border-t border-outline-variant/10">
+            <button 
+              onClick={() => navigate('/')}
+              className="w-full flex items-center gap-4 px-4 py-3 rounded-2xl text-primary hover:bg-primary/5 transition-all no-underline"
+            >
+              <span className="material-symbols-outlined">home</span>
+              <span className="font-bold text-sm">Quay lại trang chủ</span>
+            </button>
+          </div>
         </div>
 
         <div className="mt-auto bg-primary-container/20 p-6 rounded-[2rem] space-y-4">

@@ -8,6 +8,7 @@ public class OrderRequest {
     private String shippingAddress;
     private String phoneNumber;
     private String paymentMethod;
+    private String couponCode;
     private List<OrderItemRequest> items;
 
     @Data

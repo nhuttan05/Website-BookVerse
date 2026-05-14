@@ -32,5 +32,9 @@ public class BookDTO {
     private Integer pageCount;
     private LocalDate publishedDate;
     private String language;
+    private String supplier;
+    private String ageRange;
+    private String previewUrl;
+    private String previewType;
     private java.util.List<String> images;
 }

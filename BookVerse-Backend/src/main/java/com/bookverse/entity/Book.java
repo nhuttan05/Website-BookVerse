@@ -74,9 +74,20 @@ public class Book {
     private LocalDate publishedDate;
 
     private String language;
+    
+    private String supplier;
+
+    @Column(name = "age_range")
+    private String ageRange;
 
     @Column(name = "stock_quantity")
     private Integer stockQuantity;
+
+    @Column(name = "preview_url")
+    private String previewUrl;
+
+    @Column(name = "preview_type")
+    private String previewType; // 'PDF' or 'TEXT'
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("displayOrder ASC")

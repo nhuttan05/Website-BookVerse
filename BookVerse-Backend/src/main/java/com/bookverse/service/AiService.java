@@ -29,7 +29,7 @@ public class AiService {
         String query = userMessage.trim();
         // Lấy tối đa 10 cuốn sách liên quan (theo tiêu đề hoặc tác giả)
         List<Book> relevantBooks = bookRepository.searchBooksAdvanced(
-                query, null, null, null, null, PageRequest.of(0, 10)
+                query, null, null, null, null, null, null, null, PageRequest.of(0, 10)
         ).getContent();
 
         // Nếu không tìm thấy sách theo từ khóa, lấy danh sách sách tiêu biểu làm dự phòng

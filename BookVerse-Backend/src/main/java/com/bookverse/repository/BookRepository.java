@@ -24,12 +24,18 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("SELECT b FROM Book b LEFT JOIN b.category c WHERE " +
            "(:q IS NULL OR LOWER(b.title) LIKE LOWER(concat('%', :q, '%')) OR LOWER(b.author) LIKE LOWER(concat('%', :q, '%'))) AND " +
            "(:categories IS NULL OR c.slug IN :categories) AND " +
+           "(:suppliers IS NULL OR b.supplier IN :suppliers) AND " +
+           "(:languages IS NULL OR b.language IN :languages) AND " +
+           "(:ageRanges IS NULL OR b.ageRange IN :ageRanges) AND " +
            "(:minPrice IS NULL OR b.price >= :minPrice) AND " +
            "(:maxPrice IS NULL OR b.price <= :maxPrice) AND " +
            "(:minRating IS NULL OR b.rating >= :minRating)")
     Page<Book> searchBooksAdvanced(
             @Param("q") String q,
             @Param("categories") List<String> categories,
+            @Param("suppliers") List<String> suppliers,
+            @Param("languages") List<String> languages,
+            @Param("ageRanges") List<String> ageRanges,
             @Param("minPrice") Double minPrice,
             @Param("maxPrice") Double maxPrice,
             @Param("minRating") Double minRating,

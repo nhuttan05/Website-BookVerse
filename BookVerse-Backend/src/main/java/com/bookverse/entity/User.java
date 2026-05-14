@@ -43,6 +43,14 @@ public class User implements UserDetails {
     )
     private Set<Role> roles = new java.util.HashSet<>();
 
+    @Column(name = "created_at")
+    private java.time.LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = java.time.LocalDateTime.now();
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
