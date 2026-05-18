@@ -113,7 +113,11 @@ public class BookService {
         book.setPreviewUrl(dto.getPreviewUrl());
         book.setPreviewType(dto.getPreviewType());
 
-        if (dto.getCategorySlug() != null) {
+        // Ưu tiên categoryId, fallback sang categorySlug
+        if (dto.getCategoryId() != null) {
+            categoryRepository.findById(dto.getCategoryId())
+                    .ifPresent(book::setCategory);
+        } else if (dto.getCategorySlug() != null) {
             categoryRepository.findBySlug(dto.getCategorySlug())
                     .ifPresent(book::setCategory);
         }
@@ -145,7 +149,11 @@ public class BookService {
                 .reviewCount(0)
                 .build();
 
-        if (dto.getCategorySlug() != null) {
+        // Ưu tiên categoryId, fallback sang categorySlug
+        if (dto.getCategoryId() != null) {
+            categoryRepository.findById(dto.getCategoryId())
+                    .ifPresent(book::setCategory);
+        } else if (dto.getCategorySlug() != null) {
             categoryRepository.findBySlug(dto.getCategorySlug())
                     .ifPresent(book::setCategory);
         }
@@ -169,6 +177,7 @@ public class BookService {
                 .originalPrice(book.getOriginalPrice())
                 .discountPercent(book.getDiscountPercent())
                 .coverImageUrl(book.getCoverImageUrl())
+                .categoryId(book.getCategory() != null ? book.getCategory().getId() : null)
                 .categoryName(book.getCategory() != null ? book.getCategory().getName() : null)
                 .categorySlug(book.getCategory() != null ? book.getCategory().getSlug() : null)
                 .author(book.getAuthor())

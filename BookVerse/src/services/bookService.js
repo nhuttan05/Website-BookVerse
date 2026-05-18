@@ -150,7 +150,9 @@ export const adminDeleteBook = async (id) => {
 
 export const adminFetchCategories = async () => {
   const response = await axiosInstance.get(ENDPOINTS.ADMIN.CATEGORIES);
-  return response.data;
+  const data = response.data;
+  // Normalize: Backend có thể trả về array hoặc Page object { content: [...] }
+  return Array.isArray(data) ? data : (data?.content ?? []);
 };
 
 export const adminCreateCategory = async (categoryData) => {

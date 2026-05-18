@@ -33,7 +33,13 @@ export const register = createAsyncThunk(
       const response = await axiosInstance.post(ENDPOINTS.AUTH.REGISTER, userData);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Đăng ký thất bại');
+      // Sau khi có GlobalExceptionHandler, backend trả về {message: "..."}
+      // Fallback cho cả trường hợp string thuần
+      const data = error.response?.data;
+      const errMsg = typeof data === 'string'
+        ? data
+        : data?.message || 'Đăng ký thất bại. Vui lòng kiểm tra lại thông tin.';
+      return rejectWithValue(errMsg);
     }
   }
 );
@@ -109,6 +115,19 @@ const authSlice = createSlice({
         state.user = null;
         state.isAuthenticated = false;
         state.token = null;
+      })
+
+      // Register
+      .addCase(register.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(register.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   }
 });

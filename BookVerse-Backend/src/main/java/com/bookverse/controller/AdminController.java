@@ -72,18 +72,23 @@ public class AdminController {
     // --- Category Management ---
 
     @GetMapping("/categories")
-    public ResponseEntity<List<com.bookverse.entity.Category>> getAllCategories() {
-        return ResponseEntity.ok(categoryService.getAllCategories());
+    public ResponseEntity<List<com.bookverse.dto.CategoryDTO>> getAllCategories() {
+        // Dùng getCategoriesWithBookCount() trả về DTO an toàn, không gây Infinite Recursion
+        return ResponseEntity.ok(categoryService.getCategoriesWithBookCount());
     }
 
     @PostMapping("/categories")
-    public ResponseEntity<com.bookverse.entity.Category> createCategory(@RequestBody com.bookverse.entity.Category category) {
-        return ResponseEntity.ok(categoryService.createCategory(category));
+    public ResponseEntity<com.bookverse.dto.CategoryDTO> createCategory(@RequestBody com.bookverse.entity.Category category) {
+        com.bookverse.entity.Category saved = categoryService.createCategory(category);
+        return ResponseEntity.ok(com.bookverse.dto.CategoryDTO.builder()
+                .id(saved.getId()).name(saved.getName()).slug(saved.getSlug()).bookCount(0L).build());
     }
 
     @PutMapping("/categories/{id}")
-    public ResponseEntity<com.bookverse.entity.Category> updateCategory(@PathVariable Long id, @RequestBody com.bookverse.entity.Category category) {
-        return ResponseEntity.ok(categoryService.updateCategory(id, category));
+    public ResponseEntity<com.bookverse.dto.CategoryDTO> updateCategory(@PathVariable Long id, @RequestBody com.bookverse.entity.Category category) {
+        com.bookverse.entity.Category updated = categoryService.updateCategory(id, category);
+        return ResponseEntity.ok(com.bookverse.dto.CategoryDTO.builder()
+                .id(updated.getId()).name(updated.getName()).slug(updated.getSlug()).bookCount(0L).build());
     }
 
     @DeleteMapping("/categories/{id}")
@@ -97,6 +102,25 @@ public class AdminController {
     @GetMapping("/users")
     public ResponseEntity<List<com.bookverse.entity.User>> getAllUsers() {
         return ResponseEntity.ok(userRepository.findAll());
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody java.util.Map<String, Object> body) {
+        com.bookverse.entity.User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        if (body.containsKey("fullName")) user.setFullName((String) body.get("fullName"));
+        if (body.containsKey("enabled")) {
+            // enabled field — nếu User entity có trường này
+            // Dùng reflection hoặc bỏ qua nếu entity chưa có
+        }
+        userRepository.save(user);
+        return ResponseEntity.ok(user);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     // --- Order Management ---

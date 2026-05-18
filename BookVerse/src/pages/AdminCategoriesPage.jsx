@@ -16,12 +16,14 @@ const AdminCategoriesPage = () => {
   const [isEditing, setIsEditing] = useState(null);
   const [newCatName, setNewCatName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const fetchCats = async () => {
     setLoading(true);
     try {
       const data = await adminFetchCategories();
-      setCategories(data);
+      // Backend có thể trả về array hoặc Page object { content: [...] }
+      setCategories(Array.isArray(data) ? data : (data?.content ?? []));
     } catch (error) {
       toast.error('Không thể tải danh sách danh mục');
     } finally {
@@ -125,7 +127,9 @@ const AdminCategoriesPage = () => {
               <div className="relative">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-outline" size={16} />
                 <input 
-                  type="text" 
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Tìm nhanh danh mục..."
                   className="w-full bg-surface-container border-none rounded-xl py-2.5 pl-10 pr-4 text-xs font-bold focus:ring-2 focus:ring-primary/10"
                 />
@@ -141,7 +145,9 @@ const AdminCategoriesPage = () => {
                   </div>
                 ))
               ) : categories.length > 0 ? (
-                categories.map((cat) => (
+                categories
+                  .filter(cat => cat.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                  .map((cat) => (
                   <div key={cat.id} className="p-6 hover:bg-surface-container-high/30 transition-all flex items-center justify-between group">
                     <div className="flex flex-col">
                       <span className="font-black text-on-surface group-hover:text-primary transition-colors">{cat.name}</span>
