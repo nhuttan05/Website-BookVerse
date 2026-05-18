@@ -22,13 +22,12 @@ const AdminLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const adminNavLinks = [
-    { path: '/admin/dashboard', label: 'Tổng quan', icon: <LayoutDashboard size={20} /> },
+    { path: '/admin/analytics',  label: 'Thống kê',      icon: <BarChart3 size={20} /> },
     { path: '/admin/books',      label: 'Quản lý sách', icon: <BookOpen size={20} /> },
-    { path: '/admin/categories', label: 'Danh mục', icon: <Layers size={20} /> },
-    { path: '/admin/orders',     label: 'Đơn hàng', icon: <ShoppingBag size={20} /> },
+    { path: '/admin/categories', label: 'Danh mục',    icon: <Layers size={20} /> },
+    { path: '/admin/orders',     label: 'Đơn hàng',    icon: <ShoppingBag size={20} /> },
     { path: '/admin/coupons',    label: 'Mã giảm giá', icon: <Layers size={20} /> },
-    { path: '/admin/users',      label: 'Người dùng', icon: <Users size={20} /> },
-    { path: '/admin/analytics',  label: 'Thống kê', icon: <BarChart3 size={20} /> },
+    { path: '/admin/users',      label: 'Người dùng',  icon: <Users size={20} /> },
   ];
 
   const handleLogout = () => {

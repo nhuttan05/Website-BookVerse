@@ -19,7 +19,6 @@ const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const ContactPage = lazy(() => import('@/pages/ContactPage'));
-const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
 const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
 const BlogPage = lazy(() => import('@/pages/BlogPage'));
 const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
@@ -102,7 +101,6 @@ function App() {
             <Route path="/browse" element={<MainLayout><BrowsePage /></MainLayout>} />
             <Route path="/books/:slug" element={<MainLayout><BookDetailPage /></MainLayout>} />
             <Route path="/cart" element={<MainLayout><CartPage /></MainLayout>} />
-            <Route path="/wishlist" element={<MainLayout><WishlistPage /></MainLayout>} />
             <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
             <Route path="/order-success" element={<ProtectedRoute><OrderSuccessPage /></ProtectedRoute>} />
             <Route path="/orders/:id" element={<ProtectedRoute><OrderTrackingPage /></ProtectedRoute>} />
@@ -116,14 +114,13 @@ function App() {
 
             {/* Admin Routes */}
             <Route path="/admin" element={<ProtectedRoute role="ROLE_ADMIN"><AdminLayout /></ProtectedRoute>}>
-              <Route path="dashboard" element={<AdminDashboardPage />} />
+              <Route path="analytics" element={<AdminDashboardPage />} />
               <Route path="books" element={<AdminBooksPage />} />
               <Route path="categories" element={<AdminCategoriesPage />} />
               <Route path="users" element={<AdminUsersPage />} />
               <Route path="orders" element={<AdminOrdersPage />} />
               <Route path="coupons" element={<AdminCouponsPage />} />
-              <Route path="analytics" element={<PlaceholderPage title="Thống kê chuyên sâu" />} />
-              <Route index element={<Navigate to="/admin/dashboard" replace />} />
+              <Route index element={<Navigate to="/admin/analytics" replace />} />
             </Route>
             
             {/* Other Placeholders */}

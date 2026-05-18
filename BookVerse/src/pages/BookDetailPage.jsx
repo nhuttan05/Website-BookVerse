@@ -44,7 +44,6 @@ const BookDetailPage = () => {
     return () => dispatch(clearSelectedBook());
   }, [dispatch, slug]);
 
-  // Cập nhật ảnh chính khi book data thay đổi
   useEffect(() => {
     if (book?.coverImageUrl) {
       setMainImage(book.coverImageUrl);
@@ -62,8 +61,6 @@ const BookDetailPage = () => {
       author: book.author,
       quantity: quantity
     }));
-    
-    // Visual feedback
     setTimeout(() => setIsAdding(false), 1000);
   };
 
@@ -74,6 +71,7 @@ const BookDetailPage = () => {
       </div>
     );
   }
+
 
   if (!book) {
     return (
@@ -173,7 +171,9 @@ const BookDetailPage = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="flex-1 px-8 py-5 bg-primary text-on-primary rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95 flex items-center justify-center gap-3">
+            <button 
+              onClick={() => { handleAddToCart(); navigate('/checkout'); }}
+              className="flex-1 px-8 py-5 bg-primary text-on-primary rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95 flex items-center justify-center gap-3">
               <span className="material-symbols-outlined">bolt</span> MUA NGAY
             </button>
             <button 

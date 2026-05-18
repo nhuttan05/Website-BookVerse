@@ -8,14 +8,13 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Heart, Star } from 'lucide-react';
+import { ShoppingCart, Star } from 'lucide-react';
 import LazyImage from '@/components/ui/LazyImage';
 import { formatPrice, cn } from '@/utils/formatters';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addItem } from '@/redux/cartSlice';
-import { toggleWishlistItem, selectIsInWishlist } from '@/redux/wishlistSlice';
 import { selectIsAuthenticated } from '@/redux/authSlice';
 
 /**
@@ -27,17 +26,7 @@ const BookCard = ({
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isWishlisted = useSelector(selectIsInWishlist(book.id));
   const isAuthenticated = useSelector(selectIsAuthenticated);
-
-  const handleWishlist = (e) => {
-    e.preventDefault();
-    if (!isAuthenticated) {
-      navigate('/login');
-      return;
-    }
-    dispatch(toggleWishlistItem({ book, isInWishlist: isWishlisted }));
-  };
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -74,15 +63,6 @@ const BookCard = ({
             </div>
             <div className="flex items-center gap-2 mt-4">
               <span className="text-lg font-extrabold text-primary grow">{formatPrice(book.price)}</span>
-              <button 
-                onClick={handleWishlist}
-                className={cn(
-                  "p-2 rounded-xl border transition-all",
-                  isWishlisted ? "bg-error/10 border-error/20 text-error" : "border-outline-variant text-outline hover:bg-error/5"
-                )}
-              >
-                <Heart size={16} fill={isWishlisted ? "currentColor" : "none"} />
-              </button>
               <button 
                 onClick={handleAddToCart}
                 className="p-2 rounded-xl border border-outline-variant text-outline hover:bg-primary-container hover:text-white transition-colors"
@@ -144,18 +124,6 @@ const BookCard = ({
           <div className="flex items-center justify-between pt-2">
             <span className="text-xl font-extrabold text-primary">{formatPrice(book.price)}</span>
             <div className="flex gap-2">
-              <button
-                onClick={handleWishlist}
-                className={cn(
-                  "p-2 rounded-xl border transition-all active:scale-95",
-                  isWishlisted 
-                    ? "bg-error/10 border-error/20 text-error shadow-sm" 
-                    : "border-outline-variant text-outline hover:bg-error/5 hover:text-error hover:border-error/10"
-                )}
-                title={isWishlisted ? "Xóa khỏi yêu thích" : "Thêm vào yêu thích"}
-              >
-                <Heart size={18} fill={isWishlisted ? "currentColor" : "none"} />
-              </button>
               <button
                 onClick={handleAddToCart}
                 className="p-2 rounded-xl border border-outline-variant text-outline hover:bg-primary-container hover:text-white transition-colors active:scale-95"

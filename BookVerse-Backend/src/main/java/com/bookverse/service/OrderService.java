@@ -97,6 +97,18 @@ public class OrderService {
         return orderRepository.findByUserOrderByOrderDateDesc(user);
     }
 
+    @Transactional
+    public OrderDetailDTO createOrderAsDTO(User user, OrderRequest request) {
+        Order saved = createOrder(user, request);
+        return toDetailDTO(saved);
+    }
+
+    public List<OrderDetailDTO> getUserOrdersAsDTOs(User user) {
+        return orderRepository.findByUserOrderByOrderDateDesc(user)
+                .stream().map(this::toDetailDTO)
+                .collect(Collectors.toList());
+    }
+
     public OrderDetailDTO getOrderDetail(Long orderId, User user) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy đơn hàng #" + orderId));

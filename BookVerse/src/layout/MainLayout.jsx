@@ -7,16 +7,14 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { ShoppingCart, Heart, Moon, Menu, X } from 'lucide-react';
+import { ShoppingCart, Moon, Menu, X } from 'lucide-react';
 import { selectCartTotalQuantity } from '@/redux/cartSlice';
 import { selectAuth, logout, getCurrentUser } from '@/redux/authSlice';
-import { selectWishlistItems } from '@/redux/wishlistSlice';
 import { toggleTheme, selectTheme } from '@/redux/themeSlice';
 
 const NAV_LINKS = [
   { path: '/',          label: 'Trang chủ', id: 'nav-home' },
   { path: '/authors',     label: 'Tác giả',    id: 'nav-authors' },
-  { path: '/contact',     label: 'Liên hệ',    id: 'nav-contact' },
   { path: '/categories', label: 'Danh mục',  id: 'nav-categories' },
   { path: '/blog',      label: 'Blog',       id: 'nav-blog' },
 ];
@@ -30,7 +28,6 @@ const MainLayout = ({ children }) => {
   // Redux state
   const totalQuantity = useSelector(selectCartTotalQuantity);
   const { user, isAuthenticated } = useSelector(selectAuth);
-  const wishlistItems = useSelector(selectWishlistItems);
   const theme = useSelector(selectTheme);
 
   useEffect(() => {
@@ -96,20 +93,6 @@ const MainLayout = ({ children }) => {
 
           {/* Actions */}
           <div className="flex items-center space-x-2">
-            <Link
-              to="/wishlist"
-              id="nav-wishlist"
-              className="p-2 hover:bg-surface-container rounded-xl transition-colors text-on-surface-variant relative"
-              title="Danh sách yêu thích"
-            >
-              <Heart size={22} />
-              {wishlistItems.length > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-tertiary text-white text-[10px] font-bold rounded-full flex items-center justify-center animate-in zoom-in duration-300 shadow-sm">
-                  {wishlistItems.length}
-                </span>
-              )}
-            </Link>
-
             <Link
               to="/cart"
               id="nav-cart"

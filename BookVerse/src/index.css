@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@100..900&display=swap');
+/* Fonts lưu trữ ở index.html qua preconnect — không cần @import ở đây */
 @import "tailwindcss";
 
 /* =====================================================
@@ -191,12 +191,16 @@
 }
 
 html {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  /* Be Vietnam Pro: font tiếng Việt đẹp nhất trên Google Fonts */
+  font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
   color: var(--color-on-surface);
   background-color: var(--color-surface);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  /* Tối ưu hiển thị ký tự có dấu */
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -207,7 +211,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  font-family: 'Outfit', sans-serif;
+  /* Plus Jakarta Sans: heading hiện đại, hỗ trợ Latin Extended đầy đủ */
+  font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
 }
 
 p {

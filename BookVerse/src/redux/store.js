@@ -7,7 +7,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import bookReducer from './bookSlice';
 import authReducer from './authSlice';
 import cartReducer from './cartSlice';
-import wishlistReducer from './wishlistSlice';
 import orderReducer from './orderSlice';
 import themeReducer from './themeSlice';
 
@@ -16,7 +15,6 @@ const store = configureStore({
     books: bookReducer,
     auth: authReducer,
     cart: cartReducer,
-    wishlist: wishlistReducer,
     orders: orderReducer,
     theme: themeReducer,
   },

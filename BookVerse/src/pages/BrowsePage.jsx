@@ -7,6 +7,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { Search, X } from 'lucide-react';
 import BookCard from '@/components/BookCard';
 import { 
   searchBooks, 
@@ -34,6 +35,8 @@ const BrowsePage = () => {
 
   // Local state for sliders (Debounce)
   const [localMax, setLocalMax] = useState(maxPrice);
+  // Local state for search input (Debounce)
+  const [localQuery, setLocalQuery] = useState(query);
   
   // Redux state
   const searchResults = useSelector(selectSearchResults);
@@ -44,30 +47,48 @@ const BrowsePage = () => {
     dispatch(getCategories());
   }, [dispatch]);
 
-  // Sync local state when URL changes
+  // Sync local query khi URL thay đổi từ bên ngoài (ví dụ: click từ navbar)
+  useEffect(() => {
+    setLocalQuery(query);
+  }, [query]);
+
   useEffect(() => {
     setLocalMax(maxPrice);
   }, [maxPrice]);
 
-  // Debounced search trigger
+  // Debounced price filter
   useEffect(() => {
     const timer = setTimeout(() => {
       if (localMax !== maxPrice) {
         const newParams = new URLSearchParams(searchParams);
         newParams.set('maxPrice', localMax.toString());
-        
-        // Chỉ tự động chuyển sang Giá cao nếu người dùng CHƯA chọn sắp xếp theo giá
         if (sortBy !== 'price') {
           newParams.set('sortBy', 'price');
           newParams.set('direction', 'desc');
         }
-        
         newParams.set('page', '0');
         setSearchParams(newParams);
       }
     }, 600);
     return () => clearTimeout(timer);
   }, [localMax, sortBy, maxPrice, searchParams, setSearchParams]);
+
+  // Debounced search query
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (localQuery !== query) {
+        const newParams = new URLSearchParams(searchParams);
+        if (localQuery) {
+          newParams.set('q', localQuery);
+        } else {
+          newParams.delete('q');
+        }
+        newParams.set('page', '0');
+        setSearchParams(newParams);
+      }
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [localQuery, query, searchParams, setSearchParams]);
 
   useEffect(() => {
     const params = {
@@ -257,16 +278,39 @@ const BrowsePage = () => {
 
         {/* ══════════ MAIN CONTENT ══════════ */}
         <main className="flex-1 min-w-0">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          {/* Search + Sort row */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8">
             <div>
               <h1 className="text-2xl font-black tracking-tight text-on-surface">
                 {query ? `Kết quả cho "${query}"` : 'Duyệt Archive'}
               </h1>
               <p className="text-[11px] font-bold text-on-surface-variant mt-0.5">Đang hiển thị {books.length} trên {totalElements} kết quả</p>
             </div>
-            
+
             <div className="flex items-center gap-3">
-              <span className="text-[10px] font-black text-outline uppercase tracking-widest whitespace-nowrap">Sắp xếp</span>
+              {/* Search input */}
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-3.5 flex items-center pointer-events-none">
+                  <Search size={16} className={`transition-colors ${localQuery ? 'text-primary' : 'text-outline-variant'}`} />
+                </div>
+                <input
+                  type="text"
+                  value={localQuery}
+                  onChange={e => setLocalQuery(e.target.value)}
+                  placeholder="Tìm tên sách, tác giả..."
+                  className="pl-10 pr-8 py-2.5 w-52 bg-surface-container-high border border-outline-variant/20 rounded-2xl text-sm font-medium text-on-surface placeholder:text-outline-variant/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all focus:w-64"
+                />
+                {localQuery && (
+                  <button
+                    onClick={() => setLocalQuery('')}
+                    className="absolute inset-y-0 right-2.5 flex items-center text-outline-variant hover:text-on-surface transition-colors"
+                  >
+                    <X size={14} />
+                  </button>
+                )}
+              </div>
+              {/* Sort dropdown */}
+              <span className="text-[10px] font-black text-outline uppercase tracking-widest whitespace-nowrap hidden sm:block">Sắp xếp</span>
               <div className="relative group">
                 <button className="flex items-center gap-3 bg-surface-container-low hover:bg-surface-container px-4 py-2 rounded-2xl border border-outline-variant/30 transition-all cursor-pointer group-hover:ring-4 group-hover:ring-primary/10">
                   <span className="text-xs font-black text-on-surface">
